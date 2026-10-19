@@ -10,11 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Fredoka:wght@500;600;700&family=Noto+Naskh+Arabic:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    /* ==========================================================================
-       FASA 1: VISUAL DESIGN SYSTEM (MODERN KAWAII 3D ADVENTURE)
-       ========================================================================== */
     :root {
-      /* Palet Warna Utama */
       --turquoise: #2EC4B6;
       --turquoise-dark: #1B998B;
       --teal-deep: #0F4C5C;
@@ -33,16 +29,14 @@
       --success: #06D6A0;
       --success-dark: #04A378;
 
-      /* Tipografi */
       --font-ui: 'Fredoka', 'Segoe UI', Roboto, Helvetica, sans-serif;
       --font-arabic: 'Noto Naskh Arabic', 'Amiri', 'Traditional Arabic', 'Geeza Pro', serif;
 
-      /* Kesan 3D & Bayang */
-      --card-shadow: 0 12px 0 rgba(15, 76, 92, 0.18), 0 20px 35px rgba(15, 76, 92, 0.22);
+      --card-shadow: 0 8px 0 rgba(15, 76, 92, 0.18), 0 14px 25px rgba(15, 76, 92, 0.2);
       --panel-border: 4px solid #FFFFFF;
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
     }
 
     * {
@@ -52,6 +46,7 @@
       user-select: none;
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     html, body {
@@ -63,7 +58,6 @@
       background: linear-gradient(180deg, #56CFE1 0%, #72EFDD 55%, #C7F9CC 100%);
     }
 
-    /* Latar Belakang Dunia 3D Penuh */
     #app-container {
       position: relative;
       width: 100%;
@@ -73,10 +67,8 @@
       align-items: center;
       justify-content: space-between;
       overflow: hidden;
-      perspective: 1000px;
     }
 
-    /* Kanvas Persekitaran SVG 3D */
     #world-scene {
       position: fixed;
       inset: 0;
@@ -94,65 +86,34 @@
       display: block;
     }
 
-    /* Partikel Bintang Ajaib */
-    .sparkle-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: radial-gradient(circle, #FFF 20%, var(--butter) 70%, transparent 100%);
-      border-radius: 50%;
-      opacity: 0.75;
-      animation: floatSparkle 5s infinite ease-in-out;
-    }
-
-    @keyframes floatSparkle {
-      0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.4; }
-      50% { transform: translateY(-22px) scale(1.25); opacity: 0.95; }
-    }
-
-    /* ==========================================================================
-       KOMPONEN UI 3D KAWAII (BUTTONS, CARDS, BADGES)
-       ========================================================================== */
     .top-bar {
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 1060px;
-      padding: 12px 18px;
+      max-width: 960px;
+      padding: 10px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .brand-pill {
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.92);
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.95);
       border: 3px solid #FFFFFF;
-      padding: 6px 16px;
+      padding: 5px 12px;
       border-radius: 999px;
-      box-shadow: 0 6px 0 rgba(15, 76, 92, 0.15);
-      backdrop-filter: blur(8px);
-      transition: transform 0.15s ease;
-    }
-
-    .brand-pill:hover {
-      transform: scale(1.03);
+      box-shadow: 0 4px 0 rgba(15, 76, 92, 0.15);
+      cursor: pointer;
     }
 
     .brand-pill .ar-mini {
       font-family: var(--font-arabic);
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       color: var(--teal-deep);
       font-weight: 700;
     }
@@ -160,197 +121,166 @@
     .stats-bar {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
     .stat-pill {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 5px;
       background: linear-gradient(180deg, #FFFFFF 0%, #F3FBF9 100%);
       border: 3px solid #FFFFFF;
-      padding: 7px 14px;
+      padding: 5px 10px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.98rem;
+      font-size: 0.88rem;
       color: var(--teal-deep);
-      box-shadow: 0 5px 0 rgba(15, 76, 92, 0.16);
+      box-shadow: 0 4px 0 rgba(15, 76, 92, 0.14);
     }
 
-    /* Butang 3D Tactile */
     .btn-3d {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       font-family: var(--font-ui);
       font-weight: 700;
-      font-size: 1.08rem;
-      padding: 13px 24px;
+      font-size: 1rem;
+      padding: 12px 20px;
       border-radius: 999px;
       border: 3px solid #FFFFFF;
       cursor: pointer;
-      transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, filter 0.15s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
       text-decoration: none;
-      letter-spacing: 0.3px;
-    }
-
-    .btn-3d::before {
-      content: '';
-      position: absolute;
-      top: 4px;
-      left: 14px;
-      right: 14px;
-      height: 35%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%);
-      border-radius: 999px;
-      pointer-events: none;
+      min-height: 48px; /* Standard mobile touch target */
+      min-width: 48px;
     }
 
     .btn-turquoise {
       background: linear-gradient(180deg, #48E5D7 0%, var(--turquoise) 100%);
       color: #FFFFFF;
-      text-shadow: 0 2px 0 var(--turquoise-dark);
-      box-shadow: 0 7px 0 var(--turquoise-dark), 0 12px 20px rgba(27, 153, 139, 0.35);
+      text-shadow: 0 1px 0 var(--turquoise-dark);
+      box-shadow: 0 5px 0 var(--turquoise-dark), 0 8px 15px rgba(27, 153, 139, 0.3);
     }
 
     .btn-butter {
       background: linear-gradient(180deg, #FFE08A 0%, var(--butter) 100%);
       color: #5C3D00;
-      box-shadow: 0 7px 0 var(--butter-dark), 0 12px 20px rgba(229, 178, 58, 0.35);
+      box-shadow: 0 5px 0 var(--butter-dark), 0 8px 15px rgba(229, 178, 58, 0.3);
     }
 
     .btn-coral {
       background: linear-gradient(180deg, #FF8E8E 0%, var(--coral) 100%);
       color: #FFFFFF;
-      text-shadow: 0 2px 0 var(--coral-dark);
-      box-shadow: 0 7px 0 var(--coral-dark), 0 12px 20px rgba(224, 79, 79, 0.35);
+      text-shadow: 0 1px 0 var(--coral-dark);
+      box-shadow: 0 5px 0 var(--coral-dark), 0 8px 15px rgba(224, 79, 79, 0.3);
     }
 
     .btn-lavender {
       background: linear-gradient(180deg, #CFB3FF 0%, var(--lavender) 100%);
       color: #FFFFFF;
-      text-shadow: 0 2px 0 var(--lavender-dark);
-      box-shadow: 0 7px 0 var(--lavender-dark), 0 12px 20px rgba(142, 99, 227, 0.35);
+      text-shadow: 0 1px 0 var(--lavender-dark);
+      box-shadow: 0 5px 0 var(--lavender-dark), 0 8px 15px rgba(142, 99, 227, 0.3);
     }
 
     .btn-sky {
       background: linear-gradient(180deg, #9BE4FF 0%, var(--sky) 100%);
       color: #084B66;
-      box-shadow: 0 7px 0 var(--sky-dark), 0 12px 20px rgba(56, 163, 209, 0.3);
+      box-shadow: 0 5px 0 var(--sky-dark), 0 8px 15px rgba(56, 163, 209, 0.25);
     }
 
     .btn-success {
       background: linear-gradient(180deg, #38F2C0 0%, var(--success) 100%);
       color: #FFFFFF;
-      text-shadow: 0 2px 0 var(--success-dark);
-      box-shadow: 0 7px 0 var(--success-dark), 0 12px 20px rgba(4, 163, 120, 0.35);
+      text-shadow: 0 1px 0 var(--success-dark);
+      box-shadow: 0 5px 0 var(--success-dark), 0 8px 15px rgba(4, 163, 120, 0.3);
     }
 
     .btn-sm {
-      padding: 8px 16px;
-      font-size: 0.92rem;
-      box-shadow: 0 5px 0 rgba(15, 76, 92, 0.25);
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      min-height: 40px;
+      box-shadow: 0 4px 0 rgba(15, 76, 92, 0.2);
     }
 
-    .btn-3d:hover:not(:disabled) {
-      transform: translateY(-2px);
-      filter: brightness(1.04);
+    .btn-3d:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) !important;
     }
 
-    .btn-3d:active:not(:disabled) {
-      transform: translateY(5px);
-      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25) !important;
-    }
-
-    .btn-3d:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-      filter: grayscale(0.35);
-    }
-
-    /* ==========================================================================
-       SKRIN DAN PANEL PENGEMBARAAN
-       ========================================================================== */
     .screen {
       position: relative;
       z-index: 5;
       width: 100%;
-      max-width: 1040px;
-      padding: 10px 16px 28px;
+      max-width: 960px;
+      padding: 8px 12px 20px;
       display: none;
       flex-direction: column;
       align-items: center;
-      animation: popInScreen 0.38s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .screen.active {
       display: flex;
     }
 
-    @keyframes popInScreen {
-      from { opacity: 0; transform: translateY(18px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* Panel Kaca 3D Kawaii */
     .kawaii-panel {
       width: 100%;
-      background: rgba(255, 253, 249, 0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 253, 249, 0.94);
+      backdrop-filter: blur(10px);
       border: var(--panel-border);
       border-radius: var(--radius-xl);
       box-shadow: var(--card-shadow);
-      padding: 24px;
+      padding: 16px;
       position: relative;
     }
 
-    /* ==========================================================================
-       SKRIN A: HOME SCREEN
-       ========================================================================== */
     .hero-showcase {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
+      grid-template-columns: 1fr;
+      gap: 16px;
       align-items: center;
       width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .hero-showcase {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
     }
 
     .hero-badge {
       display: inline-block;
       background: linear-gradient(90deg, var(--lavender), var(--sky));
       color: #FFF;
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 10px rgba(142, 99, 227, 0.3);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
     }
 
     .game-title-ar {
       font-family: var(--font-arabic);
-      font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+      font-size: clamp(2rem, 4vw, 2.8rem);
       color: var(--teal-deep);
       line-height: 1.2;
-      text-shadow: 0 3px 0 #FFFFFF, 0 6px 14px rgba(15, 76, 92, 0.18);
-      margin-bottom: 4px;
+      text-shadow: 0 2px 0 #FFFFFF;
+      margin-bottom: 2px;
     }
 
     .game-title-en {
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
       font-weight: 700;
       color: var(--coral);
-      text-shadow: 0 3px 0 #FFFFFF;
-      letter-spacing: 0.5px;
+      text-shadow: 0 2px 0 #FFFFFF;
     }
 
     .game-tagline {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: var(--ink-muted);
-      margin: 6px 0 18px;
+      margin: 4px 0 14px;
       font-weight: 600;
     }
 
@@ -358,165 +288,130 @@
       background: linear-gradient(180deg, #F0FBF9 0%, #E2F7F4 100%);
       border: 3px solid #FFFFFF;
       border-radius: var(--radius-lg);
-      padding: 16px;
-      margin-bottom: 18px;
-      box-shadow: inset 0 3px 6px rgba(15, 76, 92, 0.06);
+      padding: 14px;
+      margin-bottom: 14px;
     }
 
     .player-card-box label {
       display: block;
       font-weight: 700;
       color: var(--teal-deep);
-      margin-bottom: 8px;
-      font-size: 0.98rem;
+      margin-bottom: 6px;
+      font-size: 0.92rem;
     }
 
     .player-input-row {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .input-kawaii {
       flex: 1;
-      min-width: 180px;
-      padding: 12px 16px;
-      border-radius: 16px;
+      min-width: 160px;
+      padding: 10px 14px;
+      border-radius: 14px;
       border: 3px solid var(--turquoise);
       font-family: var(--font-ui);
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--teal-deep);
       background: #FFFFFF;
       outline: none;
-      transition: box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .input-kawaii:focus {
-      border-color: var(--coral);
-      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2);
+      min-height: 48px;
     }
 
     .home-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
+      gap: 10px;
+      margin-top: 6px;
     }
 
-    /* Pentas Karakter 3D Kawaii */
     .mascot-stage {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      min-height: 290px;
+      min-height: 220px;
     }
 
     .mascot-figure {
-      width: 220px;
-      height: 250px;
-      filter: drop-shadow(0 16px 18px rgba(15, 76, 92, 0.26));
-      animation: mascotFloat 3.4s ease-in-out infinite;
-      transform-origin: bottom center;
-    }
-
-    .mascot-figure.jump {
-      animation: mascotCelebrate 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 2;
-    }
-
-    @keyframes mascotFloat {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1.5deg); }
-    }
-
-    @keyframes mascotCelebrate {
-      0%, 100% { transform: translateY(0) scale(1); }
-      40% { transform: translateY(-28px) scale(1.06, 0.95); }
-      70% { transform: translateY(-8px) scale(0.97, 1.03); }
+      width: 180px;
+      height: 200px;
+      filter: drop-shadow(0 12px 14px rgba(15, 76, 92, 0.22));
     }
 
     .speech-bubble {
       background: #FFFFFF;
       border: 3px solid var(--turquoise);
-      border-radius: 20px;
-      padding: 10px 16px;
+      border-radius: 16px;
+      padding: 8px 14px;
       font-weight: 700;
       color: var(--teal-deep);
-      font-size: 0.98rem;
+      font-size: 0.92rem;
       text-align: center;
-      box-shadow: 0 8px 0 rgba(46, 196, 182, 0.2);
-      margin-bottom: 10px;
+      box-shadow: 0 6px 0 rgba(46, 196, 182, 0.2);
+      margin-bottom: 8px;
       position: relative;
-      max-width: 280px;
+      max-width: 260px;
     }
 
     .speech-bubble::after {
       content: '';
       position: absolute;
-      bottom: -12px;
+      bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
-      border-width: 12px 10px 0;
+      border-width: 10px 8px 0;
       border-style: solid;
       border-color: var(--turquoise) transparent transparent;
     }
 
-    /* ==========================================================================
-       SKRIN B: LEVEL SELECT (PETA PENGEMBARAAN 5 DUNIA)
-       ========================================================================== */
     .world-map-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
       width: 100%;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .world-node-card {
       background: linear-gradient(180deg, #FFFFFF 0%, #F8FDFF 100%);
       border: 4px solid #FFFFFF;
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: 0 10px 0 rgba(15, 76, 92, 0.16), 0 16px 28px rgba(15, 76, 92, 0.16);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      box-shadow: 0 8px 0 rgba(15, 76, 92, 0.14), 0 12px 22px rgba(15, 76, 92, 0.12);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .world-node-card:hover {
-      transform: translateY(-6px);
+      gap: 10px;
     }
 
     .world-preview-art {
-      height: 115px;
-      border-radius: 16px;
+      height: 100px;
+      border-radius: 12px;
       overflow: hidden;
       position: relative;
       border: 3px solid #FFFFFF;
-      box-shadow: inset 0 0 12px rgba(0,0,0,0.08);
     }
 
     .world-badge-num {
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 6px;
+      left: 6px;
       background: rgba(15, 76, 92, 0.85);
       color: #FFF;
       font-weight: 700;
-      font-size: 0.82rem;
-      padding: 4px 10px;
+      font-size: 0.78rem;
+      padding: 3px 8px;
       border-radius: 999px;
     }
 
     .world-progress-bar {
       width: 100%;
-      height: 12px;
+      height: 10px;
       background: #E2ECEF;
       border-radius: 999px;
       overflow: hidden;
@@ -526,24 +421,19 @@
       height: 100%;
       background: linear-gradient(90deg, var(--turquoise), var(--success));
       border-radius: 999px;
-      transition: width 0.4s ease;
     }
 
-    /* ==========================================================================
-       SKRIN C: GAMEPLAY INTERAKTIF (3D STAGE + SENTENCE BUILDER)
-       ========================================================================== */
     .gameplay-layout {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
-    /* Pentas Visual Interaktif Atas */
     .adventure-viewport {
       width: 100%;
-      height: 205px;
-      border-radius: 26px;
+      height: 180px;
+      border-radius: var(--radius-lg);
       border: 4px solid #FFFFFF;
       box-shadow: var(--card-shadow);
       position: relative;
@@ -552,34 +442,30 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      padding: 14px 26px;
+      padding: 10px 16px;
     }
 
     .stage-hud {
       position: absolute;
-      top: 12px;
-      left: 14px;
-      right: 14px;
+      top: 8px;
+      left: 10px;
+      right: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 4;
-      pointer-events: none;
-      flex-wrap: wrap;
-      gap: 8px;
     }
 
     .hud-tag {
       background: rgba(255, 255, 255, 0.92);
-      padding: 6px 14px;
+      padding: 4px 10px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.85rem;
       color: var(--teal-deep);
-      box-shadow: 0 4px 0 rgba(15, 76, 92, 0.14);
+      box-shadow: 0 3px 0 rgba(15, 76, 92, 0.12);
     }
 
-    /* Karakter dan Objek Misi di Atas Pentas */
     .stage-actors {
       position: relative;
       z-index: 3;
@@ -587,95 +473,79 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      padding: 0 16px;
+      padding: 0 8px;
     }
 
     .actor-amira {
-      width: 118px;
-      height: 135px;
-      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.2));
-    }
-
-    .actor-amira.advance {
-      transform: translateX(70px) translateY(-10px) scale(1.06);
+      width: 95px;
+      height: 110px;
     }
 
     .mission-prop {
-      width: 130px;
-      height: 130px;
-      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.22));
+      width: 105px;
+      height: 105px;
     }
 
-    .mission-prop.unlocked {
-      transform: scale(1.14) translateY(-8px);
-      filter: drop-shadow(0 0 22px #FFD166);
-    }
-
-    /* Panel Misi & Pembina Ayat */
     .sentence-panel {
-      background: rgba(255, 253, 249, 0.95);
+      background: rgba(255, 253, 249, 0.96);
       border: 4px solid #FFFFFF;
-      border-radius: 26px;
-      padding: 20px 22px;
+      border-radius: var(--radius-xl);
+      padding: 16px;
       box-shadow: var(--card-shadow);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .mission-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       border-bottom: 2px dashed #D8EFECE6;
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
 
     .mission-prompt-ms {
-      font-size: 1.02rem;
+      font-size: 0.95rem;
       color: var(--ink-muted);
       font-weight: 600;
     }
 
     .meaning-box {
-      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
       font-weight: 700;
       color: var(--teal-deep);
       background: #E9FBF8;
       border: 2px solid var(--turquoise);
-      padding: 8px 18px;
-      border-radius: 16px;
+      padding: 6px 14px;
+      border-radius: 12px;
       display: inline-block;
       margin-top: 4px;
     }
 
-    /* Ruang Jawapan RTL (Kanan ke Kiri) */
     .answer-zone-label {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--ink-muted);
     }
 
     .answer-slots-rtl {
       direction: rtl;
-      min-height: 86px;
+      min-height: 80px;
       background: linear-gradient(180deg, #F3F8FA 0%, #FFFFFF 100%);
       border: 3px dashed #84C7D0;
-      border-radius: 20px;
-      padding: 14px 18px;
+      border-radius: 16px;
+      padding: 10px 14px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: flex-start;
-      gap: 12px;
-      transition: border-color 0.25s ease, background 0.25s ease;
+      gap: 10px;
     }
 
     .answer-slots-rtl.correct-glow {
@@ -687,13 +557,13 @@
     .answer-slots-rtl.wrong-shake {
       border-color: var(--coral);
       background: #FFF0F0;
-      animation: shakeHorizontal 0.45s ease;
+      animation: shakeHorizontal 0.4s ease;
     }
 
     @keyframes shakeHorizontal {
       0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-8px); }
-      40%, 80% { transform: translateX(8px); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
 
     .empty-hint-rtl {
@@ -702,237 +572,167 @@
       direction: ltr;
       color: #90A4AE;
       font-weight: 600;
-      font-size: 0.98rem;
+      font-size: 0.9rem;
     }
 
-    /* Bank Jubin Perkataan Arab */
     .word-bank-rtl {
       direction: rtl;
-      min-height: 82px;
+      min-height: 75px;
       background: rgba(203, 243, 240, 0.45);
-      border-radius: 20px;
-      padding: 14px;
+      border-radius: 16px;
+      padding: 10px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    /* Jubin Perkataan Arab 3D */
     .arabic-tile {
       direction: rtl;
       font-family: var(--font-arabic);
-      font-size: clamp(1.55rem, 3.2vw, 2.05rem);
+      font-size: clamp(1.4rem, 2.8vw, 1.85rem);
       font-weight: 700;
-      line-height: 1.45;
       color: var(--teal-deep);
       background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E6 100%);
       border: 3px solid #FFD166;
-      border-radius: 18px;
-      padding: 8px 22px 12px;
+      border-radius: 14px;
+      padding: 8px 18px 10px;
       cursor: pointer;
-      box-shadow: 0 6px 0 #E5B23A, 0 10px 16px rgba(15, 76, 92, 0.14);
-      transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.14s ease, background 0.15s ease;
+      box-shadow: 0 5px 0 #E5B23A, 0 8px 14px rgba(15, 76, 92, 0.12);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .arabic-tile:hover {
-      transform: translateY(-3px) scale(1.03);
-      background: #FFFFFF;
+      min-height: 48px; /* Mobile touch friendly */
+      min-width: 52px;
     }
 
     .arabic-tile:active {
-      transform: translateY(4px);
+      transform: translateY(3px);
       box-shadow: 0 2px 0 #E5B23A;
     }
 
     .arabic-tile.in-answer {
       background: linear-gradient(180deg, #E8FBF8 0%, #CBF3F0 100%);
       border-color: var(--turquoise);
-      box-shadow: 0 6px 0 var(--turquoise-dark), 0 8px 14px rgba(46, 196, 182, 0.2);
+      box-shadow: 0 5px 0 var(--turquoise-dark), 0 6px 12px rgba(46, 196, 182, 0.2);
     }
 
-    /* Baris Kawalan Bawah Gameplay */
     .gameplay-controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 4px;
+      gap: 10px;
     }
 
     .feedback-banner {
-      min-height: 36px;
+      min-height: 32px;
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    /* ==========================================================================
-       MODAL KEJAYAAN & LEADERBOARD
-       ========================================================================== */
     .overlay-modal {
       position: fixed;
       inset: 0;
-      background: rgba(15, 76, 92, 0.58);
-      backdrop-filter: blur(6px);
+      background: rgba(15, 76, 92, 0.6);
+      backdrop-filter: blur(5px);
       z-index: 50;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 12px;
     }
 
     .overlay-modal.show {
       display: flex;
-      animation: fadeInModal 0.25s ease;
-    }
-
-    @keyframes fadeInModal {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     .modal-card {
       width: 100%;
-      max-width: 480px;
+      max-width: 420px;
       background: #FFFFFF;
-      border: 5px solid var(--butter);
-      border-radius: 30px;
-      padding: 26px 24px;
+      border: 4px solid var(--butter);
+      border-radius: 24px;
+      padding: 22px 18px;
       text-align: center;
-      box-shadow: 0 18px 0 rgba(15, 76, 92, 0.25), 0 28px 50px rgba(0,0,0,0.3);
-      animation: popInScreen 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 14px 0 rgba(15, 76, 92, 0.22), 0 22px 40px rgba(0,0,0,0.25);
     }
 
     .Arabic-preview-success {
       direction: rtl;
       font-family: var(--font-arabic);
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: var(--teal-deep);
       background: #F0FBF9;
-      padding: 10px 18px;
-      border-radius: 16px;
-      margin: 12px 0;
+      padding: 8px 14px;
+      border-radius: 14px;
+      margin: 10px 0;
       border: 2px solid var(--turquoise);
     }
 
-    /* Jadual Leaderboard */
     .leaderboard-table {
       width: 100%;
       border-collapse: separate;
-      border-spacing: 0 8px;
-      margin: 14px 0;
+      border-spacing: 0 6px;
+      margin: 10px 0;
     }
 
     .leaderboard-table th {
       text-align: left;
-      padding: 8px 14px;
+      padding: 6px 10px;
       color: var(--ink-muted);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .leaderboard-table td {
       background: #F4FBF9;
-      padding: 12px 14px;
+      padding: 10px 12px;
       font-weight: 700;
       color: var(--teal-deep);
+      font-size: 0.92rem;
     }
 
     .leaderboard-table tr td:first-child {
-      border-radius: 14px 0 0 14px;
+      border-radius: 12px 0 0 12px;
     }
 
     .leaderboard-table tr td:last-child {
-      border-radius: 0 14px 14px 0;
+      border-radius: 0 12px 12px 0;
       text-align: right;
     }
 
     .status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
+      gap: 5px;
+      padding: 5px 10px;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
-    }
-
-    .status-badge.offline {
-      background: #FFF3CD;
-      color: #856404;
-      border: 2px solid #FFEEBA;
-    }
-
-    .status-badge.online {
       background: #D4EDDA;
       color: #155724;
       border: 2px solid #C3E6CB;
-    }
-
-    /* Sokongan Reduced Motion & Responsif Telefon */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    @media (max-width: 780px) {
-      .hero-showcase {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .home-actions, .player-input-row {
-        justify-content: center;
-      }
-      .adventure-viewport {
-        height: 170px;
-        padding: 10px 14px;
-      }
-      .actor-amira {
-        width: 92px;
-        height: 108px;
-      }
-      .mission-prop {
-        width: 98px;
-        height: 98px;
-      }
-      .gameplay-controls {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .gameplay-controls .btn-3d {
-        width: 100%;
-      }
     }
   </style>
 </head>
 <body>
 
 <div id="app-container">
-  <!-- LATAR BELAKANG 3D PENUH (BERUBAH MENGIKUT DUNIA SEMASA) -->
   <div id="world-scene" aria-hidden="true"></div>
 
-  <!-- PARTIKEL BINTANG AJAIB -->
   <div class="sparkle-layer" aria-hidden="true">
-    <div class="sparkle" style="top:14%; left:12%; animation-delay:0s;"></div>
-    <div class="sparkle" style="top:24%; left:82%; animation-delay:1.2s;"></div>
-    <div class="sparkle" style="top:65%; left:8%; animation-delay:2.4s;"></div>
-    <div class="sparkle" style="top:52%; left:91%; animation-delay:0.7s;"></div>
+    <div class="sparkle" style="top:14%; left:12%;"></div>
+    <div class="sparkle" style="top:24%; left:82%;"></div>
+    <div class="sparkle" style="top:65%; left:8%;"></div>
   </div>
 
-  <!-- BAR ATAS GLOBAL -->
   <header class="top-bar">
-    <div class="brand-pill" style="cursor:pointer;" onclick="UI.showScreen('home')">
-      <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+    <div class="brand-pill" onclick="UI.showScreen('home')">
+      <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
         <circle cx="32" cy="32" r="30" fill="#2EC4B6" stroke="#FFF" stroke-width="4"/>
         <path d="M32 12L37 25L51 26L40 35L43 49L32 41L21 49L24 35L13 26L27 25L32 12Z" fill="#FFD166"/>
       </svg>
@@ -940,88 +740,77 @@
     </div>
 
     <div class="stats-bar">
-      <div class="stat-pill" title="Nama Pemain">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#2EC4B6"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
-        <span id="hud-player-name">Tetamu</span>
+      <div class="stat-pill">
+        <span>👤 <span id="hud-player-name">Tetamu</span></span>
       </div>
-      <div class="stat-pill" title="Jumlah Bintang">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD166"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span id="hud-stars">0</span> / 100
+      <div class="stat-pill">
+        <span>⭐ <span id="hud-stars">0</span>/100</span>
       </div>
-      <div class="stat-pill" title="Jumlah Markah">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B6B"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/></svg>
-        <span id="hud-score">0</span> Mata
+      <div class="stat-pill">
+        <span>🏆 <span id="hud-score">0</span></span>
       </div>
       <button id="btn-audio-toggle" class="btn-3d btn-butter btn-sm" onclick="SoundEngine.toggleMute()">
-        🔊 Bunyi: ON
+        🔊 ON
       </button>
     </div>
   </header>
 
-  <!-- ========================================================================
-       SKRIN A: HOME SCREEN
-       ======================================================================== -->
   <main id="screen-home" class="screen active">
     <div class="kawaii-panel hero-showcase">
       <div>
-        <span class="hero-badge">✨ Permainan Bahasa Arab Tahun 2</span>
+        <span class="hero-badge">✨ Bahasa Arab Tahun 2</span>
         <div class="game-title-ar" dir="rtl">مُغَامَرَاتُ الْكَلِمَاتِ</div>
         <h1 class="game-title-en">ARABIC SENTENCE ADVENTURE</h1>
-        <p class="game-tagline">Jom Bina Ayat Bahasa Arab Bersama Amira di 5 Dunia Ajaib!</p>
+        <p class="game-tagline">Jom Bina Ayat Bahasa Arab Bersama Amira!</p>
 
         <div class="player-card-box">
-          <label for="player-name-input">Masukkan Nama Pengembara (Wajib sebelum mula):</label>
+          <label for="player-name-input">Masukkan Nama Pengembara:</label>
           <div class="player-input-row">
             <input
               type="text"
               id="player-name-input"
               class="input-kawaii"
               placeholder="Contoh: Adam / Zara"
-              maxlength="22"
-              autocomplete="off"
+              maxlength="20"
             />
             <button class="btn-3d btn-turquoise btn-sm" onclick="Game.savePlayerName()">
-              💾 Simpan Nama
+              💾 Simpan
             </button>
           </div>
-          <div id="name-feedback" style="margin-top:6px; font-size:0.88rem; font-weight:700; color:var(--turquoise-dark);"></div>
+          <div id="name-feedback" style="margin-top:6px; font-size:0.85rem; font-weight:700; color:var(--turquoise-dark);"></div>
         </div>
 
         <div class="home-actions">
           <button class="btn-3d btn-coral" onclick="Game.startFromHome()">
-            🚀 Mula Mengembara
+            🚀 Mula Misi
           </button>
           <button class="btn-3d btn-lavender" onclick="UI.openWorldsFromHome()">
-            🗺️ Pilih Dunia (5)
+            🗺️ Pilih Dunia
           </button>
           <button class="btn-3d btn-butter" onclick="UI.showScreen('leaderboard')">
-            🏆 Papan Markah
+            🏆 Markah
           </button>
         </div>
       </div>
 
-      <!-- Maskot 3D Amira -->
       <div class="mascot-stage">
         <div id="home-speech" class="speech-bubble">
-          أَهْلًا وَسَهْلًا! Jom kita kumpul 100 bintang Bahasa Arab!
+          أَهْلًا وَسَهْلًا! Jom kumpul bintang!
         </div>
         <div id="home-mascot" class="mascot-figure"></div>
       </div>
     </div>
   </main>
 
-  <!-- ========================================================================
-       SKRIN B: LEVEL SELECT (5 DUNIA PENGEMBARAAN)
-       ======================================================================== -->
   <section id="screen-worlds" class="screen">
     <div class="kawaii-panel">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
         <div>
-          <h2 style="font-size:1.75rem; color:var(--teal-deep);">🗺️ Peta 5 Dunia Pengembaraan</h2>
-          <p style="color:var(--ink-muted); font-weight:600;">Setiap dunia mempunyai 20 misi membina ayat Bahasa Arab (Jumlah: 100 Misi).</p>
+          <h2 style="font-size:1.5rem; color:var(--teal-deep);">🗺️ Peta 5 Dunia</h2>
+          <p style="color:var(--ink-muted); font-weight:600; font-size:0.9rem;">100 Misi Pembinaan Ayat Bahasa Arab</p>
         </div>
         <button class="btn-3d btn-sky btn-sm" onclick="UI.showScreen('home')">
-          ⬅️ Kembali ke Utama
+          ⬅️ Utama
         </button>
       </div>
 
@@ -1029,20 +818,15 @@
     </div>
   </section>
 
-  <!-- ========================================================================
-       SKRIN C: GAMEPLAY INTERAKTIF (PENTAS 3D + PEMBINA AYAT RTL)
-       ======================================================================== -->
   <section id="screen-play" class="screen">
     <div class="gameplay-layout">
-
-      <!-- PENTAS VISUAL 3D ATAS -->
       <div id="stage-viewport" class="adventure-viewport">
         <div class="stage-hud">
-          <div id="stage-world-title" class="hud-tag">Dunia 1: Taman Permainan</div>
-          <div style="display:flex; gap:8px; pointer-events:auto;">
-            <span id="stage-mission-counter" class="hud-tag">Misi 1 / 20</span>
-            <button class="btn-3d btn-sky btn-sm" onclick="UI.showScreen('worlds')" style="padding:5px 14px; font-size:0.85rem;">
-              🗺️ Peta Dunia
+          <div id="stage-world-title" class="hud-tag">Dunia 1</div>
+          <div style="display:flex; gap:6px;">
+            <span id="stage-mission-counter" class="hud-tag">1/20</span>
+            <button class="btn-3d btn-sky btn-sm" style="padding:4px 10px; font-size:0.8rem; min-height:34px;" onclick="UI.showScreen('worlds')">
+              🗺️ Peta
             </button>
           </div>
         </div>
@@ -1053,81 +837,73 @@
         </div>
       </div>
 
-      <!-- PANEL PEMBINA AYAT BAHASA ARAB -->
       <div class="sentence-panel">
         <div class="mission-header">
           <div>
             <div id="mission-story-text" class="mission-prompt-ms">
-              Bantu Amira membuka pintu taman dengan menyusun ayat ini:
+              Susun ayat Bahasa Arab berikut:
             </div>
             <div id="mission-meaning-ms" class="meaning-box">
               "Ini taman yang cantik"
             </div>
           </div>
 
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button class="btn-3d btn-butter btn-sm" onclick="Game.speakCurrentTarget()" title="Dengar sebutan Bahasa Arab">
-              🔊 Dengar Sebutan
+          <div style="display:flex; gap:6px;">
+            <button class="btn-3d btn-butter btn-sm" onclick="Game.speakCurrentTarget()">
+              🔊 Sebutan
             </button>
-            <button class="btn-3d btn-lavender btn-sm" onclick="Game.useHint()" title="Petunjuk perkataan seterusnya">
+            <button class="btn-3d btn-lavender btn-sm" onclick="Game.useHint()">
               💡 Petunjuk
             </button>
           </div>
         </div>
 
-        <!-- RUANG SUSUNAN JAWAPAN (KANAN KE KIRI / RTL) -->
         <div class="answer-zone-label">
-          <span>Susun Perkataan Dari Kanan Ke Kiri (➡️ RTL):</span>
-          <button class="btn-3d btn-sky btn-sm" style="padding:4px 12px; font-size:0.82rem;" onclick="Game.clearSelectedWords()">
-            🔄 Kosongkan
+          <span>Susun dari Kanan ke Kiri (➡️ RTL):</span>
+          <button class="btn-3d btn-sky btn-sm" style="padding:2px 10px; font-size:0.8rem; min-height:32px;" onclick="Game.clearSelectedWords()">
+            🔄 Padam
           </button>
         </div>
 
-        <div id="answer-slots" class="answer-slots-rtl" aria-label="Ruang jawapan Bahasa Arab"></div>
+        <div id="answer-slots" class="answer-slots-rtl"></div>
 
-        <!-- BANK PERKATAAN ARAB -->
         <div class="answer-zone-label">
-          <span>Pilih Kad Perkataan Di Bawah:</span>
-          <span id="word-count-indicator">0 / 3 perkataan</span>
+          <span>Pilih Kad Perkataan:</span>
+          <span id="word-count-indicator">0/3</span>
         </div>
 
-        <div id="word-bank" class="word-bank-rtl" aria-label="Pilihan kad perkataan Bahasa Arab"></div>
+        <div id="word-bank" class="word-bank-rtl"></div>
 
-        <!-- KAWALAN SEMAK & MAKLUM BALAS -->
         <div class="gameplay-controls">
           <div id="gameplay-feedback" class="feedback-banner">
-            ✨ Ketik kad perkataan untuk membina ayat yang betul!
+            ✨ Ketik kad perkataan di bawah!
           </div>
 
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div style="display:flex; gap:8px; flex-wrap:wrap; width:100%; justify-content:flex-end;">
             <button class="btn-3d btn-sky btn-sm" onclick="Game.prevMission()">
-              ⏮️ Sebelum
+              ⏮️
             </button>
-            <button id="btn-check-answer" class="btn-3d btn-success" onclick="Game.checkAnswer()">
-              ✅ Semak Jawapan
+            <button id="btn-check-answer" class="btn-3d btn-success" style="flex:1; max-width:180px;" onclick="Game.checkAnswer()">
+              ✅ Semak
             </button>
             <button class="btn-3d btn-sky btn-sm" onclick="Game.nextMission()">
-              Seterusnya ⏭️
+              ⏭️
             </button>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ========================================================================
-       SKRIN D: PAPAN MARKAH (LEADERBOARD)
-       ======================================================================== -->
   <section id="screen-leaderboard" class="screen">
     <div class="kawaii-panel">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
         <div>
-          <h2 style="font-size:1.75rem; color:var(--teal-deep);">🏆 Papan Markah Pengembara</h2>
-          <p style="color:var(--ink-muted); font-weight:600;">Rekod bintang dan markah tertinggi pengembara Bahasa Arab.</p>
+          <h2 style="font-size:1.5rem; color:var(--teal-deep);">🏆 Papan Markah</h2>
+          <p style="color:var(--ink-muted); font-weight:600; font-size:0.9rem;">Rekod pengembara cilik.</p>
         </div>
-        <div style="display:flex; gap:10px; align-items:center;">
-          <span id="leaderboard-mode-badge" class="status-badge online">💾 Simpanan Tempatan Aktif</span>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span class="status-badge">💾 Aktif</span>
           <button class="btn-3d btn-sky btn-sm" onclick="UI.showScreen('home')">
             ⬅️ Utama
           </button>
@@ -1137,60 +913,54 @@
       <table class="leaderboard-table">
         <thead>
           <tr>
-            <th>Kedudukan</th>
-            <th>Nama Pengembara</th>
-            <th>Bintang ⭐</th>
-            <th>Markah 🏆</th>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Bintang</th>
+            <th>Markah</th>
           </tr>
         </thead>
         <tbody id="leaderboard-rows"></tbody>
       </table>
 
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:14px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:12px; flex-wrap:wrap;">
         <button class="btn-3d btn-coral btn-sm" onclick="Game.resetProgressPrompt()">
-          🗑️ Set Semula Kemajuan Semasa
+          🗑️ Set Semula
         </button>
         <button class="btn-3d btn-turquoise btn-sm" onclick="UI.openWorldsFromHome()">
-          🚀 Sambung Bermain
+          🚀 Sambung Misi
         </button>
       </div>
     </div>
   </section>
 
-  <!-- ========================================================================
-       MODAL KEJAYAAN MISI
-       ======================================================================== -->
   <div id="modal-success" class="overlay-modal" role="dialog" aria-modal="true">
     <div class="modal-card">
-      <div style="font-size:3rem; line-height:1;">🌟🌟🌟</div>
-      <h3 style="font-size:1.7rem; color:var(--teal-deep); margin-top:6px;">مُمْتَازٌ! Hebat Sekali!</h3>
-      <p id="modal-story-Win" style="color:var(--ink-muted); font-weight:600; margin-top:4px;">
-        Amira berjaya membuka laluan seterusnya!
-      </p>
+      <div style="font-size:2.5rem; line-height:1;">🌟🌟🌟</div>
+      <h3 style="font-size:1.5rem; color:var(--teal-deep); margin-top:4px;">مُمْتَازٌ! Hebat!</h3>
+      <p id="modal-story-Win" style="color:var(--ink-muted); font-weight:600; font-size:0.92rem; margin-top:4px;"></p>
 
       <div id="modal-arabic-sentence" class="Arabic-preview-success"></div>
-      <div id="modal-malay-sentence" style="font-weight:700; color:var(--turquoise-dark); margin-bottom:16px;"></div>
+      <div id="modal-malay-sentence" style="font-weight:700; color:var(--turquoise-dark); margin-bottom:14px; font-size:0.95rem;"></div>
 
-      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+      <div style="display:flex; justify-content:center; gap:10px;">
         <button class="btn-3d btn-butter btn-sm" onclick="Game.speakCurrentTarget()">
-          🔊 Dengar Semula
+          🔊 Ulang
         </button>
         <button class="btn-3d btn-success" onclick="Game.closeSuccessAndContinue()">
-          Misi Seterusnya ➡️
+          Seterusnya ➡️
         </button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL PENGESAHAN SET SEMULA (MENGGANTIKAN CONFIRM) -->
   <div id="modal-reset" class="overlay-modal" role="dialog" aria-modal="true">
     <div class="modal-card">
-      <div style="font-size:2.6rem;">⚠️</div>
-      <h3 style="font-size:1.5rem; color:var(--coral-dark); margin:8px 0;">Set Semula Kemajuan?</h3>
-      <p style="color:var(--ink-muted); font-weight:600; margin-bottom:18px;">
-        Adakah anda pasti mahu memadamkan bintang dan markah pengembara semasa?
+      <div style="font-size:2.2rem;">⚠️</div>
+      <h3 style="font-size:1.35rem; color:var(--coral-dark); margin:6px 0;">Set Semula Kemajuan?</h3>
+      <p style="color:var(--ink-muted); font-weight:600; font-size:0.92rem; margin-bottom:16px;">
+        Padamkan bintang dan markah pengembara semasa?
       </p>
-      <div style="display:flex; justify-content:center; gap:12px;">
+      <div style="display:flex; justify-content:center; gap:10px;">
         <button class="btn-3d btn-sky btn-sm" onclick="document.getElementById('modal-reset').classList.remove('show')">
           Batal
         </button>
@@ -1204,10 +974,9 @@
 
 <script>
 /* ============================================================================
-   FASA 2: SENI VISUAL SVG 3D KAWAII (AMIRA, PROP MISI, & 5 DUNIA)
+   SVG ART ASSETS (AMIRA & WORLD SCENES)
    ============================================================================ */
 const ArtAssets = {
-  // Karakter Utama 3D Kawaii: Amira Pengembara Cilik
   getAmiraSVG(mood = 'happy') {
     const mouthPath = mood === 'excited'
       ? 'M92 112 Q100 124 108 112 Z'
@@ -1227,160 +996,63 @@ const ArtAssets = {
             <stop offset="0%" stop-color="#FF8E8E"/>
             <stop offset="100%" stop-color="#E04F4F"/>
           </linearGradient>
-          <linearGradient id="bagGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#FFE08A"/>
-            <stop offset="100%" stop-color="#E5B23A"/>
-          </linearGradient>
         </defs>
-        <!-- Bayang Lantai 3D -->
-        <ellipse cx="100" cy="215" rx="52" ry="10" fill="rgba(15,76,92,0.22)"/>
-        <!-- Beg Galas Pengembara -->
-        <rect x="52" y="122" width="96" height="66" rx="22" fill="url(#bagGrad)" stroke="#FFF" stroke-width="3"/>
-        <!-- Kasut 3D -->
-        <ellipse cx="82" cy="206" rx="16" ry="10" fill="#0F4C5C" stroke="#FFF" stroke-width="2.5"/>
-        <ellipse cx="118" cy="206" rx="16" ry="10" fill="#0F4C5C" stroke="#FFF" stroke-width="2.5"/>
-        <!-- Badan / Jubah Comel -->
+        <ellipse cx="100" cy="215" rx="52" ry="10" fill="rgba(15,76,92,0.2)"/>
         <path d="M66 132 Q100 120 134 132 L144 196 Q100 206 56 196 Z" fill="url(#dressGrad)" stroke="#FFF" stroke-width="3.5"/>
-        <!-- Tali Beg & Lencana Bintang -->
-        <path d="M74 134 L70 182 M126 134 L130 182" stroke="#FFD166" stroke-width="7" stroke-linecap="round"/>
         <circle cx="100" cy="162" r="13" fill="#FFD166" stroke="#FFF" stroke-width="2.5"/>
-        <path d="M100 153 L103 159 L110 160 L105 164 L106 171 L100 167 L94 171 L95 164 L90 160 L97 159 Z" fill="#FF6B6B"/>
-        <!-- Tangan Melambai -->
         <circle cx="52" cy="152" r="12" fill="url(#faceGrad)" stroke="#FFF" stroke-width="2.5"/>
         <circle cx="148" cy="144" r="12" fill="url(#faceGrad)" stroke="#FFF" stroke-width="2.5"/>
-        <!-- Tudung / Hijab 3D Kawaii -->
         <path d="M44 92 C44 42, 156 42, 156 92 C158 126, 138 148, 100 148 C62 148, 42 126, 44 92 Z" fill="url(#hijabGrad)" stroke="#FFF" stroke-width="4"/>
-        <!-- Muka -->
         <ellipse cx="100" cy="96" rx="40" ry="34" fill="url(#faceGrad)"/>
-        <!-- Pipi Merah Comel -->
         <ellipse cx="74" cy="104" rx="8" ry="4.5" fill="#FF8E8E" opacity="0.65"/>
         <ellipse cx="126" cy="104" rx="8" ry="4.5" fill="#FF8E8E" opacity="0.65"/>
-        <!-- Mata Bersinar Kawaii -->
         <circle cx="83" cy="93" r="7.5" fill="#1E2D3D"/>
         <circle cx="117" cy="93" r="7.5" fill="#1E2D3D"/>
         <circle cx="81" cy="90" r="2.8" fill="#FFFFFF"/>
         <circle cx="115" cy="90" r="2.8" fill="#FFFFFF"/>
-        <!-- Senyuman -->
         <path d="${mouthPath}" stroke="#1E2D3D" stroke-width="3.5" stroke-linecap="round" fill="${mood === 'excited' ? '#FF6B6B' : 'none'}"/>
-        <!-- Pin Bunga Tudung -->
         <circle cx="135" cy="68" r="10" fill="#FFD166" stroke="#FFF" stroke-width="2.5"/>
-        <circle cx="135" cy="68" r="4" fill="#FF6B6B"/>
       </svg>
     `;
   },
 
-  // Objek Misi Interaktif Mengikut Dunia
   getPropSVG(worldId, unlocked = false) {
     const glow = unlocked ? '#FFD166' : '#FFFFFF';
     switch (worldId) {
-      case 1: // Taman Permainan: Pintu Gerbang Bunga & Buaian
-        return `
-          <svg viewBox="0 0 160 160" width="100%" height="100%">
-            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
-            <path d="M32 142 V58 C32 26, 128 26, 128 58 V142" fill="none" stroke="${glow}" stroke-width="12" stroke-linecap="round"/>
-            <path d="M32 142 V58 C32 26, 128 26, 128 58 V142" fill="none" stroke="#FF6B6B" stroke-width="7" stroke-linecap="round"/>
-            <rect x="52" y="102" width="56" height="12" rx="6" fill="#FFD166" stroke="#FFF" stroke-width="2"/>
-            <line x1="62" y1="38" x2="62" y2="102" stroke="#FFF" stroke-width="3"/>
-            <line x1="98" y1="38" x2="98" y2="102" stroke="#FFF" stroke-width="3"/>
-            <circle cx="80" cy="28" r="14" fill="#06D6A0" stroke="#FFF" stroke-width="3"/>
-          </svg>`;
-      case 2: // Sekolah Ceria: Papan Tulis & Buku Bercahaya
-        return `
-          <svg viewBox="0 0 160 160" width="100%" height="100%">
-            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
-            <rect x="24" y="34" width="112" height="82" rx="14" fill="#1B998B" stroke="#FFD166" stroke-width="6"/>
-            <text x="80" y="84" text-anchor="middle" fill="#FFF" font-size="28" font-family="Noto Naskh Arabic" font-weight="bold">أ ب ت</text>
-            <rect x="46" y="118" width="68" height="22" rx="6" fill="#FF6B6B" stroke="#FFF" stroke-width="3"/>
-          </svg>`;
-      case 3: // Rumah Impian: Pintu Istana Comel
-        return `
-          <svg viewBox="0 0 160 160" width="100%" height="100%">
-            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
-            <path d="M30 72 L80 24 L130 72 Z" fill="#FF6B6B" stroke="#FFF" stroke-width="4"/>
-            <rect x="42" y="72" width="76" height="70" rx="10" fill="#FFFDF9" stroke="#2EC4B6" stroke-width="4"/>
-            <rect x="66" y="96" width="28" height="46" rx="12" fill="#FFD166" stroke="#E5B23A" stroke-width="3"/>
-            <circle cx="88" cy="120" r="3.5" fill="#0F4C5C"/>
-          </svg>`;
-      case 4: // Pasar Buah: Gerai Buah Segar
-        return `
-          <svg viewBox="0 0 160 160" width="100%" height="100%">
-            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
-            <rect x="30" y="88" width="100" height="52" rx="12" fill="#E5B23A" stroke="#FFF" stroke-width="4"/>
-            <path d="M22 58 H138 L126 84 H34 Z" fill="#FF6B6B" stroke="#FFF" stroke-width="3"/>
-            <circle cx="58" cy="78" r="12" fill="#FF4D4D"/>
-            <circle cx="82" cy="76" r="13" fill="#FFD166"/>
-            <circle cx="105" cy="78" r="12" fill="#06D6A0"/>
-          </svg>`;
-      default: // Dunia 5: Zoo Pengembaraan
-        return `
-          <svg viewBox="0 0 160 160" width="100%" height="100%">
-            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
-            <circle cx="80" cy="86" r="44" fill="#FFD166" stroke="#E5B23A" stroke-width="6"/>
-            <circle cx="80" cy="86" r="32" fill="#FFF3B0"/>
-            <circle cx="68" cy="78" r="5" fill="#1E2D3D"/>
-            <circle cx="92" cy="78" r="5" fill="#1E2D3D"/>
-            <polygon points="80,86 73,96 87,96" fill="#E04F4F"/>
-            <circle cx="52" cy="54" r="12" fill="#E5B23A"/>
-            <circle cx="108" cy="54" r="12" fill="#E5B23A"/>
-          </svg>`;
+      case 1:
+        return `<svg viewBox="0 0 160 160" width="100%" height="100%"><ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/><path d="M32 142 V58 C32 26, 128 26, 128 58 V142" fill="none" stroke="${glow}" stroke-width="12" stroke-linecap="round"/><rect x="52" y="102" width="56" height="12" rx="6" fill="#FFD166" stroke="#FFF" stroke-width="2"/></svg>`;
+      case 2:
+        return `<svg viewBox="0 0 160 160" width="100%" height="100%"><ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/><rect x="24" y="34" width="112" height="82" rx="14" fill="#1B998B" stroke="#FFD166" stroke-width="6"/><text x="80" y="84" text-anchor="middle" fill="#FFF" font-size="28" font-family="Noto Naskh Arabic" font-weight="bold">أ ب ت</text></svg>`;
+      case 3:
+        return `<svg viewBox="0 0 160 160" width="100%" height="100%"><ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/><path d="M30 72 L80 24 L130 72 Z" fill="#FF6B6B" stroke="#FFF" stroke-width="4"/><rect x="42" y="72" width="76" height="70" rx="10" fill="#FFFDF9" stroke="#2EC4B6" stroke-width="4"/></svg>`;
+      case 4:
+        return `<svg viewBox="0 0 160 160" width="100%" height="100%"><ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/><rect x="30" y="88" width="100" height="52" rx="12" fill="#E5B23A" stroke="#FFF" stroke-width="4"/><circle cx="58" cy="78" r="12" fill="#FF4D4D"/><circle cx="82" cy="76" r="13" fill="#FFD166"/></svg>`;
+      default:
+        return `<svg viewBox="0 0 160 160" width="100%" height="100%"><ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/><circle cx="80" cy="86" r="44" fill="#FFD166" stroke="#E5B23A" stroke-width="6"/></svg>`;
     }
   },
 
-  // Latar Belakang 3D Penuh Mengikut Dunia (1 hingga 5)
   getWorldSceneSVG(worldId = 1) {
     const palettes = {
-      1: { sky1: '#48CAE4', sky2: '#ADE8F4', hill1: '#52B788', hill2: '#74C69D', ground: '#95D5B2', accent: '#FF6B6B' },
-      2: { sky1: '#70D6FF', sky2: '#E2F7F4', hill1: '#4EA8DE', hill2: '#2EC4B6', ground: '#CBF3F0', accent: '#FFD166' },
-      3: { sky1: '#B892FF', sky2: '#FFD6FF', hill1: '#9D4EDD', hill2: '#C77DFF', ground: '#F3D5B5', accent: '#FF8E8E' },
-      4: { sky1: '#FFB703', sky2: '#FFF3B0', hill1: '#FB8500', hill2: '#8ECAE6', ground: '#FFE5B4', accent: '#06D6A0' },
-      5: { sky1: '#2EC4B6', sky2: '#CBF3F0', hill1: '#2D6A4F', hill2: '#40916C', ground: '#B7E4C7', accent: '#FFD166' }
+      1: { sky1: '#48CAE4', sky2: '#ADE8F4', hill1: '#52B788', ground: '#95D5B2' },
+      2: { sky1: '#70D6FF', sky2: '#E2F7F4', hill1: '#4EA8DE', ground: '#CBF3F0' },
+      3: { sky1: '#B892FF', sky2: '#FFD6FF', hill1: '#9D4EDD', ground: '#F3D5B5' },
+      4: { sky1: '#FFB703', sky2: '#FFF3B0', hill1: '#FB8500', ground: '#FFE5B4' },
+      5: { sky1: '#2EC4B6', sky2: '#CBF3F0', hill1: '#2D6A4F', ground: '#B7E4C7' }
     };
     const p = palettes[worldId] || palettes[1];
     return `
       <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="${p.sky1}"/>
-            <stop offset="65%" stop-color="${p.sky2}"/>
-            <stop offset="100%" stop-color="${p.ground}"/>
-          </linearGradient>
-        </defs>
+        <defs><linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${p.sky1}"/><stop offset="100%" stop-color="${p.sky2}"/></linearGradient></defs>
         <rect width="1440" height="900" fill="url(#skyG)"/>
-        <!-- Matahari / Bulan 3D Bersinar -->
-        <circle cx="1220" cy="150" r="78" fill="#FFF3B0" opacity="0.45"/>
-        <circle cx="1220" cy="150" r="54" fill="#FFD166"/>
-        <!-- Awan Gebu 3D -->
-        <g fill="#FFFFFF" opacity="0.88">
-          <rect x="140" y="110" width="210" height="58" rx="29"/>
-          <circle cx="195" cy="105" r="38"/>
-          <circle cx="255" cy="95" r="46"/>
-          <rect x="820" y="160" width="240" height="62" rx="31"/>
-          <circle cx="890" cy="155" r="42"/>
-          <circle cx="965" cy="148" r="50"/>
-        </g>
-        <!-- Bukit Jauh -->
         <path d="M0 640 Q360 470 740 610 T1440 580 L1440 900 L0 900 Z" fill="${p.hill1}" opacity="0.85"/>
-        <!-- Bukit Dekat -->
-        <path d="M0 700 Q420 560 880 690 T1440 660 L1440 900 L0 900 Z" fill="${p.hill2}"/>
-        <!-- Laluan Pengembaraan Berbintang -->
-        <path d="M520 900 Q700 730 920 675 L1080 675 Q860 745 760 900 Z" fill="#FFF3B0" opacity="0.75"/>
-        <!-- Pokok / Hiasan Bulat Kawaii -->
-        <g>
-          <rect x="175" y="610" width="18" height="70" rx="8" fill="#7F4F24"/>
-          <circle cx="184" cy="585" r="48" fill="${p.accent}"/>
-          <circle cx="164" cy="568" r="14" fill="#FFFFFF" opacity="0.35"/>
-
-          <rect x="1250" y="590" width="20" height="80" rx="9" fill="#7F4F24"/>
-          <circle cx="1260" cy="560" r="54" fill="#06D6A0"/>
-          <circle cx="1240" cy="542" r="16" fill="#FFFFFF" opacity="0.35"/>
-        </g>
       </svg>
     `;
   }
 };
 
 /* ============================================================================
-   FASA 3: ENJIN AUDIO WEB & SEBUTAN BAHASA ARAB (TANPA FAIL LUARAN)
+   SOUND ENGINE
    ============================================================================ */
 const SoundEngine = {
   ctx: null,
@@ -1399,246 +1071,212 @@ const SoundEngine = {
   toggleMute() {
     this.muted = !this.muted;
     const btn = document.getElementById('btn-audio-toggle');
-    if (btn) {
-      btn.textContent = this.muted ? '🔇 Bunyi: OFF' : '🔊 Bunyi: ON';
-    }
+    if (btn) btn.textContent = this.muted ? '🔇 OFF' : '🔊 ON';
     if (!this.muted) this.playPop();
   },
 
-  playTone(freq, duration = 0.12, type = 'sine', delay = 0, gainVal = 0.14) {
+  playTone(freq, duration = 0.1, type = 'sine') {
     if (this.muted) return;
     try {
       this.init();
       if (!this.ctx) return;
-      const now = this.ctx.currentTime + delay;
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = type;
-      osc.frequency.setValueAtTime(freq, now);
-      gain.gain.setValueAtTime(gainVal, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+      gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + duration);
-    } catch (e) {
-      // Abaikan jika pelayar menyekat audio automatik
-    }
+      osc.start();
+      osc.stop(this.ctx.currentTime + duration);
+    } catch (e) {}
   },
 
-  playPop() {
-    this.playTone(520, 0.09, 'triangle', 0, 0.16);
-  },
-
-  playRemove() {
-    this.playTone(340, 0.09, 'sine', 0, 0.14);
-  },
-
+  playPop() { this.playTone(520, 0.08, 'triangle'); },
+  playRemove() { this.playTone(340, 0.08, 'sine'); },
   playSuccess() {
-    // Kord kemenangan ceria
-    this.playTone(523.25, 0.14, 'triangle', 0.00, 0.18); // C5
-    this.playTone(659.25, 0.14, 'triangle', 0.10, 0.18); // E5
-    this.playTone(783.99, 0.16, 'triangle', 0.20, 0.18); // G5
-    this.playTone(1046.50, 0.32, 'triangle', 0.30, 0.22); // C6
+    this.playTone(523.25, 0.1, 'triangle');
+    setTimeout(() => this.playTone(659.25, 0.1, 'triangle'), 100);
+    setTimeout(() => this.playTone(783.99, 0.15, 'triangle'), 200);
   },
-
   playWrong() {
-    this.playTone(240, 0.16, 'sawtooth', 0.0, 0.12);
-    this.playTone(190, 0.22, 'sawtooth', 0.14, 0.12);
+    this.playTone(240, 0.12, 'sawtooth');
   },
 
-  speakArabic(arabicText) {
+  speakArabic(text) {
     if (this.muted) return;
     if ('speechSynthesis' in window) {
       try {
         window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(arabicText);
+        const utter = new SpeechSynthesisUtterance(text);
         utter.lang = 'ar-SA';
-        utter.rate = 0.82; // Perlahan & jelas untuk murid Tahun 2
-        utter.pitch = 1.08;
+        utter.rate = 0.82;
         window.speechSynthesis.speak(utter);
-      } catch (e) {
-        this.playPop();
-      }
-    } else {
-      this.playPop();
+      } catch (e) {}
     }
   }
 };
 
 /* ============================================================================
-   FASA 4: KURIKULUM 5 DUNIA & 100 MISI AYAT BAHASA ARAB TAHUN 2
+   CURRICULUM DATA (100 MISSIONS)
    ============================================================================ */
 const WORLDS_DATA = [
   {
-    id: 1,
-    nameMs: 'Dunia 1: Taman Permainan',
-    nameAr: 'حَدِيقَةُ الْأَلْعَابِ',
-    desc: 'Kenali ucapan selamat, kawan-kawan, dan keindahan taman!',
-    storyAction: 'membuka pintu gerbang taman bunga',
+    id: 1, nameMs: 'Dunia 1: Taman Permainan', nameAr: 'حَدِيقَةُ الْأَلْعَابِ', desc: 'Kenali ucapan dan suasana taman!',
+    storyAction: 'membuka pintu taman',
     missions: [
       { ar: ['هٰذِهِ', 'حَدِيقَةٌ', 'جَمِيلَةٌ'], ms: 'Ini taman yang cantik' },
       { ar: ['أَنَا', 'تِلْمِيذٌ', 'مُجْتَهِدٌ'], ms: 'Saya murid yang rajin' },
       { ar: ['أَنْتَ', 'صَدِيقٌ', 'طَيِّبٌ'], ms: 'Awak kawan yang baik' },
       { ar: ['هٰذَا', 'وَلَدٌ', 'نَشِيطٌ'], ms: 'Ini budak lelaki yang cergas' },
-      { ar: ['هٰذِهِ', 'بِنْتٌ', 'مُؤَدَّبَةٌ'], ms: 'Ini budak perempuan yang sopan' },
+      { ar: ['هٰذِهِ', 'بِنْتٌ', 'مُؤَدَّبَةٌ'], ms: 'Ini budak perempuan sopan' },
       { ar: ['الشَّجَرَةُ', 'طَوِيلَةٌ', 'وَخَضْرَاءُ'], ms: 'Pokok itu tinggi dan hijau' },
-      { ar: ['الزَّهْرَةُ', 'جَمِيلَةٌ', 'فِي', 'الْحَدِيقَةِ'], ms: 'Bunga itu cantik di taman' },
-      { ar: ['أَنَا', 'أَلْعَبُ', 'مَعَ', 'صَدِيقِي'], ms: 'Saya bermain bersama kawan saya' },
-      { ar: ['هٰذِهِ', 'كُرَةٌ', 'كَبِيرَةٌ'], ms: 'Ini bola yang besar' },
-      { ar: ['الْكُرَةُ', 'تَحْتَ', 'الشَّجَرَةِ'], ms: 'Bola itu di bawah pokok' },
-      { ar: ['السَّمَاءُ', 'صَافِيَةٌ', 'وَزَرْقَاءُ'], ms: 'Langit itu cerah dan biru' },
+      { ar: ['الزَّهْرَةُ', 'جَمِيلَةٌ', 'فِي', 'الْحَدِيقَةِ'], ms: 'Bunga cantik di taman' },
+      { ar: ['أَنَا', 'أَلْعَبُ', 'مَعَ', 'صَدِيقِي'], ms: 'Saya bermain bersama kawan' },
+      { ar: ['هٰذِهِ', 'كُرَةٌ', 'كَبِيرَةٌ'], ms: 'Ini bola besar' },
+      { ar: ['الْكُرَةُ', 'تَحْتَ', 'الشَّجَرَةِ'], ms: 'Bola di bawah pokok' },
+      { ar: ['السَّمَاءُ', 'صَافِيَةٌ', 'وَزَرْقَاءُ'], ms: 'Langit cerah dan biru' },
       { ar: ['الشَّمْسُ', 'مُشْرِقَةٌ', 'الْيَوْمَ'], ms: 'Matahari bersinar hari ini' },
       { ar: ['هٰذَا', 'يَوْمٌ', 'سَعِيدٌ'], ms: 'Ini hari yang gembira' },
-      { ar: ['نَحْنُ', 'فِي', 'الْمَلْعَبِ'], ms: 'Kami berada di padang permainan' },
-      { ar: ['الْفَرَاشَةُ', 'فَوْقَ', 'الزَّهْرَةِ'], ms: 'Rama-rama itu di atas bunga' },
-      { ar: ['هٰذَا', 'دَرَّاجَةٌ', 'سَرِيعَةٌ'], ms: 'Ini basikal yang laju' },
+      { ar: ['نَحْنُ', 'فِي', 'الْمَلْعَبِ'], ms: 'Kami berada di padang' },
+      { ar: ['الْفَرَاشَةُ', 'فَوْقَ', 'الزَّهْرَةِ'], ms: 'Rama-rama di atas bunga' },
+      { ar: ['هٰذَا', 'دَرَّاجَةٌ', 'سَرِيعَةٌ'], ms: 'Ini basikal laju' },
       { ar: ['أَنَا', 'أَجْرِي', 'فِي', 'الْمَلْعَبِ'], ms: 'Saya berlari di padang' },
-      { ar: ['صَبَاحُ', 'الْخَيْرِ', 'يَا', 'صَدِيقِي'], ms: 'Selamat pagi wahai kawanku' },
+      { ar: ['صَبَاحُ', 'الْخَيْرِ', 'يَا', 'صَدِيقِي'], ms: 'Selamat pagi wahai kawan' },
       { ar: ['أَهْلًا', 'وَسَهْلًا', 'يَا', 'أَمِيرَةُ'], ms: 'Selamat datang wahai Amira' },
-      { ar: ['الْحَدِيقَةُ', 'نَظِيفَةٌ', 'وَجَمِيلَةٌ'], ms: 'Taman itu bersih dan cantik' }
+      { ar: ['الْحَدِيقَةُ', 'نَظِيفَةٌ', 'وَجَمِيلَةٌ'], ms: 'Taman bersih dan cantik' }
     ]
   },
   {
-    id: 2,
-    nameMs: 'Dunia 2: Sekolah Ceria',
-    nameAr: 'الْمَدْرَسَةُ السَّعِيدَةُ',
-    desc: 'Bina ayat tentang peralatan kelas, guru, dan ilmu!',
-    storyAction: 'menyalakan papan tulis pintar kelas',
+    id: 2, nameMs: 'Dunia 2: Sekolah Ceria', nameAr: 'الْمَدْرَسَةُ السَّعِيدَةُ', desc: 'Peralatan kelas dan ilmu!',
+    storyAction: 'menyalakan papan tulis',
     missions: [
-      { ar: ['هٰذِهِ', 'مَدْرَسَتِي', 'الْجَمِيلَةُ'], ms: 'Ini sekolah saya yang cantik' },
-      { ar: ['هٰذَا', 'كِتَابٌ', 'جَدِيدٌ'], ms: 'Ini buku yang baharu' },
-      { ar: ['هٰذَا', 'قَلَمٌ', 'أَزْرَقُ'], ms: 'Ini pen berwarna biru' },
-      { ar: ['الْمِسْطَرَةُ', 'طَوِيلَةٌ', 'وَجَدِيدَةٌ'], ms: 'Pembaris itu panjang dan baharu' },
-      { ar: ['الْحَقِيبَةُ', 'عَلَى', 'الْمَكْتَبِ'], ms: 'Beg itu di atas meja' },
-      { ar: ['الْقَلَمُ', 'فِي', 'الْمِقْلَمَةِ'], ms: 'Pen itu di dalam bekas pensel' },
-      { ar: ['هٰذَا', 'مُعَلِّمٌ', 'مَاهِرٌ'], ms: 'Ini guru lelaki yang mahir' },
-      { ar: ['هٰذِهِ', 'مُعَلِّمَةٌ', 'لَطِيفَةٌ'], ms: 'Ini guru perempuan yang penyayang' },
-      { ar: ['الْفَصْلُ', 'نَظِيفٌ', 'وَوَاسِعٌ'], ms: 'Kelas itu bersih dan luas' },
-      { ar: ['السَّبُّورَةُ', 'أَمَامَ', 'التَّلَامِيذِ'], ms: 'Papan tulis di hadapan murid-murid' },
-      { ar: ['أَنَا', 'أَقْرَأُ', 'الْكِتَابَ'], ms: 'Saya membaca buku itu' },
-      { ar: ['أَنَا', 'أَكْتُبُ', 'الدَّرْسَ'], ms: 'Saya menulis pelajaran itu' },
-      { ar: ['هٰذِهِ', 'مِمْحَاةٌ', 'صَغِيرَةٌ'], ms: 'Ini pemadam yang kecil' },
-      { ar: ['الْكُرْسِيُّ', 'بِجَانِبِ', 'الْمَكْتَبِ'], ms: 'Kerusi itu di sebelah meja' },
-      { ar: ['هٰذِهِ', 'وَرَقَةٌ', 'بَيْضَاءُ'], ms: 'Ini kertas berwarna putih' },
-      { ar: ['كِتَابُ', 'اللُّغَةِ', 'الْعَرَبِيَّةِ', 'مُفِيدٌ'], ms: 'Buku Bahasa Arab itu berfaedah' },
-      { ar: ['نَحْنُ', 'نَتَعَلَّمُ', 'فِي', 'الْفَصْلِ'], ms: 'Kami belajar di dalam kelas' },
-      { ar: ['هٰذَا', 'دَفْتَرٌ', 'نَظِيفٌ'], ms: 'Ini buku tulis yang bersih' },
-      { ar: ['الْمِيرْسَمُ', 'فَوْقَ', 'الدَّفْتَرِ'], ms: 'Pensel itu di atas buku tulis' },
-      { ar: ['أَنَا', 'أُحِبُّ', 'مَدْرَسَتِي'], ms: 'Saya sayang akan sekolah saya' }
+      { ar: ['هٰذِهِ', 'مَدْرَسَتِي', 'الْجَمِيلَةُ'], ms: 'Ini sekolah cantik saya' },
+      { ar: ['هٰذَا', 'كِتَابٌ', 'جَدِيدٌ'], ms: 'Ini buku baharu' },
+      { ar: ['هٰذَا', 'قَلَمٌ', 'أَزْرَقُ'], ms: 'Ini pen biru' },
+      { ar: ['الْمِسْطَرَةُ', 'طَوِيلَةٌ', 'وَجَدِيدَةٌ'], ms: 'Pembaris panjang dan baharu' },
+      { ar: ['الْحَقِيبَةُ', 'عَلَى', 'الْمَكْتَبِ'], ms: 'Beg di atas meja' },
+      { ar: ['الْقَلَمُ', 'فِي', 'الْمِقْلَمَةِ'], ms: 'Pen dalam bekas pensel' },
+      { ar: ['هٰذَا', 'مُعَلِّمٌ', 'مَاهِرٌ'], ms: 'Ini guru lelaki mahir' },
+      { ar: ['هٰذِهِ', 'مُعَلِّمَةٌ', 'لَطِيفَةٌ'], ms: 'Ini guru perempuan penyayang' },
+      { ar: ['الْفَصْلُ', 'نَظِيفٌ', 'وَوَاسِعٌ'], ms: 'Kelas bersih dan luas' },
+      { ar: ['السَّبُّورَةُ', 'أَمَامَ', 'التَّلَامِيذِ'], ms: 'Papan tulis di hadapan murid' },
+      { ar: ['أَنَا', 'أَقْرَأُ', 'الْكِتَابَ'], ms: 'Saya membaca buku' },
+      { ar: ['أَنَا', 'أَكْتُبُ', 'الدَّرْسَ'], ms: 'Saya menulis pelajaran' },
+      { ar: ['هٰذِهِ', 'مِمْحَاةٌ', 'صَغِيرَةٌ'], ms: 'Ini pemadam kecil' },
+      { ar: ['الْكُرْسِيُّ', 'بِجَانِبِ', 'الْمَكْتَبِ'], ms: 'Kerusi di sebelah meja' },
+      { ar: ['هٰذِهِ', 'وَرَقَةٌ', 'بَيْضَاءُ'], ms: 'Ini kertas putih' },
+      { ar: ['كِتَابُ', 'الْعَرَبِيَّةِ', 'مُفِيدٌ'], ms: 'Buku Bahasa Arab berfaedah' },
+      { ar: ['نَحْنُ', 'نَتَعَلَّمُ', 'فِي', 'الْفَصْلِ'], ms: 'Kami belajar dalam kelas' },
+      { ar: ['هٰذَا', 'دَفْتَرٌ', 'نَظِيفٌ'], ms: 'Ini buku tulis bersih' },
+      { ar: ['الْمِيرْسَمُ', 'فَوْقَ', 'الدَّفْتَرِ'], ms: 'Pensel di atas buku tulis' },
+      { ar: ['أَنَا', 'أُحِبُّ', 'مَدْرَسَتِي'], ms: 'Saya sayang sekolah saya' }
     ]
   },
   {
-    id: 3,
-    nameMs: 'Dunia 3: Rumah Impian',
-    nameAr: 'الْبَيْتُ السَّعِيدُ',
-    desc: 'Kenali ahli keluarga tersayang dan ruang di dalam rumah!',
-    storyAction: 'membuka pintu bilik keluarga bahagia',
+    id: 3, nameMs: 'Dunia 3: Rumah Impian', nameAr: 'الْبَيْتُ السَّعِيدُ', desc: 'Keluarga dan ruang rumah!',
+    storyAction: 'membuka pintu bilik',
     missions: [
-      { ar: ['هٰذَا', 'بَيْتِي', 'الْكَبِيرُ'], ms: 'Ini rumah saya yang besar' },
-      { ar: ['هٰذَا', 'أَبِي', 'الْكَرِيمُ'], ms: 'Ini bapa saya yang mulia' },
-      { ar: ['هٰذِهِ', 'أُمِّي', 'الْحَنُونَةُ'], ms: 'Ini ibu saya yang penyayang' },
+      { ar: ['هٰذَا', 'بَيْتِي', 'الْكَبِيرُ'], ms: 'Ini rumah besar saya' },
+      { ar: ['هٰذَا', 'أَبِي', 'الْكَرِيمُ'], ms: 'Ini bapa mulia saya' },
+      { ar: ['هٰذِهِ', 'أُمِّي', 'الْحَنُونَةُ'], ms: 'Ini ibu penyayang saya' },
       { ar: ['هٰذَا', 'أَخِي', 'الْأَكْبَرُ'], ms: 'Ini abang saya' },
       { ar: ['هٰذِهِ', 'أُخْتِي', 'الصَّغِيرَةُ'], ms: 'Ini adik perempuan saya' },
-      { ar: ['جَدِّي', 'يَجْلِسُ', 'عَلَى', 'الْكُرْسِيِّ'], ms: 'Datuk saya duduk di atas kerusi' },
-      { ar: ['جَدَّتِي', 'تَقْرَأُ', 'الْقُرْآنَ'], ms: 'Nenek saya membaca Al-Quran' },
-      { ar: ['غُرْفَةُ', 'النَّوْمِ', 'مُرَتَّبَةٌ'], ms: 'Bilik tidur itu kemas' },
-      { ar: ['الْوِسَادَةُ', 'عَلَى', 'السَّرِيرِ'], ms: 'Bantal itu di atas katil' },
-      { ar: ['أُمِّي', 'تَطْبُخُ', 'فِي', 'الْمَطْبَخِ'], ms: 'Ibu saya memasak di dapur' },
-      { ar: ['السَّاعَةُ', 'عَلَى', 'الْجِدَارِ'], ms: 'Jam itu di atas dinding' },
-      { ar: ['الْمِصْبَاحُ', 'مُنِيرٌ', 'فِي', 'الْغُرْفَةِ'], ms: 'Lampu itu bercahaya di dalam bilik' },
-      { ar: ['الْبَابُ', 'مَفْتُوحٌ', 'الْآنَ'], ms: 'Pintu itu terbuka sekarang' },
-      { ar: ['النَّافِذَةُ', 'نَظِيفَةٌ', 'وَجَمِيلَةٌ'], ms: 'Tingkap itu bersih dan cantik' },
-      { ar: ['أَبِي', 'يَقْرَأُ', 'الْجَرِيدَةَ'], ms: 'Bapa saya membaca surat khabar' },
-      { ar: ['هٰذِهِ', 'أُسْرَتِي', 'السَّعِيدَةُ'], ms: 'Ini keluarga saya yang bahagia' },
-      { ar: ['الصَّابُونُ', 'فِي', 'الْحَمَّامِ'], ms: 'Sabun itu di dalam bilik air' },
-      { ar: ['الطَّعَامُ', 'عَلَى', 'الْمَائِدَةِ'], ms: 'Makanan itu di atas meja makan' },
-      { ar: ['أَنَا', 'أُسَاعِدُ', 'أُمِّي', 'وَأَبِي'], ms: 'Saya menolong ibu dan bapa saya' },
-      { ar: ['أَنَا', 'أُحِبُّ', 'أُسْرَتِي', 'كَثِيرًا'], ms: 'Saya sangat sayang akan keluarga saya' }
+      { ar: ['جَدِّي', 'يَجْلِسُ', 'عَلَى', 'الْكُرْسِيِّ'], ms: 'Datuk duduk di kerusi' },
+      { ar: ['جَدَّتِي', 'تَقْرَأُ', 'الْقُرْآنَ'], ms: 'Nenek membaca Al-Quran' },
+      { ar: ['غُرْفَةُ', 'النَّوْمِ', 'مُرَتَّبَةٌ'], ms: 'Bilik tidur kemas' },
+      { ar: ['الْوِسَادَةُ', 'عَلَى', 'السَّرِيرِ'], ms: 'Bantal di atas katil' },
+      { ar: ['أُمِّي', 'تَطْبُخُ', 'فِي', 'الْمَطْبَخِ'], ms: 'Ibu memasak di dapur' },
+      { ar: ['السَّاعَةُ', 'عَلَى', 'الْجِدَارِ'], ms: 'Jam di atas dinding' },
+      { ar: ['الْمِصْبَاحُ', 'مُنِيرٌ', 'فِي', 'الْغُرْفَةِ'], ms: 'Lampu bercahaya dalam bilik' },
+      { ar: ['الْبَابُ', 'مَفْتُوحٌ', 'الْآنَ'], ms: 'Pintu terbuka sekarang' },
+      { ar: ['النَّافِذَةُ', 'نَظِيفَةٌ', 'وَجَمِيلَةٌ'], ms: 'Tingkap bersih dan cantik' },
+      { ar: ['أَبِي', 'يَقْرَأُ', 'الْجَرِيدَةَ'], ms: 'Bapa membaca surat khabar' },
+      { ar: ['هٰذِهِ', 'أُسْرَتِي', 'السَّعِيدَةُ'], ms: 'Ini keluarga bahagia saya' },
+      { ar: ['الصَّابُونُ', 'فِي', 'الْحَمَّامِ'], ms: 'Sabun dalam bilik air' },
+      { ar: ['الطَّعَامُ', 'عَلَى', 'الْمَائِدَةِ'], ms: 'Makanan di atas meja makan' },
+      { ar: ['أَنَا', 'أُسَاعِدُ', 'أُمِّي', 'وَأَبِي'], ms: 'Saya menolong ibu dan bapa' },
+      { ar: ['أَنَا', 'أُحِبُّ', 'أُسْرَتِي'], ms: 'Saya sayang keluarga saya' }
     ]
   },
   {
-    id: 4,
-    nameMs: 'Dunia 4: Pasar Buah & Makanan',
-    nameAr: 'سُوقُ الْفَوَاكِهِ',
-    desc: 'Terokai buah-buahan manis, makanan berkhasiat, dan nombor!',
-    storyAction: 'mengumpul bakul buah-buahan segar',
+    id: 4, nameMs: 'Dunia 4: Pasar Buah', nameAr: 'سُوقُ الْفَوَاكِهِ', desc: 'Buah-buahan segar dan makanan!',
+    storyAction: 'mengumpul bakul buah',
     missions: [
       { ar: ['هٰذِهِ', 'تُفَّاحَةٌ', 'حَمْرَاءُ'], ms: 'Ini sebiji epal merah' },
-      { ar: ['الْمَوْزُ', 'أَصْفَرُ', 'وَحُلْوٌ'], ms: 'Pisang itu kuning dan manis' },
-      { ar: ['الْبُرْتُقَالُ', 'لَذِيذٌ', 'وَمُفِيدٌ'], ms: 'Buah oren itu sedap dan berkhasiat' },
+      { ar: ['الْمَوْزُ', 'أَصْفَرُ', 'وَحُلْوٌ'], ms: 'Pisang kuning dan manis' },
+      { ar: ['الْبُرْتُقَالُ', 'لَذِيذٌ', 'وَمُفِيدٌ'], ms: 'Oren sedap dan berkhasiat' },
       { ar: ['أَنَا', 'أُحِبُّ', 'عَصِيرَ', 'الْمَانْجُو'], ms: 'Saya suka jus mangga' },
-      { ar: ['الْعِنَبُ', 'فِي', 'السَّلَّةِ'], ms: 'Buah anggur itu di dalam bakul' },
-      { ar: ['هٰذَا', 'بِطِّيخٌ', 'كَبِيرٌ'], ms: 'Ini buah tembikai yang besar' },
-      { ar: ['الْخُبْزُ', 'سَاخِنٌ', 'وَلَذِيذٌ'], ms: 'Roti itu panas dan sedap' },
+      { ar: ['الْعِنَبُ', 'فِي', 'السَّلَّةِ'], ms: 'Anggur di dalam bakul' },
+      { ar: ['هٰذَا', 'بِطِّيخٌ', 'كَبِيرٌ'], ms: 'Ini tembikai besar' },
+      { ar: ['الْخُبْزُ', 'سَاخِنٌ', 'وَلَذِيذٌ'], ms: 'Roti panas dan sedap' },
       { ar: ['أَنَا', 'أَشْرَبُ', 'الْحَلِيبَ', 'الطَّازَجَ'], ms: 'Saya minum susu segar' },
-      { ar: ['الْمَاءُ', 'بَارِدٌ', 'وَنَظِيفٌ'], ms: 'Air itu sejuk dan bersih' },
+      { ar: ['الْمَاءُ', 'بَارِدٌ', 'وَنَظِيفٌ'], ms: 'Air sejuk dan bersih' },
       { ar: ['أَنَا', 'آكُلُ', 'الْأَرُزَّ', 'وَالدَّجَاجَ'], ms: 'Saya makan nasi dan ayam' },
-      { ar: ['السَّمَكُ', 'طَازَجٌ', 'فِي', 'السُّوقِ'], ms: 'Ikan itu segar di pasar' },
-      { ar: ['هٰذِهِ', 'ثَلَاثُ', 'تُفَّاحَاتٍ'], ms: 'Ini tiga biji buah epal' },
+      { ar: ['السَّمَكُ', 'طَازَجٌ', 'فِي', 'السُّوقِ'], ms: 'Ikan segar di pasar' },
+      { ar: ['هٰذِهِ', 'ثَلَاثُ', 'تُفَّاحَاتٍ'], ms: 'Ini tiga biji epal' },
       { ar: ['عِنْدِي', 'خَمْسَةُ', 'أَقْلَامٍ'], ms: 'Saya ada lima batang pen' },
-      { ar: ['التَّمْرُ', 'حُلْوٌ', 'وَطَيِّبٌ'], ms: 'Buah kurma itu manis dan baik' },
-      { ar: ['الْبَبَايَا', 'لَوْنُهَا', 'بُرْتُقَالِيٌّ'], ms: 'Buah betik itu warnanya jingga' },
-      { ar: ['هٰذَا', 'طَعَامٌ', 'صِحِّيٌّ'], ms: 'Ini makanan yang sihat' },
-      { ar: ['الْعَسَلُ', 'حُلْوٌ', 'وَمُفِيدٌ'], ms: 'Madu itu manis dan berkhasiat' },
-      { ar: ['الْمِلْعَقَةُ', 'بِجَانِبِ', 'الصَّحْنِ'], ms: 'Sudu itu di sebelah pinggan' },
-      { ar: ['الْكُوبُ', 'مَمْلُوءٌ', 'بِالْمَاءِ'], ms: 'Cawan itu penuh dengan air' },
-      { ar: ['الْحَمْدُ', 'لِلّٰهِ', 'عَلَى', 'النِّعْمَةِ'], ms: 'Segala puji bagi Allah atas nikmat ini' }
+      { ar: ['التَّمْرُ', 'حُلْوٌ', 'وَطَيِّبٌ'], ms: 'Kurma manis dan baik' },
+      { ar: ['الْبَبَايَا', 'لَوْنُهَا', 'بُرْتُقَالِيٌّ'], ms: 'Betik berwarna jingga' },
+      { ar: ['هٰذَا', 'طَعَامٌ', 'صِحِّيٌّ'], ms: 'Ini makanan sihat' },
+      { ar: ['الْعَسَلُ', 'حُلْوٌ', 'وَمُفِيدٌ'], ms: 'Madu manis dan berkhasiat' },
+      { ar: ['الْمِلْعَقَةُ', 'بِجَانِبِ', 'الصَّحْنِ'], ms: 'Sudu di sebelah pinggan' },
+      { ar: ['الْكُوبُ', 'مَمْلُوءٌ', 'بِالْمَاءِ'], ms: 'Cawan penuh dengan air' },
+      { ar: ['الْحَمْدُ', 'لِلّٰهِ', 'عَلَى', 'النِّعْمَةِ'], ms: 'Segala puji bagi Allah' }
     ]
   },
   {
-    id: 5,
-    nameMs: 'Dunia 5: Zoo Pengembaraan',
-    nameAr: 'حَدِيقَةُ الْحَيَوَانَاتِ',
-    desc: 'Kenali haiwan-haiwan comel dan sifat mereka dalam Bahasa Arab!',
-    storyAction: 'menyelamatkan haiwan comel di taman',
+    id: 5, nameMs: 'Dunia 5: Zoo Pengembaraan', nameAr: 'حَدِيقَةُ الْحَيَوَانَاتِ', desc: 'Haiwan-haiwan comel di zoo!',
+    storyAction: 'menyelamatkan haiwan zoo',
     missions: [
-      { ar: ['هٰذَا', 'قِطٌّ', 'لَطِيفٌ'], ms: 'Ini kucing yang comel' },
-      { ar: ['الْأَرْنَبُ', 'سَرِيعٌ', 'وَأَبْيَضُ'], ms: 'Arnab itu pantas dan putih' },
-      { ar: ['الْفِيلُ', 'حَيَوَانٌ', 'كَبِيرٌ'], ms: 'Gajah ialah haiwan yang besar' },
-      { ar: ['الْأَسَدُ', 'قَوِيٌّ', 'وَشُجَاعٌ'], ms: 'Singa itu kuat dan berani' },
-      { ar: ['الزَّرَافَةُ', 'عُنُقُهَا', 'طَوِيلٌ'], ms: 'Zirafah itu lehernya panjang' },
-      { ar: ['الْعُصْفُورُ', 'يَطِيرُ', 'فِي', 'السَّمَاءِ'], ms: 'Burung pipit terbang di langit' },
-      { ar: ['السَّمَكَةُ', 'تَسْبَحُ', 'فِي', 'الْمَاءِ'], ms: 'Ikan berenang di dalam air' },
-      { ar: ['الْحِصَانُ', 'يَجْرِي', 'بِسُرْعَةٍ'], ms: 'Kuda itu berlari dengan laju' },
+      { ar: ['هٰذَا', 'قِطٌّ', 'لَطِيفٌ'], ms: 'Ini kucing comel' },
+      { ar: ['الْأَرْنَبُ', 'سَرِيعٌ', 'وَأَبْيَضُ'], ms: 'Arnab pantas dan putih' },
+      { ar: ['الْفِيلُ', 'حَيَوَانٌ', 'كَبِيرٌ'], ms: 'Gajah haiwan besar' },
+      { ar: ['الْأَسَدُ', 'قَوِيٌّ', 'وَشُجَاعٌ'], ms: 'Singa kuat dan berani' },
+      { ar: ['الزَّرَافَةُ', 'عُنُقُهَا', 'طَوِيلٌ'], ms: 'Zirafah berleher panjang' },
+      { ar: ['الْعُصْفُورُ', 'يَطِيرُ', 'فِي', 'السَّمَاءِ'], ms: 'Burung terbang di langit' },
+      { ar: ['السَّمَكَةُ', 'تَسْبَحُ', 'فِي', 'الْمَاءِ'], ms: 'Ikan berenang dalam air' },
+      { ar: ['الْحِصَانُ', 'يَجْرِي', 'بِسُرْعَةٍ'], ms: 'Kuda berlari laju' },
       { ar: ['الْبَطَّةُ', 'تَمْشِي', 'قُرْبَ', 'الْبُحَيْرَةِ'], ms: 'Itik berjalan dekat tasik' },
-      { ar: ['الدَّجَاجَةُ', 'فِي', 'الْمَزْرَعَةِ'], ms: 'Ayam betina itu di ladang' },
-      { ar: ['الْبَقَرَةُ', 'تُعْطِينَا', 'الْحَلِيبَ'], ms: 'Lembu memberi kita susu' },
-      { ar: ['الْخَرُوفُ', 'صُوفُهُ', 'نَاعِمٌ'], ms: 'Biri-biri itu bulunya lembut' },
-      { ar: ['الْقِرْدُ', 'فَوْقَ', 'الشَّجَرَةِ'], ms: 'Monyet itu di atas pokok' },
-      { ar: ['السُّلَحْفَاةُ', 'تَمْشِي', 'بِبُطْءٍ'], ms: 'Kura-kura berjalan dengan perlahan' },
+      { ar: ['الدَّجَاجَةُ', 'فِي', 'الْمَزْرَعَةِ'], ms: 'Ayam betina di ladang' },
+      { ar: ['الْبَقَرَةُ', 'تُعْطِينَا', 'الْحَلِيبَ'], ms: 'Lembu memberi susu' },
+      { ar: ['الْخَرُوفُ', 'صُوفُهُ', 'نَاعِمٌ'], ms: 'Biri-biri berbulu lembut' },
+      { ar: ['الْقِرْدُ', 'فَوْقَ', 'الشَّجَرَةِ'], ms: 'Monyet di atas pokok' },
+      { ar: ['السُّلَحْفَاةُ', 'تَمْشِي', 'بِبُطْءٍ'], ms: 'Kura-kura berjalan perlahan' },
       { ar: ['النَّحْلَةُ', 'تَصْنَعُ', 'الْعَسَلَ'], ms: 'Lebah membuat madu' },
-      { ar: ['النَّمْلَةُ', 'صَغِيرَةٌ', 'وَنَشِيطَةٌ'], ms: 'Semut itu kecil dan rajin' },
-      { ar: ['الْجَمَلُ', 'سَفِينَةُ', 'الصَّحْرَاءِ'], ms: 'Unta ialah bahtera padang pasir' },
-      { ar: ['الدُّبُّ', 'يُحِبُّ', 'الْعَسَلَ'], ms: 'Beruang suka akan madu' },
-      { ar: ['الطَّاوُوسُ', 'رِيشُهُ', 'جَمِيلٌ'], ms: 'Burung merak itu bulunya cantik' },
-      { ar: ['نَحْنُ', 'نَرْحَمُ', 'الْحَيَوَانَاتِ'], ms: 'Kita menyayangi haiwan-haiwan' }
+      { ar: ['النَّمْلَةُ', 'صَغِيرَةٌ', 'وَنَشِيطَةٌ'], ms: 'Semut kecil dan rajin' },
+      { ar: ['الْجَمَلُ', 'سَفِينَةُ', 'الصَّحْرَاءِ'], ms: 'Unta bahtera padang pasir' },
+      { ar: ['الدُّبُّ', 'يُحِبُّ', 'الْعَسَلَ'], ms: 'Beruang suka madu' },
+      { ar: ['الطَّاوُوسُ', 'رِيشُهُ', 'جَمِيلٌ'], ms: 'Burung merak berbulu cantik' },
+      { ar: ['نَحْنُ', 'نَرْحَمُ', 'الْحَيَوَانَاتِ'], ms: 'Kita menyayangi haiwan' }
     ]
   }
 ];
 
 /* ============================================================================
-   FASA 5: LOGIK PERMAINAN, PENYIMPANAN TEMPATAN, & PENGURUSAN UI
+   GAME LOGIC & STATE MANAGEMENT
    ============================================================================ */
-const STORAGE_KEY = 'arabic_adventure_save_v1';
-const LEADERBOARD_KEY = 'arabic_adventure_lb_v1';
+const STORAGE_KEY = 'arabic_adventure_save_v2';
+const LEADERBOARD_KEY = 'arabic_adventure_lb_v2';
 
 const Game = {
   state: {
     playerName: '',
     score: 0,
-    completed: {}, // kunci: "worldId-missionIndex" -> true
+    completed: {},
     currentWorldId: 1,
     currentMissionIdx: 0,
-    selectedTokens: [], // [{ id, text }]
-    bankTokens: []      // [{ id, text, used }]
+    selectedTokens: [],
+    bankTokens: []
   },
 
   init() {
     this.loadProgress();
-    // Lukis karakter maskot utama & latar dunia pertama
-    document.getElementById('home-mascot').innerHTML = ArtAssets.getAmiraSVG('happy');
-    document.getElementById('world-scene').innerHTML = ArtAssets.getWorldSceneSVG(this.state.currentWorldId);
+    const mascotEl = document.getElementById('home-mascot');
+    if (mascotEl) mascotEl.innerHTML = ArtAssets.getAmiraSVG('happy');
+    const sceneEl = document.getElementById('world-scene');
+    if (sceneEl) sceneEl.innerHTML = ArtAssets.getWorldSceneSVG(this.state.currentWorldId);
     this.updateTopHUD();
     UI.renderWorldsGrid();
     UI.renderLeaderboard();
@@ -1654,11 +1292,10 @@ const Game = {
         this.state.completed = parsed.completed || {};
       }
       if (this.state.playerName) {
-        document.getElementById('player-name-input').value = this.state.playerName;
+        const input = document.getElementById('player-name-input');
+        if (input) input.value = this.state.playerName;
       }
-    } catch (e) {
-      console.warn('Simpanan tempatan tidak dapat dibaca:', e);
-    }
+    } catch (e) {}
   },
 
   saveProgress() {
@@ -1669,9 +1306,7 @@ const Game = {
         completed: this.state.completed
       }));
       this.syncLeaderboardEntry();
-    } catch (e) {
-      console.warn('Gagal menyimpan kemajuan:', e);
-    }
+    } catch (e) {}
   },
 
   getTotalStars() {
@@ -1687,21 +1322,26 @@ const Game = {
   },
 
   updateTopHUD() {
-    document.getElementById('hud-player-name').textContent = this.state.playerName || 'Tetamu';
-    document.getElementById('hud-stars').textContent = this.getTotalStars();
-    document.getElementById('hud-score').textContent = this.state.score;
+    const nameEl = document.getElementById('hud-player-name');
+    const starsEl = document.getElementById('hud-stars');
+    const scoreEl = document.getElementById('hud-score');
+    if (nameEl) nameEl.textContent = this.state.playerName || 'Tetamu';
+    if (starsEl) starsEl.textContent = this.getTotalStars();
+    if (scoreEl) scoreEl.textContent = this.state.score;
   },
 
   savePlayerName() {
     const input = document.getElementById('player-name-input');
     const feedback = document.getElementById('name-feedback');
-    const cleaned = (input.value || '').trim();
+    const cleaned = input ? input.value.trim() : '';
 
     if (!cleaned) {
       SoundEngine.playWrong();
-      feedback.style.color = 'var(--coral-dark)';
-      feedback.textContent = '⚠️ Sila tulis nama pengembara dahulu!';
-      input.focus();
+      if (feedback) {
+        feedback.style.color = 'var(--coral-dark)';
+        feedback.textContent = '⚠️ Sila masukkan nama pengembara!';
+      }
+      if (input) input.focus();
       return false;
     }
 
@@ -1710,23 +1350,28 @@ const Game = {
     this.updateTopHUD();
     SoundEngine.playPop();
 
-    feedback.style.color = 'var(--turquoise-dark)';
-    feedback.textContent = `✅ Selamat datang, Pengembara ${cleaned}!`;
-    document.getElementById('home-speech').textContent = `مَرْحَبًا يَا ${cleaned}! Jom kita mulakan misi!`;
+    if (feedback) {
+      feedback.style.color = 'var(--turquoise-dark)';
+      feedback.textContent = `✅ Selamat datang, ${cleaned}!`;
+    }
+    const speech = document.getElementById('home-speech');
+    if (speech) speech.textContent = `مَرْحَبًا يَا ${cleaned}! Jom mula misi!`;
     return true;
   },
 
   ensurePlayerNamed() {
-    const inputVal = (document.getElementById('player-name-input').value || '').trim();
-    if (inputVal && inputVal !== this.state.playerName) {
-      this.savePlayerName();
+    const input = document.getElementById('player-name-input');
+    if (input && input.value.trim()) {
+      this.state.playerName = input.value.trim();
     }
     if (!this.state.playerName) {
       UI.showScreen('home');
       const feedback = document.getElementById('name-feedback');
-      feedback.style.color = 'var(--coral-dark)';
-      feedback.textContent = '⚠️ Sila masukkan nama anda sebelum mula mengembara!';
-      document.getElementById('player-name-input').focus();
+      if (feedback) {
+        feedback.style.color = 'var(--coral-dark)';
+        feedback.textContent = '⚠️ Sila masukkan nama anda dahulu!';
+      }
+      if (input) input.focus();
       SoundEngine.playWrong();
       return false;
     }
@@ -1736,7 +1381,6 @@ const Game = {
   startFromHome() {
     if (!this.ensurePlayerNamed()) return;
     SoundEngine.playPop();
-    // Cari misi pertama yang belum selesai
     for (const w of WORLDS_DATA) {
       for (let idx = 0; idx < w.missions.length; idx++) {
         if (!this.state.completed[`${w.id}-${idx}`]) {
@@ -1751,7 +1395,6 @@ const Game = {
   enterWorld(worldId) {
     if (!this.ensurePlayerNamed()) return;
     SoundEngine.playPop();
-    // Cari misi pertama belum selesai dalam dunia tersebut
     let firstIncomplete = 0;
     for (let i = 0; i < 20; i++) {
       if (!this.state.completed[`${worldId}-${i}`]) {
@@ -1766,27 +1409,27 @@ const Game = {
     this.state.currentWorldId = worldId;
     this.state.currentMissionIdx = missionIdx;
 
-    // Kemas kini latar belakang 3D mengikut dunia
-    document.getElementById('world-scene').innerHTML = ArtAssets.getWorldSceneSVG(worldId);
+    const sceneEl = document.getElementById('world-scene');
+    if (sceneEl) sceneEl.innerHTML = ArtAssets.getWorldSceneSVG(worldId);
 
     const world = WORLDS_DATA.find(w => w.id === worldId) || WORLDS_DATA[0];
     const mission = world.missions[missionIdx];
 
-    // Kemas kini HUD Pentas
-    document.getElementById('stage-world-title').textContent = `${world.nameMs} (${world.nameAr})`;
-    document.getElementById('stage-mission-counter').textContent = `Misi ${missionIdx + 1} / ${world.missions.length}`;
-    document.getElementById('mission-story-text').textContent = `Bantu Amira ${world.storyAction} dengan membina ayat:`;
-    document.getElementById('mission-meaning-ms').textContent = `"${mission.ms}"`;
+    const worldTitleEl = document.getElementById('stage-world-title');
+    const missionCounterEl = document.getElementById('stage-mission-counter');
+    const storyTextEl = document.getElementById('mission-story-text');
+    const meaningEl = document.getElementById('mission-meaning-ms');
 
-    // Set semula karakter & objek pentas
+    if (worldTitleEl) worldTitleEl.textContent = `Dunia ${worldId}`;
+    if (missionCounterEl) missionCounterEl.textContent = `${missionIdx + 1}/20`;
+    if (storyTextEl) storyTextEl.textContent = `Bantu Amira ${world.storyAction}:`;
+    if (meaningEl) meaningEl.textContent = `"${mission.ms}"`;
+
     const amiraEl = document.getElementById('stage-amira');
     const propEl = document.getElementById('stage-prop');
-    amiraEl.classList.remove('advance');
-    propEl.classList.remove('unlocked');
-    amiraEl.innerHTML = ArtAssets.getAmiraSVG('happy');
-    propEl.innerHTML = ArtAssets.getPropSVG(worldId, false);
+    if (amiraEl) amiraEl.innerHTML = ArtAssets.getAmiraSVG('happy');
+    if (propEl) propEl.innerHTML = ArtAssets.getPropSVG(worldId, false);
 
-    // Sediakan token perkataan secara rawak (tetapi tidak sama susunan asal jika >1)
     this.state.selectedTokens = [];
     const tokens = mission.ar.map((word, index) => ({
       id: `tok-${index}-${Math.random().toString(36).substring(2, 6)}`,
@@ -1794,18 +1437,17 @@ const Game = {
       used: false
     }));
 
-    // Kocok kad perkataan
+    // Shuffle tokens
     for (let i = tokens.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [tokens[i], tokens[j]] = [tokens[j], tokens[i]];
     }
-    // Jika kocokan kebetulan sama dengan jawapan asal, tukar dua elemen pertama
     if (tokens.length > 1 && tokens.map(t => t.text).join(' ') === mission.ar.join(' ')) {
       [tokens[0], tokens[1]] = [tokens[1], tokens[0]];
     }
 
     this.state.bankTokens = tokens;
-    this.setFeedback('✨ Ketik kad perkataan dari kanan ke kiri untuk membina ayat!', 'var(--ink-muted)');
+    this.setFeedback('✨ Ketik kad perkataan untuk menyusun ayat!', 'var(--ink-muted)');
     this.renderSentenceBuilder();
     UI.showScreen('play');
   },
@@ -1816,11 +1458,12 @@ const Game = {
 
     const answerContainer = document.getElementById('answer-slots');
     const bankContainer = document.getElementById('word-bank');
+    if (!answerContainer || !bankContainer) return;
+
     answerContainer.classList.remove('correct-glow', 'wrong-shake');
 
-    // Render ruang jawapan (RTL)
     if (this.state.selectedTokens.length === 0) {
-      answerContainer.innerHTML = `<div class="empty-hint-rtl">Ketik kad perkataan Bahasa Arab di bawah untuk menyusun ayat di sini...</div>`;
+      answerContainer.innerHTML = `<div class="empty-hint-rtl">Ketik kad perkataan di bawah...</div>`;
     } else {
       answerContainer.innerHTML = '';
       this.state.selectedTokens.forEach((tok, idx) => {
@@ -1828,13 +1471,11 @@ const Game = {
         btn.type = 'button';
         btn.className = 'arabic-tile in-answer';
         btn.textContent = tok.text;
-        btn.title = 'Ketik untuk keluarkan perkataan ini';
         btn.onclick = () => this.removeWordFromAnswer(idx);
         answerContainer.appendChild(btn);
       });
     }
 
-    // Render bank perkataan
     bankContainer.innerHTML = '';
     this.state.bankTokens.forEach(tok => {
       if (tok.used) return;
@@ -1846,8 +1487,8 @@ const Game = {
       bankContainer.appendChild(btn);
     });
 
-    document.getElementById('word-count-indicator').textContent =
-      `${this.state.selectedTokens.length} / ${mission.ar.length} perkataan`;
+    const countEl = document.getElementById('word-count-indicator');
+    if (countEl) countEl.textContent = `${this.state.selectedTokens.length}/${mission.ar.length}`;
   },
 
   selectWordFromBank(tokenId) {
@@ -1881,7 +1522,6 @@ const Game = {
     const world = WORLDS_DATA.find(w => w.id === this.state.currentWorldId);
     const mission = world.missions[this.state.currentMissionIdx];
 
-    // Cari indeks pertama yang belum betul dalam jawapan semasa
     let firstMismatch = 0;
     while (
       firstMismatch < this.state.selectedTokens.length &&
@@ -1890,14 +1530,12 @@ const Game = {
       firstMismatch++;
     }
 
-    // Pulangkan sebarang perkataan yang salah selepas indeks tersebut ke bank
     while (this.state.selectedTokens.length > firstMismatch) {
       const popped = this.state.selectedTokens.pop();
       const bTok = this.state.bankTokens.find(t => t.id === popped.id);
       if (bTok) bTok.used = false;
     }
 
-    // Ambil perkataan sasaran seterusnya
     if (firstMismatch < mission.ar.length) {
       const targetWord = mission.ar[firstMismatch];
       const availableTok = this.state.bankTokens.find(t => !t.used && t.text === targetWord);
@@ -1906,7 +1544,7 @@ const Game = {
         this.state.selectedTokens.push(availableTok);
         SoundEngine.playPop();
         SoundEngine.speakArabic(targetWord);
-        this.setFeedback(`💡 Petunjuk: Perkataan "${targetWord}" telah diletakkan!`, 'var(--lavender-dark)');
+        this.setFeedback(`💡 Petunjuk: "${targetWord}"`, 'var(--lavender-dark)');
         this.renderSentenceBuilder();
       }
     }
@@ -1925,10 +1563,12 @@ const Game = {
 
     if (this.state.selectedTokens.length < mission.ar.length) {
       SoundEngine.playWrong();
-      answerContainer.classList.remove('wrong-shake');
-      void answerContainer.offsetWidth;
-      answerContainer.classList.add('wrong-shake');
-      this.setFeedback('⚠️ Sila pilih semua kad perkataan dahulu sebelum menyemak!', 'var(--coral-dark)');
+      if (answerContainer) {
+        answerContainer.classList.remove('wrong-shake');
+        void answerContainer.offsetWidth;
+        answerContainer.classList.add('wrong-shake');
+      }
+      this.setFeedback('⚠️ Pilih semua kad perkataan dahulu!', 'var(--coral-dark)');
       return;
     }
 
@@ -1936,51 +1576,51 @@ const Game = {
     const targetSentence = mission.ar.join(' ');
 
     if (userSentence === targetSentence) {
-      // JAWAPAN BETUL
       SoundEngine.playSuccess();
       SoundEngine.speakArabic(targetSentence);
-      answerContainer.classList.add('correct-glow');
-      this.setFeedback('🌟 مُمْتَازٌ! Susunan ayat Bahasa Arab anda tepat sekali!', 'var(--success-dark)');
+      if (answerContainer) answerContainer.classList.add('correct-glow');
+      this.setFeedback('🌟 مُمْتَازٌ! Susunan tepat!', 'var(--success-dark)');
 
-      // Animasi Amira bergerak & objek misi bercahaya
       const amiraEl = document.getElementById('stage-amira');
       const propEl = document.getElementById('stage-prop');
-      amiraEl.innerHTML = ArtAssets.getAmiraSVG('excited');
-      amiraEl.classList.add('advance');
-      propEl.innerHTML = ArtAssets.getPropSVG(this.state.currentWorldId, true);
-      propEl.classList.add('unlocked');
+      if (amiraEl) amiraEl.innerHTML = ArtAssets.getAmiraSVG('excited');
+      if (propEl) propEl.innerHTML = ArtAssets.getPropSVG(this.state.currentWorldId, true);
 
-      // Tambah bintang & markah
       const missionKey = `${this.state.currentWorldId}-${this.state.currentMissionIdx}`;
       if (!this.state.completed[missionKey]) {
         this.state.completed[missionKey] = true;
         this.state.score += 100;
       } else {
-        this.state.score += 20; // Bonus ulang kaji
+        this.state.score += 20;
       }
       this.saveProgress();
       this.updateTopHUD();
 
-      // Papar modal kejayaan selepas animasi pendek
       setTimeout(() => {
-        document.getElementById('modal-story-Win').textContent =
-          `Amira berjaya ${world.storyAction}! (+100 Mata)`;
-        document.getElementById('modal-arabic-sentence').textContent = targetSentence;
-        document.getElementById('modal-malay-sentence').textContent = `"${mission.ms}"`;
-        document.getElementById('modal-success').classList.add('show');
-      }, 650);
+        const storyWin = document.getElementById('modal-story-Win');
+        const arabicWin = document.getElementById('modal-arabic-sentence');
+        const malayWin = document.getElementById('modal-malay-sentence');
+        const modalWin = document.getElementById('modal-success');
+
+        if (storyWin) storyWin.textContent = `Berjaya ${world.storyAction}! (+100 Mata)`;
+        if (arabicWin) arabicWin.textContent = targetSentence;
+        if (malayWin) malayWin.textContent = `"${mission.ms}"`;
+        if (modalWin) modalWin.classList.add('show');
+      }, 500);
     } else {
-      // JAWAPAN KURANG TEPAT
       SoundEngine.playWrong();
-      answerContainer.classList.remove('wrong-shake');
-      void answerContainer.offsetWidth;
-      answerContainer.classList.add('wrong-shake');
-      this.setFeedback('❌ Belum tepat. Cuba semak semula susunan perkataan dari kanan ke kiri!', 'var(--coral-dark)');
+      if (answerContainer) {
+        answerContainer.classList.remove('wrong-shake');
+        void answerContainer.offsetWidth;
+        answerContainer.classList.add('wrong-shake');
+      }
+      this.setFeedback('❌ Susunan belum tepat. Cuba lagi!', 'var(--coral-dark)');
     }
   },
 
   closeSuccessAndContinue() {
-    document.getElementById('modal-success').classList.remove('show');
+    const modalWin = document.getElementById('modal-success');
+    if (modalWin) modalWin.classList.remove('show');
     this.nextMission();
   },
 
@@ -2006,15 +1646,17 @@ const Game = {
 
   setFeedback(msg, color) {
     const fb = document.getElementById('gameplay-feedback');
-    fb.style.color = color || 'var(--ink)';
-    fb.textContent = msg;
+    if (fb) {
+      fb.style.color = color || 'var(--ink)';
+      fb.textContent = msg;
+    }
   },
 
   syncLeaderboardEntry() {
     if (!this.state.playerName) return;
     try {
       const raw = localStorage.getItem(LEADERBOARD_KEY);
-      let list = raw ? JSON.parse(raw) : this.getDefaultLeaderboard();
+      let list = raw ? JSON.parse(raw) : [];
       const stars = this.getTotalStars();
       const existingIdx = list.findIndex(
         item => item.name.toLowerCase() === this.state.playerName.toLowerCase()
@@ -2032,27 +1674,18 @@ const Game = {
       list.sort((a, b) => b.score - a.score || b.stars - a.stars);
       list = list.slice(0, 10);
       localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(list));
-    } catch (e) {
-      console.warn('Ralat kemas kini papan markah:', e);
-    }
-  },
-
-  getDefaultLeaderboard() {
-    return [
-      { name: 'Amira Cilik', stars: 45, score: 4500 },
-      { name: 'Adam Harith', stars: 32, score: 3200 },
-      { name: 'Nur Zara', stars: 25, score: 2500 },
-      { name: 'Iman Firdaus', stars: 18, score: 1800 }
-    ];
+    } catch (e) {}
   },
 
   resetProgressPrompt() {
     SoundEngine.playPop();
-    document.getElementById('modal-reset').classList.add('show');
+    const modal = document.getElementById('modal-reset');
+    if (modal) modal.classList.add('show');
   },
 
   confirmResetProgress() {
-    document.getElementById('modal-reset').classList.remove('show');
+    const modal = document.getElementById('modal-reset');
+    if (modal) modal.classList.remove('show');
     this.state.score = 0;
     this.state.completed = {};
     this.saveProgress();
@@ -2064,7 +1697,7 @@ const Game = {
 };
 
 /* ============================================================================
-   FASA 6: KAWALAN SKRIN & RENDER KOMPONEN
+   UI ROUTER & RENDERERS
    ============================================================================ */
 const UI = {
   showScreen(screenName) {
@@ -2101,24 +1734,19 @@ const UI = {
             ${ArtAssets.getWorldSceneSVG(w.id)}
             <span class="world-badge-num">Dunia ${w.id}</span>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-            <h3 style="font-size:1.18rem; color:var(--teal-deep);">${w.nameMs}</h3>
-            <span style="font-family:var(--font-arabic); font-size:1.25rem; color:var(--turquoise-dark); font-weight:700;" dir="rtl">${w.nameAr}</span>
-          </div>
-          <p style="font-size:0.9rem; color:var(--ink-muted); font-weight:600; margin:6px 0 10px;">
-            ${w.desc}
-          </p>
+          <h3 style="font-size:1.05rem; color:var(--teal-deep); margin-top:8px;">${w.nameMs}</h3>
+          <p style="font-size:0.82rem; color:var(--ink-muted); font-weight:600; margin:4px 0 8px;">${w.desc}</p>
         </div>
         <div>
-          <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:700; margin-bottom:6px; color:var(--teal-deep);">
-            <span>Kemajuan Misi</span>
-            <span>⭐ ${stars} / 20 (${pct}%)</span>
+          <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:700; margin-bottom:4px; color:var(--teal-deep);">
+            <span>Misi</span>
+            <span>⭐ ${stars}/20</span>
           </div>
           <div class="world-progress-bar">
             <div class="world-progress-fill" style="width:${pct}%;"></div>
           </div>
-          <button class="btn-3d btn-turquoise btn-sm" style="width:100%; margin-top:12px;" onclick="Game.enterWorld(${w.id})">
-            🚀 Masuk Dunia ${w.id}
+          <button class="btn-3d btn-turquoise btn-sm" style="width:100%; margin-top:10px;" onclick="Game.enterWorld(${w.id})">
+            🚀 Mula Dunia ${w.id}
           </button>
         </div>
       `;
@@ -2129,29 +1757,32 @@ const UI = {
   renderLeaderboard() {
     const tbody = document.getElementById('leaderboard-rows');
     if (!tbody) return;
-    let list = Game.getDefaultLeaderboard();
+    let list = [];
     try {
       const raw = localStorage.getItem(LEADERBOARD_KEY);
       if (raw) list = JSON.parse(raw);
     } catch (e) {}
 
-    const medals = ['🥇 1', '🥈 2', '🥉 3'];
+    if (list.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--ink-muted);">Belum ada rekod. Jom mula bermain!</td></tr>`;
+      return;
+    }
+
+    const medals = ['🥇', '🥈', '🥉'];
     tbody.innerHTML = list.map((row, idx) => `
       <tr>
-        <td>${medals[idx] || `#${idx + 1}`}</td>
+        <td>${medals[idx] || (idx + 1)}</td>
         <td>${row.name}</td>
-        <td>⭐ ${row.stars} / 100</td>
-        <td>${row.score} Mata</td>
+        <td>⭐ ${row.stars}/100</td>
+        <td>${row.score}</td>
       </tr>
     `).join('');
   }
 };
 
-// Mulakan aplikasi apabila halaman selesai dimuatkan
 window.onload = function () {
   Game.init();
 };
 </script>
 </body>
 </html>
-```
