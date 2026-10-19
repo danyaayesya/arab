@@ -1,2083 +1,2157 @@
+```html
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arab Wheel of Fortune — Roda Misteri Mufradat Tahun 2</title>
-  
-  <!-- Google Fonts: Poppins (Clean Modern Kawaii Latin) & Noto Naskh Arabic (Standard School Arabic) -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ARABIC SENTENCE ADVENTURE — مُغَامَرَاتُ الْكَلِمَاتِ</title>
+  <!-- Google Fonts untuk tipografi comel & teks Arab berbaris jelas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Fredoka:wght@500;600;700&family=Noto+Naskh+Arabic:wght@600;700&display=swap" rel="stylesheet">
   <style>
+    /* ==========================================================================
+       FASA 1: VISUAL DESIGN SYSTEM (MODERN KAWAII 3D ADVENTURE)
+       ========================================================================== */
     :root {
-      --bg-page: #FBF8FF;
-      --card-bg: #FFFFFF;
-      --text-main: #331C52;
-      --text-muted: #76648D;
-      --pink-soft: #FFD9E8;
-      --pink-deep: #D44E8C;
-      --pink-hover: #F8C3D8;
-      --lavender-soft: #EAE6FF;
-      --lavender-accent: #7864D7;
-      --mint-soft: #D7F8EE;
-      --mint-deep: #1FA378;
-      --yellow-soft: #FFF2C2;
-      --yellow-deep: #D98800;
-      --sky-soft: #DEF0FF;
-      --sky-deep: #3A8FD6;
-      --shadow-kawaii: 0 10px 24px rgba(78, 44, 114, 0.08);
-      --shadow-button: 0 6px 14px rgba(212, 78, 140, 0.24);
-      --radius-large: 26px;
-      --radius-pill: 999px;
-      --font-body: 'Poppins', sans-serif;
-      --font-arabic: 'Noto Naskh Arabic', serif;
+      /* Palet Warna Utama */
+      --turquoise: #2EC4B6;
+      --turquoise-dark: #1B998B;
+      --teal-deep: #0F4C5C;
+      --mint: #CBF3F0;
+      --coral: #FF6B6B;
+      --coral-dark: #E04F4F;
+      --butter: #FFD166;
+      --butter-dark: #E5B23A;
+      --sky: #70D6FF;
+      --sky-dark: #38A3D1;
+      --lavender: #B892FF;
+      --lavender-dark: #8E63E3;
+      --cream: #FFFDF9;
+      --ink: #1E2D3D;
+      --ink-muted: #5A7184;
+      --success: #06D6A0;
+      --success-dark: #04A378;
+
+      /* Tipografi */
+      --font-ui: 'Fredoka', 'Segoe UI', Roboto, Helvetica, sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', 'Amiri', 'Traditional Arabic', 'Geeza Pro', serif;
+
+      /* Kesan 3D & Bayang */
+      --card-shadow: 0 12px 0 rgba(15, 76, 92, 0.18), 0 20px 35px rgba(15, 76, 92, 0.22);
+      --panel-border: 4px solid #FFFFFF;
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
 
-    body {
-      background-color: var(--bg-page);
-      color: var(--text-main);
-      font-family: var(--font-body);
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: var(--font-ui);
+      color: var(--ink);
+      background: linear-gradient(180deg, #56CFE1 0%, #72EFDD 55%, #C7F9CC 100%);
+    }
+
+    /* Latar Belakang Dunia 3D Penuh */
+    #app-container {
+      position: relative;
+      width: 100%;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-image: 
-        radial-gradient(#E8DEFF 1.5px, transparent 1.5px),
-        radial-gradient(#FFE0EE 1.5px, var(--bg-page) 1.5px);
-      background-size: 36px 36px;
-      background-position: 0 0, 18px 18px;
-      overflow-x: hidden;
-      padding-bottom: 30px;
-    }
-
-    .game-wrapper {
-      width: 100%;
-      max-width: 650px;
-      padding: 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* TOP BAR STATS */
-    .top-bar {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      background: var(--card-bg);
-      padding: 12px 18px;
-      border-radius: var(--radius-pill);
-      box-shadow: var(--shadow-kawaii);
-      border: 2px solid var(--lavender-soft);
-      gap: 8px;
-    }
-
-    .player-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: #FFF5F9;
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-      border: 1.5px solid var(--pink-soft);
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--pink-deep);
-      max-width: 140px;
-      white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
+      perspective: 1000px;
     }
 
-    .top-stats {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    /* Kanvas Persekitaran SVG 3D */
+    #world-scene {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    .badge-stat {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--bg-page);
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-      font-size: 0.88rem;
-      font-weight: 700;
-      border: 1px solid #ECE4F8;
+    #world-scene svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .badge-stat.score { color: var(--pink-deep); }
-    .badge-stat.stars { color: #C27A00; }
+    /* Partikel Bintang Ajaib */
+    .sparkle-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-    .btn-icon {
-      background: #FFF8E6;
-      border: 1.5px solid #FFE6A3;
+    .sparkle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, #FFF 20%, var(--butter) 70%, transparent 100%);
       border-radius: 50%;
-      width: 38px;
-      height: 38px;
+      opacity: 0.75;
+      animation: floatSparkle 5s infinite ease-in-out;
+    }
+
+    @keyframes floatSparkle {
+      0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.4; }
+      50% { transform: translateY(-22px) scale(1.25); opacity: 0.95; }
+    }
+
+    /* ==========================================================================
+       KOMPONEN UI 3D KAWAII (BUTTONS, CARDS, BADGES)
+       ========================================================================== */
+    .top-bar {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1060px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 3px solid #FFFFFF;
+      padding: 6px 16px;
+      border-radius: 999px;
+      box-shadow: 0 6px 0 rgba(15, 76, 92, 0.15);
+      backdrop-filter: blur(8px);
       transition: transform 0.15s ease;
     }
 
-    .btn-icon:hover { transform: scale(1.08); }
-    .btn-icon:active { transform: scale(0.94); }
-
-    /* CARD CONTAINERS */
-    .kawaii-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-large);
-      padding: 24px 20px;
-      box-shadow: var(--shadow-kawaii);
-      border: 2px solid var(--lavender-soft);
-      text-align: center;
-      position: relative;
+    .brand-pill:hover {
+      transform: scale(1.03);
     }
 
-    /* BUTTON STYLING */
-    .btn-kawaii {
-      font-family: var(--font-body);
+    .brand-pill .ar-mini {
+      font-family: var(--font-arabic);
+      font-size: 1.25rem;
+      color: var(--teal-deep);
       font-weight: 700;
-      border: none;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      transition: all 0.2s ease;
+    }
+
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F3FBF9 100%);
+      border: 3px solid #FFFFFF;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--teal-deep);
+      box-shadow: 0 5px 0 rgba(15, 76, 92, 0.16);
+    }
+
+    /* Butang 3D Tactile */
+    .btn-3d {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      user-select: none;
-    }
-
-    .btn-kawaii-primary {
-      background: linear-gradient(135deg, #FF6EA7 0%, #D44E8C 100%);
-      color: #FFFFFF;
-      padding: 13px 28px;
-      font-size: 1.05rem;
-      box-shadow: var(--shadow-button);
-    }
-
-    .btn-kawaii-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(212, 78, 140, 0.35);
-    }
-
-    .btn-kawaii-primary:active {
-      transform: translateY(1px);
-    }
-
-    .btn-kawaii-secondary {
-      background: #FFFFFF;
-      border: 2px solid var(--lavender-soft);
-      color: var(--text-main);
-      padding: 9px 18px;
-      font-size: 0.9rem;
-    }
-
-    .btn-kawaii-secondary:hover {
-      background: var(--lavender-soft);
-    }
-
-    /* TITLE BANNER */
-    .title-banner {
-      margin-bottom: 12px;
-    }
-
-    .title-banner h1 {
-      font-size: 1.65rem;
-      font-weight: 800;
-      color: var(--pink-deep);
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 4px rgba(212, 78, 140, 0.1);
-    }
-
-    .title-banner h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--lavender-accent);
-      margin-top: 2px;
-    }
-
-    /* PLAYER PROFILE BOX */
-    .player-input-box {
-      background: #FDF9FF;
-      border: 1.5px dashed #DACDFC;
-      border-radius: 18px;
-      padding: 14px 16px;
-      margin: 12px 0 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      text-align: left;
-    }
-
-    .player-input-box label {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--lavender-accent);
-    }
-
-    .input-row {
-      display: flex;
-      gap: 8px;
-    }
-
-    .input-row input {
-      flex: 1;
-      border: 2px solid var(--lavender-soft);
-      border-radius: var(--radius-pill);
-      padding: 9px 16px;
-      font-size: 0.92rem;
-      font-family: var(--font-body);
-      color: var(--text-main);
-      outline: none;
-      background: #FFF;
-      transition: border-color 0.2s;
-    }
-
-    .input-row input:focus {
-      border-color: var(--pink-deep);
-    }
-
-    /* LEVEL SELECTION CARDS */
-    .levels-list {
-      display: flex;
-      flex-direction: column;
       gap: 10px;
-      margin: 16px 0;
-    }
-
-    .level-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #FFFFFF;
-      border: 2px solid #EBE4FA;
-      border-radius: 18px;
-      padding: 12px 16px;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 1.08rem;
+      padding: 13px 24px;
+      border-radius: 999px;
+      border: 3px solid #FFFFFF;
       cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
+      transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, filter 0.15s ease;
+      text-decoration: none;
+      letter-spacing: 0.3px;
     }
 
-    .level-item:not(.locked):hover {
-      transform: translateY(-2px);
-      border-color: var(--lavender-accent);
-      box-shadow: 0 6px 14px rgba(120, 100, 215, 0.12);
-    }
-
-    .level-item.locked {
-      opacity: 0.6;
-      cursor: not-allowed;
-      background: #F6F3FA;
-      border-color: #E2DAED;
-    }
-
-    .level-item-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .level-num-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--lavender-soft);
-      color: var(--lavender-accent);
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-    }
-
-    .level-item.unlocked .level-num-badge {
-      background: #FFE2F0;
-      color: var(--pink-deep);
-    }
-
-    .level-name {
-      font-weight: 700;
-      font-size: 0.96rem;
-      color: var(--text-main);
-    }
-
-    .level-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 1px;
-    }
-
-    .level-badge-status {
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-    }
-
-    .level-badge-status.open {
-      background: #EAF8F2;
-      color: var(--mint-deep);
-    }
-
-    .level-badge-status.lock {
-      background: #EDE6F4;
-      color: #927FA6;
-    }
-
-    /* WHEEL CANVAS SECTION */
-    .wheel-container {
-      position: relative;
-      width: 290px;
-      height: 290px;
-      margin: 10px auto 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #wheelCanvas {
-      width: 290px;
-      height: 290px;
-      filter: drop-shadow(0 8px 16px rgba(78, 44, 114, 0.15));
-      border-radius: 50%;
-    }
-
-    .wheel-pointer {
+    .btn-3d::before {
+      content: '';
       position: absolute;
-      top: -10px;
+      top: 4px;
+      left: 14px;
+      right: 14px;
+      height: 35%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .btn-turquoise {
+      background: linear-gradient(180deg, #48E5D7 0%, var(--turquoise) 100%);
+      color: #FFFFFF;
+      text-shadow: 0 2px 0 var(--turquoise-dark);
+      box-shadow: 0 7px 0 var(--turquoise-dark), 0 12px 20px rgba(27, 153, 139, 0.35);
+    }
+
+    .btn-butter {
+      background: linear-gradient(180deg, #FFE08A 0%, var(--butter) 100%);
+      color: #5C3D00;
+      box-shadow: 0 7px 0 var(--butter-dark), 0 12px 20px rgba(229, 178, 58, 0.35);
+    }
+
+    .btn-coral {
+      background: linear-gradient(180deg, #FF8E8E 0%, var(--coral) 100%);
+      color: #FFFFFF;
+      text-shadow: 0 2px 0 var(--coral-dark);
+      box-shadow: 0 7px 0 var(--coral-dark), 0 12px 20px rgba(224, 79, 79, 0.35);
+    }
+
+    .btn-lavender {
+      background: linear-gradient(180deg, #CFB3FF 0%, var(--lavender) 100%);
+      color: #FFFFFF;
+      text-shadow: 0 2px 0 var(--lavender-dark);
+      box-shadow: 0 7px 0 var(--lavender-dark), 0 12px 20px rgba(142, 99, 227, 0.35);
+    }
+
+    .btn-sky {
+      background: linear-gradient(180deg, #9BE4FF 0%, var(--sky) 100%);
+      color: #084B66;
+      box-shadow: 0 7px 0 var(--sky-dark), 0 12px 20px rgba(56, 163, 209, 0.3);
+    }
+
+    .btn-success {
+      background: linear-gradient(180deg, #38F2C0 0%, var(--success) 100%);
+      color: #FFFFFF;
+      text-shadow: 0 2px 0 var(--success-dark);
+      box-shadow: 0 7px 0 var(--success-dark), 0 12px 20px rgba(4, 163, 120, 0.35);
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 0.92rem;
+      box-shadow: 0 5px 0 rgba(15, 76, 92, 0.25);
+    }
+
+    .btn-3d:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+
+    .btn-3d:active:not(:disabled) {
+      transform: translateY(5px);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25) !important;
+    }
+
+    .btn-3d:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      filter: grayscale(0.35);
+    }
+
+    /* ==========================================================================
+       SKRIN DAN PANEL PENGEMBARAAN
+       ========================================================================== */
+    .screen {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 1040px;
+      padding: 10px 16px 28px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: popInScreen 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes popInScreen {
+      from { opacity: 0; transform: translateY(18px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Panel Kaca 3D Kawaii */
+    .kawaii-panel {
+      width: 100%;
+      background: rgba(255, 253, 249, 0.92);
+      backdrop-filter: blur(12px);
+      border: var(--panel-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--card-shadow);
+      padding: 24px;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       SKRIN A: HOME SCREEN
+       ========================================================================== */
+    .hero-showcase {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--lavender), var(--sky));
+      color: #FFF;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(142, 99, 227, 0.3);
+    }
+
+    .game-title-ar {
+      font-family: var(--font-arabic);
+      font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+      color: var(--teal-deep);
+      line-height: 1.2;
+      text-shadow: 0 3px 0 #FFFFFF, 0 6px 14px rgba(15, 76, 92, 0.18);
+      margin-bottom: 4px;
+    }
+
+    .game-title-en {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--coral);
+      text-shadow: 0 3px 0 #FFFFFF;
+      letter-spacing: 0.5px;
+    }
+
+    .game-tagline {
+      font-size: 1.15rem;
+      color: var(--ink-muted);
+      margin: 6px 0 18px;
+      font-weight: 600;
+    }
+
+    .player-card-box {
+      background: linear-gradient(180deg, #F0FBF9 0%, #E2F7F4 100%);
+      border: 3px solid #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 18px;
+      box-shadow: inset 0 3px 6px rgba(15, 76, 92, 0.06);
+    }
+
+    .player-card-box label {
+      display: block;
+      font-weight: 700;
+      color: var(--teal-deep);
+      margin-bottom: 8px;
+      font-size: 0.98rem;
+    }
+
+    .player-input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .input-kawaii {
+      flex: 1;
+      min-width: 180px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 3px solid var(--turquoise);
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--teal-deep);
+      background: #FFFFFF;
+      outline: none;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .input-kawaii:focus {
+      border-color: var(--coral);
+      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2);
+    }
+
+    .home-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    /* Pentas Karakter 3D Kawaii */
+    .mascot-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 290px;
+    }
+
+    .mascot-figure {
+      width: 220px;
+      height: 250px;
+      filter: drop-shadow(0 16px 18px rgba(15, 76, 92, 0.26));
+      animation: mascotFloat 3.4s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    .mascot-figure.jump {
+      animation: mascotCelebrate 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 2;
+    }
+
+    @keyframes mascotFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+
+    @keyframes mascotCelebrate {
+      0%, 100% { transform: translateY(0) scale(1); }
+      40% { transform: translateY(-28px) scale(1.06, 0.95); }
+      70% { transform: translateY(-8px) scale(0.97, 1.03); }
+    }
+
+    .speech-bubble {
+      background: #FFFFFF;
+      border: 3px solid var(--turquoise);
+      border-radius: 20px;
+      padding: 10px 16px;
+      font-weight: 700;
+      color: var(--teal-deep);
+      font-size: 0.98rem;
+      text-align: center;
+      box-shadow: 0 8px 0 rgba(46, 196, 182, 0.2);
+      margin-bottom: 10px;
+      position: relative;
+      max-width: 280px;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 32px;
-      height: 38px;
-      z-index: 10;
-      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+      border-width: 12px 10px 0;
+      border-style: solid;
+      border-color: var(--turquoise) transparent transparent;
     }
 
-    .reward-banner-box {
-      min-height: 54px;
-      background: #FFF5F9;
-      border: 2px solid var(--pink-soft);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 16px;
-      margin: 8px 0 12px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--pink-deep);
-      animation: pulseGlow 2s infinite ease-in-out;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { border-color: var(--pink-soft); box-shadow: 0 0 0 rgba(212, 78, 140, 0); }
-      50% { border-color: #FFAEC5; box-shadow: 0 4px 12px rgba(212, 78, 140, 0.15); }
-    }
-
-    /* QUESTION VIEW */
-    .quiz-progress-track {
-      background: #EEE9F8;
-      height: 10px;
-      border-radius: var(--radius-pill);
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
-
-    .quiz-progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #7864D7, #D44E8C);
-      width: 5%;
-      border-radius: var(--radius-pill);
-      transition: width 0.3s ease;
-    }
-
-    .quiz-sub-badge {
-      display: inline-block;
-      background: #EAE6FF;
-      color: var(--lavender-accent);
-      padding: 4px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 0.82rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .quiz-prompt-text {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .quiz-target-word {
-      background: #FFF9F3;
-      border: 2px solid #FFE4CD;
-      border-radius: 20px;
-      padding: 16px 20px;
-      margin: 10px 0 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 85px;
-    }
-
-    .arabic-term {
-      font-family: var(--font-arabic);
-      font-size: 2.3rem;
-      font-weight: 700;
-      direction: rtl;
-      line-height: 1.5;
-      color: #2F1E4A;
-      letter-spacing: 0;
-    }
-
-    .malay-term {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #331C52;
-    }
-
-    /* ANSWER CHOICES */
-    .options-grid {
+    /* ==========================================================================
+       SKRIN B: LEVEL SELECT (PETA PENGEMBARAAN 5 DUNIA)
+       ========================================================================== */
+    .world-map-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 20px;
+      width: 100%;
+      margin-top: 18px;
     }
 
-    @media (min-width: 480px) {
-      .options-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .option-btn {
-      background: #FFFFFF;
-      border: 2px solid #E4DAF5;
-      border-radius: 18px;
-      padding: 14px 16px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-main);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 60px;
-    }
-
-    .option-btn.arabic-choice {
-      font-family: var(--font-arabic);
-      font-size: 1.55rem;
-      direction: rtl;
-      line-height: 1.4;
-    }
-
-    .option-btn:not(:disabled):hover {
-      border-color: var(--lavender-accent);
-      background: #FAF8FF;
-      transform: translateY(-2px);
-    }
-
-    .option-btn:disabled {
-      cursor: default;
-    }
-
-    .option-btn.state-correct {
-      background: #E5FAF2 !important;
-      border-color: #2CA581 !important;
-      color: #127557 !important;
-      box-shadow: 0 4px 12px rgba(44, 165, 129, 0.2);
-    }
-
-    .option-btn.state-incorrect {
-      background: #FFF0F4 !important;
-      border-color: #FF8BA7 !important;
-      color: #B5214C !important;
-    }
-
-    /* FEEDBACK BANNER */
-    .feedback-banner {
-      border-radius: 18px;
-      padding: 14px;
-      margin: 12px 0;
-      font-weight: 700;
-      font-size: 0.98rem;
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .feedback-banner.correct {
-      background: #E7FAF2;
-      border: 2px solid #2CA581;
-      color: #116F52;
-      display: block;
-    }
-
-    .feedback-banner.incorrect {
-      background: #FFF1F5;
-      border: 2px solid #FF9DB4;
-      color: #B0204A;
-      display: block;
-    }
-
-    /* RESULTS SCREEN */
-    .results-stats-card {
-      background: #FAF7FE;
-      border-radius: 20px;
+    .world-node-card {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FDFF 100%);
+      border: 4px solid #FFFFFF;
+      border-radius: 24px;
       padding: 18px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      box-shadow: 0 10px 0 rgba(15, 76, 92, 0.16), 0 16px 28px rgba(15, 76, 92, 0.16);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       gap: 12px;
-      margin: 16px 0;
-      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .res-box {
-      background: #FFFFFF;
-      border-radius: 14px;
-      padding: 10px 14px;
-      border: 1px solid #ECE4F8;
+    .world-node-card:hover {
+      transform: translateY(-6px);
     }
 
-    .res-box-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
+    .world-preview-art {
+      height: 115px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 3px solid #FFFFFF;
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.08);
+    }
+
+    .world-badge-num {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 76, 92, 0.85);
+      color: #FFF;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .world-progress-bar {
+      width: 100%;
+      height: 12px;
+      background: #E2ECEF;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .world-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--turquoise), var(--success));
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    /* ==========================================================================
+       SKRIN C: GAMEPLAY INTERAKTIF (3D STAGE + SENTENCE BUILDER)
+       ========================================================================== */
+    .gameplay-layout {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Pentas Visual Interaktif Atas */
+    .adventure-viewport {
+      width: 100%;
+      height: 205px;
+      border-radius: 26px;
+      border: 4px solid #FFFFFF;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.35);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 14px 26px;
+    }
+
+    .stage-hud {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 4;
+      pointer-events: none;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hud-tag {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--teal-deep);
+      box-shadow: 0 4px 0 rgba(15, 76, 92, 0.14);
+    }
+
+    /* Karakter dan Objek Misi di Atas Pentas */
+    .stage-actors {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .actor-amira {
+      width: 118px;
+      height: 135px;
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.2));
+    }
+
+    .actor-amira.advance {
+      transform: translateX(70px) translateY(-10px) scale(1.06);
+    }
+
+    .mission-prop {
+      width: 130px;
+      height: 130px;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.22));
+    }
+
+    .mission-prop.unlocked {
+      transform: scale(1.14) translateY(-8px);
+      filter: drop-shadow(0 0 22px #FFD166);
+    }
+
+    /* Panel Misi & Pembina Ayat */
+    .sentence-panel {
+      background: rgba(255, 253, 249, 0.95);
+      border: 4px solid #FFFFFF;
+      border-radius: 26px;
+      padding: 20px 22px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mission-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 2px dashed #D8EFECE6;
+      padding-bottom: 12px;
+    }
+
+    .mission-prompt-ms {
+      font-size: 1.02rem;
+      color: var(--ink-muted);
       font-weight: 600;
     }
 
-    .res-box-val {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-top: 2px;
+    .meaning-box {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      color: var(--teal-deep);
+      background: #E9FBF8;
+      border: 2px solid var(--turquoise);
+      padding: 8px 18px;
+      border-radius: 16px;
+      display: inline-block;
+      margin-top: 4px;
     }
 
-    /* MODAL BASE */
-    .kawaii-modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(43, 26, 68, 0.55);
-      backdrop-filter: blur(4px);
+    /* Ruang Jawapan RTL (Kanan ke Kiri) */
+    .answer-zone-label {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+    }
+
+    .answer-slots-rtl {
+      direction: rtl;
+      min-height: 86px;
+      background: linear-gradient(180deg, #F3F8FA 0%, #FFFFFF 100%);
+      border: 3px dashed #84C7D0;
+      border-radius: 20px;
+      padding: 14px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .answer-slots-rtl.correct-glow {
+      border-color: var(--success);
+      border-style: solid;
+      background: #E6FFF7;
+    }
+
+    .answer-slots-rtl.wrong-shake {
+      border-color: var(--coral);
+      background: #FFF0F0;
+      animation: shakeHorizontal 0.45s ease;
+    }
+
+    @keyframes shakeHorizontal {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    .empty-hint-rtl {
+      width: 100%;
+      text-align: center;
+      direction: ltr;
+      color: #90A4AE;
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    /* Bank Jubin Perkataan Arab */
+    .word-bank-rtl {
+      direction: rtl;
+      min-height: 82px;
+      background: rgba(203, 243, 240, 0.45);
+      border-radius: 20px;
+      padding: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* Jubin Perkataan Arab 3D */
+    .arabic-tile {
+      direction: rtl;
+      font-family: var(--font-arabic);
+      font-size: clamp(1.55rem, 3.2vw, 2.05rem);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--teal-deep);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E6 100%);
+      border: 3px solid #FFD166;
+      border-radius: 18px;
+      padding: 8px 22px 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #E5B23A, 0 10px 16px rgba(15, 76, 92, 0.14);
+      transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.14s ease, background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arabic-tile:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: #FFFFFF;
+    }
+
+    .arabic-tile:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #E5B23A;
+    }
+
+    .arabic-tile.in-answer {
+      background: linear-gradient(180deg, #E8FBF8 0%, #CBF3F0 100%);
+      border-color: var(--turquoise);
+      box-shadow: 0 6px 0 var(--turquoise-dark), 0 8px 14px rgba(46, 196, 182, 0.2);
+    }
+
+    /* Baris Kawalan Bawah Gameplay */
+    .gameplay-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .feedback-banner {
+      min-height: 36px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       MODAL KEJAYAAN & LEADERBOARD
+       ========================================================================== */
+    .overlay-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 76, 92, 0.58);
+      backdrop-filter: blur(6px);
+      z-index: 50;
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
     }
 
-    .kawaii-modal-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
+    .overlay-modal.show {
+      display: flex;
+      animation: fadeInModal 0.25s ease;
     }
 
-    .kawaii-modal {
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 480px;
       background: #FFFFFF;
-      width: 100%;
-      max-width: 520px;
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
-      border: 3px solid var(--lavender-soft);
-      transform: scale(0.9);
-      transition: transform 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-      max-height: 88vh;
-      overflow-y: auto;
-    }
-
-    .kawaii-modal-backdrop.open .kawaii-modal {
-      transform: scale(1);
-    }
-
-    .modal-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--pink-deep);
-      margin-bottom: 8px;
-    }
-
-    /* SCOREBOARD TABLE */
-    .scoreboard-table-wrap {
-      margin: 14px 0;
-      border: 1.5px solid #EBE4FA;
-      border-radius: 16px;
-      overflow: hidden;
-      max-height: 280px;
-      overflow-y: auto;
-    }
-
-    .scoreboard-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.84rem;
-      text-align: left;
-    }
-
-    .scoreboard-table th {
-      background: #F8F5FD;
-      color: var(--lavender-accent);
-      padding: 10px 12px;
-      font-weight: 700;
-      border-bottom: 1.5px solid #EBE4FA;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
-
-    .scoreboard-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #F1ECFA;
-      color: var(--text-main);
-    }
-
-    .scoreboard-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .scoreboard-rank-1 {
-      background: #FFFDF4;
-      font-weight: 700;
-    }
-
-    .scoreboard-empty-msg {
+      border: 5px solid var(--butter);
+      border-radius: 30px;
+      padding: 26px 24px;
       text-align: center;
-      padding: 24px;
-      color: var(--text-muted);
-      font-style: italic;
+      box-shadow: 0 18px 0 rgba(15, 76, 92, 0.25), 0 28px 50px rgba(0,0,0,0.3);
+      animation: popInScreen 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* TOAST MESSAGE */
-    .toast-pill {
-      position: fixed;
-      bottom: 24px;
-      background: #2C1F42;
-      color: #FFF;
-      padding: 10px 22px;
-      border-radius: var(--radius-pill);
-      font-size: 0.88rem;
-      font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      z-index: 2000;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.25s ease;
-      pointer-events: none;
+    .Arabic-preview-success {
+      direction: rtl;
+      font-family: var(--font-arabic);
+      font-size: 2rem;
+      color: var(--teal-deep);
+      background: #F0FBF9;
+      padding: 10px 18px;
+      border-radius: 16px;
+      margin: 12px 0;
+      border: 2px solid var(--turquoise);
     }
 
-    .toast-pill.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* CONFETTI CANVAS */
-    #confettiCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* Jadual Leaderboard */
+    .leaderboard-table {
       width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 999;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+      margin: 14px 0;
     }
 
-    .hidden {
-      display: none !important;
-    }
-    /* RESPONSIVE LAYOUT ENHANCEMENTS */
-    @media (max-width: 420px) {
-      .game-wrapper {
-        padding: 10px 12px;
-        gap: 12px;
-      }
-      .title-banner h1 {
-        font-size: 1.35rem;
-      }
-      .title-banner h2 {
-        font-size: 0.88rem;
-      }
-      .top-bar {
-        padding: 8px 12px;
-      }
-      .player-pill {
-        max-width: 110px;
-        font-size: 0.78rem;
-        padding: 4px 8px;
-      }
-      .badge-stat {
-        padding: 4px 8px;
-        font-size: 0.8rem;
-      }
-      .btn-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 0.95rem;
-      }
-      .wheel-container {
-        width: 260px;
-        height: 260px;
-      }
-      #wheelCanvas {
-        width: 260px;
-        height: 260px;
-      }
-      .arabic-term {
-        font-size: 1.95rem;
-      }
-      .malay-term {
-        font-size: 1.25rem;
-      }
-      .option-btn {
-        min-height: 52px;
-        padding: 10px 12px;
-        font-size: 0.92rem;
-      }
-      .option-btn.arabic-choice {
-        font-size: 1.35rem;
-      }
+    .leaderboard-table th {
+      text-align: left;
+      padding: 8px 14px;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
     }
 
-    /* WATERMARK / FOOTER CREDIT */
-    .game-watermark-footer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 22px;
-      padding: 10px 22px;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(8px);
-      border: 2px solid var(--lavender-soft);
-      border-radius: var(--radius-pill);
-      box-shadow: 0 6px 18px rgba(78, 44, 114, 0.08);
-      width: fit-content;
-      max-width: 95%;
-      margin-left: auto;
-      margin-right: auto;
-      user-select: none;
-      transition: all 0.25s ease;
+    .leaderboard-table td {
+      background: #F4FBF9;
+      padding: 12px 14px;
+      font-weight: 700;
+      color: var(--teal-deep);
     }
 
-    .game-watermark-footer:hover {
-      transform: translateY(-2px);
-      border-color: #DACDFC;
-      box-shadow: 0 8px 22px rgba(78, 44, 114, 0.12);
+    .leaderboard-table tr td:first-child {
+      border-radius: 14px 0 0 14px;
     }
 
-    .watermark-text {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
+    .leaderboard-table tr td:last-child {
+      border-radius: 0 14px 14px 0;
+      text-align: right;
     }
 
-    .watermark-logo-box {
+    .status-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      background: transparent;
-      padding: 0;
-      border: none;
-      box-shadow: none;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
     }
 
-    .watermark-logo-img {
-      height: 52px;
-      width: auto;
-      max-width: 170px;
-      object-fit: contain;
-      display: block;
+    .status-badge.offline {
+      background: #FFF3CD;
+      color: #856404;
+      border: 2px solid #FFEEBA;
     }
 
-    .watermark-svg-full {
-      height: 52px;
-      width: auto;
-      display: block;
-      filter: drop-shadow(0 2px 6px rgba(78, 44, 114, 0.12));
+    .status-badge.online {
+      background: #D4EDDA;
+      color: #155724;
+      border: 2px solid #C3E6CB;
+    }
+
+    /* Sokongan Reduced Motion & Responsif Telefon */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .hero-showcase {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .home-actions, .player-input-row {
+        justify-content: center;
+      }
+      .adventure-viewport {
+        height: 170px;
+        padding: 10px 14px;
+      }
+      .actor-amira {
+        width: 92px;
+        height: 108px;
+      }
+      .mission-prop {
+        width: 98px;
+        height: 98px;
+      }
+      .gameplay-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .gameplay-controls .btn-3d {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <canvas id="confettiCanvas"></canvas>
-  <div id="toastMessage" class="toast-pill">Pemberitahuan</div>
 
-  <div class="game-wrapper">
-    <!-- TOP BAR -->
-    <header class="top-bar">
-      <div class="player-pill" id="topPlayerPill" title="Nama Pemain Aktif">
-        <span>👤</span>
-        <span id="topPlayerNameDisplay">Pemain Cilik</span>
+<div id="app-container">
+  <!-- LATAR BELAKANG 3D PENUH (BERUBAH MENGIKUT DUNIA SEMASA) -->
+  <div id="world-scene" aria-hidden="true"></div>
+
+  <!-- PARTIKEL BINTANG AJAIB -->
+  <div class="sparkle-layer" aria-hidden="true">
+    <div class="sparkle" style="top:14%; left:12%; animation-delay:0s;"></div>
+    <div class="sparkle" style="top:24%; left:82%; animation-delay:1.2s;"></div>
+    <div class="sparkle" style="top:65%; left:8%; animation-delay:2.4s;"></div>
+    <div class="sparkle" style="top:52%; left:91%; animation-delay:0.7s;"></div>
+  </div>
+
+  <!-- BAR ATAS GLOBAL -->
+  <header class="top-bar">
+    <div class="brand-pill" style="cursor:pointer;" onclick="UI.showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" fill="#2EC4B6" stroke="#FFF" stroke-width="4"/>
+        <path d="M32 12L37 25L51 26L40 35L43 49L32 41L21 49L24 35L13 26L27 25L32 12Z" fill="#FFD166"/>
+      </svg>
+      <span class="ar-mini">مُغَامَرَاتُ الْكَلِمَاتِ</span>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-pill" title="Nama Pemain">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#2EC4B6"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+        <span id="hud-player-name">Tetamu</span>
       </div>
-
-      <div class="top-stats">
-        <div class="badge-stat score" title="Jumlah Skor">
-          <span>🏆</span>
-          <span id="topScoreDisplay">0</span>
-        </div>
-        <div class="badge-stat stars" title="Jumlah Bintang">
-          <span>⭐</span>
-          <span id="topStarsDisplay">0</span>
-        </div>
+      <div class="stat-pill" title="Jumlah Bintang">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD166"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span id="hud-stars">0</span> / 100
       </div>
-
-      <div style="display:flex; gap:6px;">
-        <button class="btn-icon" id="btnOpenScoreboard" title="Papan Skor">🏆</button>
-        <button class="btn-icon" id="btnToggleSound" title="Buka/Tutup Bunyi">🔊</button>
+      <div class="stat-pill" title="Jumlah Markah">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B6B"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/></svg>
+        <span id="hud-score">0</span> Mata
       </div>
-    </header>
-
-    <!-- SCREEN 1: MAIN MENU -->
-    <main id="screenMainMenu" class="kawaii-card">
-      <div class="title-banner">
-        <div style="font-size: 2.2rem; margin-bottom: 2px;">🎡</div>
-        <h1>ARAB WHEEL OF FORTUNE</h1>
-        <h2>Roda Misteri Mufradat Tahun 2</h2>
-      </div>
-
-      <!-- PLAYER PROFILE NAME INPUT -->
-      <section class="player-input-box">
-        <label for="inputPlayerName">Nama Murid / Pemain:</label>
-        <div class="input-row">
-          <input type="text" id="inputPlayerName" maxlength="20" placeholder="Contoh: Aisyah / Daniel" value="Pemain Cilik">
-          <button class="btn-kawaii btn-kawaii-secondary" id="btnSavePlayerName">Simpan</button>
-        </div>
-      </section>
-
-      <!-- MENU ACTIONS -->
-      <div style="margin: 8px 0 14px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
-        <button class="btn-kawaii btn-kawaii-primary" id="btnStartGame" style="padding: 14px 34px; font-size: 1.15rem;">
-          ✨ MULA MAIN ✨
-        </button>
-        <button class="btn-kawaii btn-kawaii-secondary" id="btnOpenHowToPlay">
-          ❓ Cara Main
-        </button>
-      </div>
-
-      <!-- LEVEL SELECTION LIST -->
-      <section>
-        <div style="font-weight:700; font-size:0.95rem; color:var(--lavender-accent); text-align:left; margin-bottom: 8px;">
-          Pilih Tahap (5 Tahap / 100 Soalan):
-        </div>
-        <div class="levels-list" id="levelsContainer">
-          <!-- Dynamically injected via JavaScript -->
-        </div>
-      </section>
-
-      <div style="margin-top: 14px; display:flex; justify-content:space-between; align-items:center;">
-        <button class="btn-kawaii btn-kawaii-secondary" id="btnResetProgress" style="font-size:0.78rem; padding: 6px 12px; color: #AC3052;">
-          🔄 Set Semula Kemajuan
-        </button>
-        <span style="font-size:0.75rem; color:var(--text-muted);">Tahun 2 KSSR</span>
-      </div>
-    </main>
-
-    <!-- SCREEN 2: WHEEL SPINNING STAGE -->
-    <section id="screenWheel" class="kawaii-card hidden">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-        <span class="quiz-sub-badge" id="wheelLevelTitle">Tahap 1 — Dunia Sekolah</span>
-        <span style="font-weight: 700; font-size: 0.85rem; color: var(--lavender-accent);" id="wheelProgressLabel">Soalan 1 / 20</span>
-      </div>
-
-      <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-top: 4px;">
-        Pusing Roda Rezeki!
-      </h3>
-      <p style="font-size: 0.84rem; color: var(--text-muted);">
-        Ketik butang pusing untuk tentukan ganjaran soalan ini.
-      </p>
-
-      <!-- WHEEL CANVAS -->
-      <div class="wheel-container">
-        <!-- Pointer SVG -->
-        <svg class="wheel-pointer" viewBox="0 0 40 46" fill="none">
-          <path d="M20 46L6 14C3 8 7 0 14 0H26C33 0 37 8 34 14L20 46Z" fill="#D44E8C"/>
-          <path d="M20 38L10 14C8 10 11 4 16 4H24C29 4 32 10 30 14L20 38Z" fill="#FFAEC5"/>
-          <circle cx="20" cy="14" r="5" fill="#FFFFFF"/>
-        </svg>
-        <canvas id="wheelCanvas" width="290" height="290"></canvas>
-      </div>
-
-      <div class="reward-banner-box" id="rewardDisplayBanner">
-        🎯 Tekan PUSING RODA untuk mula!
-      </div>
-
-      <button class="btn-kawaii btn-kawaii-primary" id="btnSpinWheel" style="width: 100%; max-width: 280px; padding: 14px 20px; font-size: 1.15rem;">
-        🎡 PUSING RODA!
+      <button id="btn-audio-toggle" class="btn-3d btn-butter btn-sm" onclick="SoundEngine.toggleMute()">
+        🔊 Bunyi: ON
       </button>
-    </section>
+    </div>
+  </header>
 
-    <!-- SCREEN 3: QUIZ QUESTION STAGE -->
-    <section id="screenQuestion" class="kawaii-card hidden">
-      <div class="quiz-progress-track">
-        <div class="quiz-progress-bar" id="quizProgressBar"></div>
+  <!-- ========================================================================
+       SKRIN A: HOME SCREEN
+       ======================================================================== -->
+  <main id="screen-home" class="screen active">
+    <div class="kawaii-panel hero-showcase">
+      <div>
+        <span class="hero-badge">✨ Permainan Bahasa Arab Tahun 2</span>
+        <div class="game-title-ar" dir="rtl">مُغَامَرَاتُ الْكَلِمَاتِ</div>
+        <h1 class="game-title-en">ARABIC SENTENCE ADVENTURE</h1>
+        <p class="game-tagline">Jom Bina Ayat Bahasa Arab Bersama Amira di 5 Dunia Ajaib!</p>
+
+        <div class="player-card-box">
+          <label for="player-name-input">Masukkan Nama Pengembara (Wajib sebelum mula):</label>
+          <div class="player-input-row">
+            <input
+              type="text"
+              id="player-name-input"
+              class="input-kawaii"
+              placeholder="Contoh: Adam / Zara"
+              maxlength="22"
+              autocomplete="off"
+            />
+            <button class="btn-3d btn-turquoise btn-sm" onclick="Game.savePlayerName()">
+              💾 Simpan Nama
+            </button>
+          </div>
+          <div id="name-feedback" style="margin-top:6px; font-size:0.88rem; font-weight:700; color:var(--turquoise-dark);"></div>
+        </div>
+
+        <div class="home-actions">
+          <button class="btn-3d btn-coral" onclick="Game.startFromHome()">
+            🚀 Mula Mengembara
+          </button>
+          <button class="btn-3d btn-lavender" onclick="UI.openWorldsFromHome()">
+            🗺️ Pilih Dunia (5)
+          </button>
+          <button class="btn-3d btn-butter" onclick="UI.showScreen('leaderboard')">
+            🏆 Papan Markah
+          </button>
+        </div>
       </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span class="quiz-sub-badge" id="quizLevelBadge">Tahap 1</span>
-        <span style="font-size: 0.82rem; font-weight: 700; color: var(--pink-deep);" id="quizRewardActiveTag">🏆 100 Mata</span>
+      <!-- Maskot 3D Amira -->
+      <div class="mascot-stage">
+        <div id="home-speech" class="speech-bubble">
+          أَهْلًا وَسَهْلًا! Jom kita kumpul 100 bintang Bahasa Arab!
+        </div>
+        <div id="home-mascot" class="mascot-figure"></div>
       </div>
+    </div>
+  </main>
 
-      <div class="quiz-prompt-text" id="quizInstructionText">Pilih maksud yang betul:</div>
-
-      <!-- TARGET VOCABULARY CARD -->
-      <div class="quiz-target-word">
-        <div id="targetWordContainer"></div>
-      </div>
-
-      <!-- 4 MULTIPLE CHOICE OPTIONS (ZERO-HINT) -->
-      <div class="options-grid" id="optionsGrid">
-        <!-- 4 buttons populated by JS -->
-      </div>
-
-      <!-- FEEDBACK BANNER (Revealed AFTER submission) -->
-      <div class="feedback-banner" id="qFeedbackBanner"></div>
-
-      <!-- NEXT BUTTON (Visible AFTER submission) -->
-      <div style="margin-top: 10px;">
-        <button class="btn-kawaii btn-kawaii-primary hidden" id="btnNextQuestion" style="width: 100%; max-width: 280px; padding: 12px 24px;">
-          SOALAN SETERUSNYA ➔
+  <!-- ========================================================================
+       SKRIN B: LEVEL SELECT (5 DUNIA PENGEMBARAAN)
+       ======================================================================== -->
+  <section id="screen-worlds" class="screen">
+    <div class="kawaii-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>
+          <h2 style="font-size:1.75rem; color:var(--teal-deep);">🗺️ Peta 5 Dunia Pengembaraan</h2>
+          <p style="color:var(--ink-muted); font-weight:600;">Setiap dunia mempunyai 20 misi membina ayat Bahasa Arab (Jumlah: 100 Misi).</p>
+        </div>
+        <button class="btn-3d btn-sky btn-sm" onclick="UI.showScreen('home')">
+          ⬅️ Kembali ke Utama
         </button>
       </div>
-    </section>
 
-    <!-- SCREEN 4: RESULTS & COMPLETION -->
-    <section id="screenResults" class="kawaii-card hidden">
-      <div style="font-size: 3rem; margin-bottom: 2px;" id="resultCelebrationEmoji">🎉</div>
-      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--pink-deep);" id="resultsTitle">TAHNIAH!</h2>
-      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;" id="resultsSubtitle">
-        Anda telah melengkapkan pusingan ini!
+      <div id="worlds-grid" class="world-map-grid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SKRIN C: GAMEPLAY INTERAKTIF (PENTAS 3D + PEMBINA AYAT RTL)
+       ======================================================================== -->
+  <section id="screen-play" class="screen">
+    <div class="gameplay-layout">
+
+      <!-- PENTAS VISUAL 3D ATAS -->
+      <div id="stage-viewport" class="adventure-viewport">
+        <div class="stage-hud">
+          <div id="stage-world-title" class="hud-tag">Dunia 1: Taman Permainan</div>
+          <div style="display:flex; gap:8px; pointer-events:auto;">
+            <span id="stage-mission-counter" class="hud-tag">Misi 1 / 20</span>
+            <button class="btn-3d btn-sky btn-sm" onclick="UI.showScreen('worlds')" style="padding:5px 14px; font-size:0.85rem;">
+              🗺️ Peta Dunia
+            </button>
+          </div>
+        </div>
+
+        <div class="stage-actors">
+          <div id="stage-amira" class="actor-amira"></div>
+          <div id="stage-prop" class="mission-prop"></div>
+        </div>
+      </div>
+
+      <!-- PANEL PEMBINA AYAT BAHASA ARAB -->
+      <div class="sentence-panel">
+        <div class="mission-header">
+          <div>
+            <div id="mission-story-text" class="mission-prompt-ms">
+              Bantu Amira membuka pintu taman dengan menyusun ayat ini:
+            </div>
+            <div id="mission-meaning-ms" class="meaning-box">
+              "Ini taman yang cantik"
+            </div>
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn-3d btn-butter btn-sm" onclick="Game.speakCurrentTarget()" title="Dengar sebutan Bahasa Arab">
+              🔊 Dengar Sebutan
+            </button>
+            <button class="btn-3d btn-lavender btn-sm" onclick="Game.useHint()" title="Petunjuk perkataan seterusnya">
+              💡 Petunjuk
+            </button>
+          </div>
+        </div>
+
+        <!-- RUANG SUSUNAN JAWAPAN (KANAN KE KIRI / RTL) -->
+        <div class="answer-zone-label">
+          <span>Susun Perkataan Dari Kanan Ke Kiri (➡️ RTL):</span>
+          <button class="btn-3d btn-sky btn-sm" style="padding:4px 12px; font-size:0.82rem;" onclick="Game.clearSelectedWords()">
+            🔄 Kosongkan
+          </button>
+        </div>
+
+        <div id="answer-slots" class="answer-slots-rtl" aria-label="Ruang jawapan Bahasa Arab"></div>
+
+        <!-- BANK PERKATAAN ARAB -->
+        <div class="answer-zone-label">
+          <span>Pilih Kad Perkataan Di Bawah:</span>
+          <span id="word-count-indicator">0 / 3 perkataan</span>
+        </div>
+
+        <div id="word-bank" class="word-bank-rtl" aria-label="Pilihan kad perkataan Bahasa Arab"></div>
+
+        <!-- KAWALAN SEMAK & MAKLUM BALAS -->
+        <div class="gameplay-controls">
+          <div id="gameplay-feedback" class="feedback-banner">
+            ✨ Ketik kad perkataan untuk membina ayat yang betul!
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-3d btn-sky btn-sm" onclick="Game.prevMission()">
+              ⏮️ Sebelum
+            </button>
+            <button id="btn-check-answer" class="btn-3d btn-success" onclick="Game.checkAnswer()">
+              ✅ Semak Jawapan
+            </button>
+            <button class="btn-3d btn-sky btn-sm" onclick="Game.nextMission()">
+              Seterusnya ⏭️
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SKRIN D: PAPAN MARKAH (LEADERBOARD)
+       ======================================================================== -->
+  <section id="screen-leaderboard" class="screen">
+    <div class="kawaii-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>
+          <h2 style="font-size:1.75rem; color:var(--teal-deep);">🏆 Papan Markah Pengembara</h2>
+          <p style="color:var(--ink-muted); font-weight:600;">Rekod bintang dan markah tertinggi pengembara Bahasa Arab.</p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span id="leaderboard-mode-badge" class="status-badge online">💾 Simpanan Tempatan Aktif</span>
+          <button class="btn-3d btn-sky btn-sm" onclick="UI.showScreen('home')">
+            ⬅️ Utama
+          </button>
+        </div>
+      </div>
+
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Kedudukan</th>
+            <th>Nama Pengembara</th>
+            <th>Bintang ⭐</th>
+            <th>Markah 🏆</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-rows"></tbody>
+      </table>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:14px;">
+        <button class="btn-3d btn-coral btn-sm" onclick="Game.resetProgressPrompt()">
+          🗑️ Set Semula Kemajuan Semasa
+        </button>
+        <button class="btn-3d btn-turquoise btn-sm" onclick="UI.openWorldsFromHome()">
+          🚀 Sambung Bermain
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MODAL KEJAYAAN MISI
+       ======================================================================== -->
+  <div id="modal-success" class="overlay-modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div style="font-size:3rem; line-height:1;">🌟🌟🌟</div>
+      <h3 style="font-size:1.7rem; color:var(--teal-deep); margin-top:6px;">مُمْتَازٌ! Hebat Sekali!</h3>
+      <p id="modal-story-Win" style="color:var(--ink-muted); font-weight:600; margin-top:4px;">
+        Amira berjaya membuka laluan seterusnya!
       </p>
 
-      <div class="results-stats-card">
-        <div class="res-box">
-          <div class="res-box-label">Betul</div>
-          <div class="res-box-val" id="resCorrectCount" style="color: var(--mint-deep);">18 / 20</div>
-        </div>
-        <div class="res-box">
-          <div class="res-box-label">Markah Diperoleh</div>
-          <div class="res-box-val" id="resEarnedScore" style="color: var(--pink-deep);">+1,200</div>
-        </div>
-        <div class="res-box">
-          <div class="res-box-label">Bintang Diperoleh</div>
-          <div class="res-box-val" id="resStarsCount" style="color: #D98800;">⭐ 3</div>
-        </div>
-        <div class="res-box">
-          <div class="res-box-label">Ketepatan</div>
-          <div class="res-box-val" id="resAccuracyPercent" style="color: var(--lavender-accent);">90%</div>
-        </div>
-      </div>
+      <div id="modal-arabic-sentence" class="Arabic-preview-success"></div>
+      <div id="modal-malay-sentence" style="font-weight:700; color:var(--turquoise-dark); margin-bottom:16px;"></div>
 
-      <div style="display:flex; flex-direction:column; gap:10px; align-items:center; margin-top: 14px;">
-        <button class="btn-kawaii btn-kawaii-primary" id="btnNextLevelOrReplay" style="width:100%; max-width: 280px;">
-          TAHAP SETERUSNYA ➔
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <button class="btn-3d btn-butter btn-sm" onclick="Game.speakCurrentTarget()">
+          🔊 Dengar Semula
         </button>
-        <button class="btn-kawaii btn-kawaii-secondary" id="btnBackToHomeFromResults" style="width:100%; max-width: 280px;">
-          🏠 Menu Utama
-        </button>
-      </div>
-    </section>
-  </div>
-
-  <!-- MODAL: SCOREBOARD / PAPAN SKOR -->
-  <div class="kawaii-modal-backdrop" id="modalScoreboard">
-    <div class="kawaii-modal">
-      <div style="font-size: 2.2rem; margin-bottom: 4px; text-align: center;">🏆</div>
-      <h3 class="modal-title" style="text-align: center;">Papan Skor Masa-Nyata</h3>
-      <p style="font-size: 0.85rem; color: #76648D; margin-bottom: 8px; text-align: center;">
-        Markah dikemas kini secara automatik setiap kali murid menjawab soalan!
-      </p>
-
-      <div class="scoreboard-table-wrap">
-        <table class="scoreboard-table">
-          <thead>
-            <tr>
-              <th style="width: 14%;">#</th>
-              <th style="width: 46%;">Nama & Status</th>
-              <th style="width: 20%;">Tahap</th>
-              <th style="width: 20%; text-align: right;">Mata</th>
-            </tr>
-          </thead>
-          <tbody id="scoreboardTableBody">
-            <!-- Dynamically populated scoreboard entries -->
-          </tbody>
-        </table>
-      </div>
-
-      <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-        <button class="btn-kawaii btn-kawaii-secondary" id="btnClearScoreboard" style="padding: 8px 16px; font-size: 0.85rem; color: #C2335A; border-color: #FFAEC5;">
-          🗑️ Padam Skor
-        </button>
-        <button class="btn-kawaii btn-kawaii-primary" id="btnCloseScoreboardModal" style="padding: 10px 24px; font-size: 0.95rem;">
-          TUTUP
+        <button class="btn-3d btn-success" onclick="Game.closeSuccessAndContinue()">
+          Misi Seterusnya ➡️
         </button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL: CARA MAIN -->
-  <div class="kawaii-modal-backdrop" id="modalHowToPlay">
-    <div class="kawaii-modal">
-      <div style="font-size: 2.2rem; margin-bottom: 4px; text-align: center;">📖</div>
-      <h3 class="modal-title" style="text-align: center;">Cara Bermain</h3>
-      
-      <div style="font-size: 0.88rem; line-height: 1.6; color: var(--text-main); text-align: left; margin: 12px 0;">
-        <p style="margin-bottom: 8px;"><strong>1. Tulis Nama:</strong> Masukkan nama murid supaya markah dicatat dalam papan skor.</p>
-        <p style="margin-bottom: 8px;"><strong>2. Pusing Roda:</strong> Setiap soalan dimulakan dengan putaran roda hadiah untuk menentukan mata ganjaran (100–350 mata atau bintang bonus!).</p>
-        <p style="margin-bottom: 8px;"><strong>3. Sifar Petunjuk:</strong> Pilih satu jawapan yang betul tanpa bantuan petunjuk. Selepas menjawab, jawapan sebenar akan disemak.</p>
-        <p style="margin-bottom: 8px;"><strong>4. 5 Tahap Pembelajaran:</strong> Lengkapkan 20 soalan dalam setiap tahap untuk membuka tahap seterusnya.</p>
-      </div>
-
-      <div style="text-align: center; margin-top: 16px;">
-        <button class="btn-kawaii btn-kawaii-primary" id="btnCloseHowToPlay">Faham!</button>
+  <!-- MODAL PENGESAHAN SET SEMULA (MENGGANTIKAN CONFIRM) -->
+  <div id="modal-reset" class="overlay-modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div style="font-size:2.6rem;">⚠️</div>
+      <h3 style="font-size:1.5rem; color:var(--coral-dark); margin:8px 0;">Set Semula Kemajuan?</h3>
+      <p style="color:var(--ink-muted); font-weight:600; margin-bottom:18px;">
+        Adakah anda pasti mahu memadamkan bintang dan markah pengembara semasa?
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px;">
+        <button class="btn-3d btn-sky btn-sm" onclick="document.getElementById('modal-reset').classList.remove('show')">
+          Batal
+        </button>
+        <button class="btn-3d btn-coral btn-sm" onclick="Game.confirmResetProgress()">
+          Ya, Padam
+        </button>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-  /**
-   * PURE WEB AUDIO API SYNTHESIZER
-   * Produces cheerful, gentle kawaii tones without any external audio dependencies.
-   */
-  const KawaiiAudio = (function() {
-    let ctx = null;
-    let enabled = true;
+<script>
+/* ============================================================================
+   FASA 2: SENI VISUAL SVG 3D KAWAII (AMIRA, PROP MISI, & 5 DUNIA)
+   ============================================================================ */
+const ArtAssets = {
+  // Karakter Utama 3D Kawaii: Amira Pengembara Cilik
+  getAmiraSVG(mood = 'happy') {
+    const mouthPath = mood === 'excited'
+      ? 'M92 112 Q100 124 108 112 Z'
+      : 'M93 113 Q100 120 107 113';
+    return `
+      <svg viewBox="0 0 200 230" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="faceGrad" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="#FFE8D6"/>
+            <stop offset="100%" stop-color="#F7C59F"/>
+          </radialGradient>
+          <linearGradient id="hijabGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#48E5D7"/>
+            <stop offset="100%" stop-color="#1B998B"/>
+          </linearGradient>
+          <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF8E8E"/>
+            <stop offset="100%" stop-color="#E04F4F"/>
+          </linearGradient>
+          <linearGradient id="bagGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFE08A"/>
+            <stop offset="100%" stop-color="#E5B23A"/>
+          </linearGradient>
+        </defs>
+        <!-- Bayang Lantai 3D -->
+        <ellipse cx="100" cy="215" rx="52" ry="10" fill="rgba(15,76,92,0.22)"/>
+        <!-- Beg Galas Pengembara -->
+        <rect x="52" y="122" width="96" height="66" rx="22" fill="url(#bagGrad)" stroke="#FFF" stroke-width="3"/>
+        <!-- Kasut 3D -->
+        <ellipse cx="82" cy="206" rx="16" ry="10" fill="#0F4C5C" stroke="#FFF" stroke-width="2.5"/>
+        <ellipse cx="118" cy="206" rx="16" ry="10" fill="#0F4C5C" stroke="#FFF" stroke-width="2.5"/>
+        <!-- Badan / Jubah Comel -->
+        <path d="M66 132 Q100 120 134 132 L144 196 Q100 206 56 196 Z" fill="url(#dressGrad)" stroke="#FFF" stroke-width="3.5"/>
+        <!-- Tali Beg & Lencana Bintang -->
+        <path d="M74 134 L70 182 M126 134 L130 182" stroke="#FFD166" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="100" cy="162" r="13" fill="#FFD166" stroke="#FFF" stroke-width="2.5"/>
+        <path d="M100 153 L103 159 L110 160 L105 164 L106 171 L100 167 L94 171 L95 164 L90 160 L97 159 Z" fill="#FF6B6B"/>
+        <!-- Tangan Melambai -->
+        <circle cx="52" cy="152" r="12" fill="url(#faceGrad)" stroke="#FFF" stroke-width="2.5"/>
+        <circle cx="148" cy="144" r="12" fill="url(#faceGrad)" stroke="#FFF" stroke-width="2.5"/>
+        <!-- Tudung / Hijab 3D Kawaii -->
+        <path d="M44 92 C44 42, 156 42, 156 92 C158 126, 138 148, 100 148 C62 148, 42 126, 44 92 Z" fill="url(#hijabGrad)" stroke="#FFF" stroke-width="4"/>
+        <!-- Muka -->
+        <ellipse cx="100" cy="96" rx="40" ry="34" fill="url(#faceGrad)"/>
+        <!-- Pipi Merah Comel -->
+        <ellipse cx="74" cy="104" rx="8" ry="4.5" fill="#FF8E8E" opacity="0.65"/>
+        <ellipse cx="126" cy="104" rx="8" ry="4.5" fill="#FF8E8E" opacity="0.65"/>
+        <!-- Mata Bersinar Kawaii -->
+        <circle cx="83" cy="93" r="7.5" fill="#1E2D3D"/>
+        <circle cx="117" cy="93" r="7.5" fill="#1E2D3D"/>
+        <circle cx="81" cy="90" r="2.8" fill="#FFFFFF"/>
+        <circle cx="115" cy="90" r="2.8" fill="#FFFFFF"/>
+        <!-- Senyuman -->
+        <path d="${mouthPath}" stroke="#1E2D3D" stroke-width="3.5" stroke-linecap="round" fill="${mood === 'excited' ? '#FF6B6B' : 'none'}"/>
+        <!-- Pin Bunga Tudung -->
+        <circle cx="135" cy="68" r="10" fill="#FFD166" stroke="#FFF" stroke-width="2.5"/>
+        <circle cx="135" cy="68" r="4" fill="#FF6B6B"/>
+      </svg>
+    `;
+  },
 
-    function initCtx() {
-      if (!ctx) {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (AudioCtx) {
-          ctx = new AudioCtx();
+  // Objek Misi Interaktif Mengikut Dunia
+  getPropSVG(worldId, unlocked = false) {
+    const glow = unlocked ? '#FFD166' : '#FFFFFF';
+    switch (worldId) {
+      case 1: // Taman Permainan: Pintu Gerbang Bunga & Buaian
+        return `
+          <svg viewBox="0 0 160 160" width="100%" height="100%">
+            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
+            <path d="M32 142 V58 C32 26, 128 26, 128 58 V142" fill="none" stroke="${glow}" stroke-width="12" stroke-linecap="round"/>
+            <path d="M32 142 V58 C32 26, 128 26, 128 58 V142" fill="none" stroke="#FF6B6B" stroke-width="7" stroke-linecap="round"/>
+            <rect x="52" y="102" width="56" height="12" rx="6" fill="#FFD166" stroke="#FFF" stroke-width="2"/>
+            <line x1="62" y1="38" x2="62" y2="102" stroke="#FFF" stroke-width="3"/>
+            <line x1="98" y1="38" x2="98" y2="102" stroke="#FFF" stroke-width="3"/>
+            <circle cx="80" cy="28" r="14" fill="#06D6A0" stroke="#FFF" stroke-width="3"/>
+          </svg>`;
+      case 2: // Sekolah Ceria: Papan Tulis & Buku Bercahaya
+        return `
+          <svg viewBox="0 0 160 160" width="100%" height="100%">
+            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
+            <rect x="24" y="34" width="112" height="82" rx="14" fill="#1B998B" stroke="#FFD166" stroke-width="6"/>
+            <text x="80" y="84" text-anchor="middle" fill="#FFF" font-size="28" font-family="Noto Naskh Arabic" font-weight="bold">أ ب ت</text>
+            <rect x="46" y="118" width="68" height="22" rx="6" fill="#FF6B6B" stroke="#FFF" stroke-width="3"/>
+          </svg>`;
+      case 3: // Rumah Impian: Pintu Istana Comel
+        return `
+          <svg viewBox="0 0 160 160" width="100%" height="100%">
+            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
+            <path d="M30 72 L80 24 L130 72 Z" fill="#FF6B6B" stroke="#FFF" stroke-width="4"/>
+            <rect x="42" y="72" width="76" height="70" rx="10" fill="#FFFDF9" stroke="#2EC4B6" stroke-width="4"/>
+            <rect x="66" y="96" width="28" height="46" rx="12" fill="#FFD166" stroke="#E5B23A" stroke-width="3"/>
+            <circle cx="88" cy="120" r="3.5" fill="#0F4C5C"/>
+          </svg>`;
+      case 4: // Pasar Buah: Gerai Buah Segar
+        return `
+          <svg viewBox="0 0 160 160" width="100%" height="100%">
+            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
+            <rect x="30" y="88" width="100" height="52" rx="12" fill="#E5B23A" stroke="#FFF" stroke-width="4"/>
+            <path d="M22 58 H138 L126 84 H34 Z" fill="#FF6B6B" stroke="#FFF" stroke-width="3"/>
+            <circle cx="58" cy="78" r="12" fill="#FF4D4D"/>
+            <circle cx="82" cy="76" r="13" fill="#FFD166"/>
+            <circle cx="105" cy="78" r="12" fill="#06D6A0"/>
+          </svg>`;
+      default: // Dunia 5: Zoo Pengembaraan
+        return `
+          <svg viewBox="0 0 160 160" width="100%" height="100%">
+            <ellipse cx="80" cy="146" rx="54" ry="10" fill="rgba(0,0,0,0.18)"/>
+            <circle cx="80" cy="86" r="44" fill="#FFD166" stroke="#E5B23A" stroke-width="6"/>
+            <circle cx="80" cy="86" r="32" fill="#FFF3B0"/>
+            <circle cx="68" cy="78" r="5" fill="#1E2D3D"/>
+            <circle cx="92" cy="78" r="5" fill="#1E2D3D"/>
+            <polygon points="80,86 73,96 87,96" fill="#E04F4F"/>
+            <circle cx="52" cy="54" r="12" fill="#E5B23A"/>
+            <circle cx="108" cy="54" r="12" fill="#E5B23A"/>
+          </svg>`;
+    }
+  },
+
+  // Latar Belakang 3D Penuh Mengikut Dunia (1 hingga 5)
+  getWorldSceneSVG(worldId = 1) {
+    const palettes = {
+      1: { sky1: '#48CAE4', sky2: '#ADE8F4', hill1: '#52B788', hill2: '#74C69D', ground: '#95D5B2', accent: '#FF6B6B' },
+      2: { sky1: '#70D6FF', sky2: '#E2F7F4', hill1: '#4EA8DE', hill2: '#2EC4B6', ground: '#CBF3F0', accent: '#FFD166' },
+      3: { sky1: '#B892FF', sky2: '#FFD6FF', hill1: '#9D4EDD', hill2: '#C77DFF', ground: '#F3D5B5', accent: '#FF8E8E' },
+      4: { sky1: '#FFB703', sky2: '#FFF3B0', hill1: '#FB8500', hill2: '#8ECAE6', ground: '#FFE5B4', accent: '#06D6A0' },
+      5: { sky1: '#2EC4B6', sky2: '#CBF3F0', hill1: '#2D6A4F', hill2: '#40916C', ground: '#B7E4C7', accent: '#FFD166' }
+    };
+    const p = palettes[worldId] || palettes[1];
+    return `
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="${p.sky1}"/>
+            <stop offset="65%" stop-color="${p.sky2}"/>
+            <stop offset="100%" stop-color="${p.ground}"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#skyG)"/>
+        <!-- Matahari / Bulan 3D Bersinar -->
+        <circle cx="1220" cy="150" r="78" fill="#FFF3B0" opacity="0.45"/>
+        <circle cx="1220" cy="150" r="54" fill="#FFD166"/>
+        <!-- Awan Gebu 3D -->
+        <g fill="#FFFFFF" opacity="0.88">
+          <rect x="140" y="110" width="210" height="58" rx="29"/>
+          <circle cx="195" cy="105" r="38"/>
+          <circle cx="255" cy="95" r="46"/>
+          <rect x="820" y="160" width="240" height="62" rx="31"/>
+          <circle cx="890" cy="155" r="42"/>
+          <circle cx="965" cy="148" r="50"/>
+        </g>
+        <!-- Bukit Jauh -->
+        <path d="M0 640 Q360 470 740 610 T1440 580 L1440 900 L0 900 Z" fill="${p.hill1}" opacity="0.85"/>
+        <!-- Bukit Dekat -->
+        <path d="M0 700 Q420 560 880 690 T1440 660 L1440 900 L0 900 Z" fill="${p.hill2}"/>
+        <!-- Laluan Pengembaraan Berbintang -->
+        <path d="M520 900 Q700 730 920 675 L1080 675 Q860 745 760 900 Z" fill="#FFF3B0" opacity="0.75"/>
+        <!-- Pokok / Hiasan Bulat Kawaii -->
+        <g>
+          <rect x="175" y="610" width="18" height="70" rx="8" fill="#7F4F24"/>
+          <circle cx="184" cy="585" r="48" fill="${p.accent}"/>
+          <circle cx="164" cy="568" r="14" fill="#FFFFFF" opacity="0.35"/>
+
+          <rect x="1250" y="590" width="20" height="80" rx="9" fill="#7F4F24"/>
+          <circle cx="1260" cy="560" r="54" fill="#06D6A0"/>
+          <circle cx="1240" cy="542" r="16" fill="#FFFFFF" opacity="0.35"/>
+        </g>
+      </svg>
+    `;
+  }
+};
+
+/* ============================================================================
+   FASA 3: ENJIN AUDIO WEB & SEBUTAN BAHASA ARAB (TANPA FAIL LUARAN)
+   ============================================================================ */
+const SoundEngine = {
+  ctx: null,
+  muted: false,
+
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) this.ctx = new AudioCtx();
+    }
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  },
+
+  toggleMute() {
+    this.muted = !this.muted;
+    const btn = document.getElementById('btn-audio-toggle');
+    if (btn) {
+      btn.textContent = this.muted ? '🔇 Bunyi: OFF' : '🔊 Bunyi: ON';
+    }
+    if (!this.muted) this.playPop();
+  },
+
+  playTone(freq, duration = 0.12, type = 'sine', delay = 0, gainVal = 0.14) {
+    if (this.muted) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const now = this.ctx.currentTime + delay;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(gainVal, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + duration);
+    } catch (e) {
+      // Abaikan jika pelayar menyekat audio automatik
+    }
+  },
+
+  playPop() {
+    this.playTone(520, 0.09, 'triangle', 0, 0.16);
+  },
+
+  playRemove() {
+    this.playTone(340, 0.09, 'sine', 0, 0.14);
+  },
+
+  playSuccess() {
+    // Kord kemenangan ceria
+    this.playTone(523.25, 0.14, 'triangle', 0.00, 0.18); // C5
+    this.playTone(659.25, 0.14, 'triangle', 0.10, 0.18); // E5
+    this.playTone(783.99, 0.16, 'triangle', 0.20, 0.18); // G5
+    this.playTone(1046.50, 0.32, 'triangle', 0.30, 0.22); // C6
+  },
+
+  playWrong() {
+    this.playTone(240, 0.16, 'sawtooth', 0.0, 0.12);
+    this.playTone(190, 0.22, 'sawtooth', 0.14, 0.12);
+  },
+
+  speakArabic(arabicText) {
+    if (this.muted) return;
+    if ('speechSynthesis' in window) {
+      try {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(arabicText);
+        utter.lang = 'ar-SA';
+        utter.rate = 0.82; // Perlahan & jelas untuk murid Tahun 2
+        utter.pitch = 1.08;
+        window.speechSynthesis.speak(utter);
+      } catch (e) {
+        this.playPop();
+      }
+    } else {
+      this.playPop();
+    }
+  }
+};
+
+/* ============================================================================
+   FASA 4: KURIKULUM 5 DUNIA & 100 MISI AYAT BAHASA ARAB TAHUN 2
+   ============================================================================ */
+const WORLDS_DATA = [
+  {
+    id: 1,
+    nameMs: 'Dunia 1: Taman Permainan',
+    nameAr: 'حَدِيقَةُ الْأَلْعَابِ',
+    desc: 'Kenali ucapan selamat, kawan-kawan, dan keindahan taman!',
+    storyAction: 'membuka pintu gerbang taman bunga',
+    missions: [
+      { ar: ['هٰذِهِ', 'حَدِيقَةٌ', 'جَمِيلَةٌ'], ms: 'Ini taman yang cantik' },
+      { ar: ['أَنَا', 'تِلْمِيذٌ', 'مُجْتَهِدٌ'], ms: 'Saya murid yang rajin' },
+      { ar: ['أَنْتَ', 'صَدِيقٌ', 'طَيِّبٌ'], ms: 'Awak kawan yang baik' },
+      { ar: ['هٰذَا', 'وَلَدٌ', 'نَشِيطٌ'], ms: 'Ini budak lelaki yang cergas' },
+      { ar: ['هٰذِهِ', 'بِنْتٌ', 'مُؤَدَّبَةٌ'], ms: 'Ini budak perempuan yang sopan' },
+      { ar: ['الشَّجَرَةُ', 'طَوِيلَةٌ', 'وَخَضْرَاءُ'], ms: 'Pokok itu tinggi dan hijau' },
+      { ar: ['الزَّهْرَةُ', 'جَمِيلَةٌ', 'فِي', 'الْحَدِيقَةِ'], ms: 'Bunga itu cantik di taman' },
+      { ar: ['أَنَا', 'أَلْعَبُ', 'مَعَ', 'صَدِيقِي'], ms: 'Saya bermain bersama kawan saya' },
+      { ar: ['هٰذِهِ', 'كُرَةٌ', 'كَبِيرَةٌ'], ms: 'Ini bola yang besar' },
+      { ar: ['الْكُرَةُ', 'تَحْتَ', 'الشَّجَرَةِ'], ms: 'Bola itu di bawah pokok' },
+      { ar: ['السَّمَاءُ', 'صَافِيَةٌ', 'وَزَرْقَاءُ'], ms: 'Langit itu cerah dan biru' },
+      { ar: ['الشَّمْسُ', 'مُشْرِقَةٌ', 'الْيَوْمَ'], ms: 'Matahari bersinar hari ini' },
+      { ar: ['هٰذَا', 'يَوْمٌ', 'سَعِيدٌ'], ms: 'Ini hari yang gembira' },
+      { ar: ['نَحْنُ', 'فِي', 'الْمَلْعَبِ'], ms: 'Kami berada di padang permainan' },
+      { ar: ['الْفَرَاشَةُ', 'فَوْقَ', 'الزَّهْرَةِ'], ms: 'Rama-rama itu di atas bunga' },
+      { ar: ['هٰذَا', 'دَرَّاجَةٌ', 'سَرِيعَةٌ'], ms: 'Ini basikal yang laju' },
+      { ar: ['أَنَا', 'أَجْرِي', 'فِي', 'الْمَلْعَبِ'], ms: 'Saya berlari di padang' },
+      { ar: ['صَبَاحُ', 'الْخَيْرِ', 'يَا', 'صَدِيقِي'], ms: 'Selamat pagi wahai kawanku' },
+      { ar: ['أَهْلًا', 'وَسَهْلًا', 'يَا', 'أَمِيرَةُ'], ms: 'Selamat datang wahai Amira' },
+      { ar: ['الْحَدِيقَةُ', 'نَظِيفَةٌ', 'وَجَمِيلَةٌ'], ms: 'Taman itu bersih dan cantik' }
+    ]
+  },
+  {
+    id: 2,
+    nameMs: 'Dunia 2: Sekolah Ceria',
+    nameAr: 'الْمَدْرَسَةُ السَّعِيدَةُ',
+    desc: 'Bina ayat tentang peralatan kelas, guru, dan ilmu!',
+    storyAction: 'menyalakan papan tulis pintar kelas',
+    missions: [
+      { ar: ['هٰذِهِ', 'مَدْرَسَتِي', 'الْجَمِيلَةُ'], ms: 'Ini sekolah saya yang cantik' },
+      { ar: ['هٰذَا', 'كِتَابٌ', 'جَدِيدٌ'], ms: 'Ini buku yang baharu' },
+      { ar: ['هٰذَا', 'قَلَمٌ', 'أَزْرَقُ'], ms: 'Ini pen berwarna biru' },
+      { ar: ['الْمِسْطَرَةُ', 'طَوِيلَةٌ', 'وَجَدِيدَةٌ'], ms: 'Pembaris itu panjang dan baharu' },
+      { ar: ['الْحَقِيبَةُ', 'عَلَى', 'الْمَكْتَبِ'], ms: 'Beg itu di atas meja' },
+      { ar: ['الْقَلَمُ', 'فِي', 'الْمِقْلَمَةِ'], ms: 'Pen itu di dalam bekas pensel' },
+      { ar: ['هٰذَا', 'مُعَلِّمٌ', 'مَاهِرٌ'], ms: 'Ini guru lelaki yang mahir' },
+      { ar: ['هٰذِهِ', 'مُعَلِّمَةٌ', 'لَطِيفَةٌ'], ms: 'Ini guru perempuan yang penyayang' },
+      { ar: ['الْفَصْلُ', 'نَظِيفٌ', 'وَوَاسِعٌ'], ms: 'Kelas itu bersih dan luas' },
+      { ar: ['السَّبُّورَةُ', 'أَمَامَ', 'التَّلَامِيذِ'], ms: 'Papan tulis di hadapan murid-murid' },
+      { ar: ['أَنَا', 'أَقْرَأُ', 'الْكِتَابَ'], ms: 'Saya membaca buku itu' },
+      { ar: ['أَنَا', 'أَكْتُبُ', 'الدَّرْسَ'], ms: 'Saya menulis pelajaran itu' },
+      { ar: ['هٰذِهِ', 'مِمْحَاةٌ', 'صَغِيرَةٌ'], ms: 'Ini pemadam yang kecil' },
+      { ar: ['الْكُرْسِيُّ', 'بِجَانِبِ', 'الْمَكْتَبِ'], ms: 'Kerusi itu di sebelah meja' },
+      { ar: ['هٰذِهِ', 'وَرَقَةٌ', 'بَيْضَاءُ'], ms: 'Ini kertas berwarna putih' },
+      { ar: ['كِتَابُ', 'اللُّغَةِ', 'الْعَرَبِيَّةِ', 'مُفِيدٌ'], ms: 'Buku Bahasa Arab itu berfaedah' },
+      { ar: ['نَحْنُ', 'نَتَعَلَّمُ', 'فِي', 'الْفَصْلِ'], ms: 'Kami belajar di dalam kelas' },
+      { ar: ['هٰذَا', 'دَفْتَرٌ', 'نَظِيفٌ'], ms: 'Ini buku tulis yang bersih' },
+      { ar: ['الْمِيرْسَمُ', 'فَوْقَ', 'الدَّفْتَرِ'], ms: 'Pensel itu di atas buku tulis' },
+      { ar: ['أَنَا', 'أُحِبُّ', 'مَدْرَسَتِي'], ms: 'Saya sayang akan sekolah saya' }
+    ]
+  },
+  {
+    id: 3,
+    nameMs: 'Dunia 3: Rumah Impian',
+    nameAr: 'الْبَيْتُ السَّعِيدُ',
+    desc: 'Kenali ahli keluarga tersayang dan ruang di dalam rumah!',
+    storyAction: 'membuka pintu bilik keluarga bahagia',
+    missions: [
+      { ar: ['هٰذَا', 'بَيْتِي', 'الْكَبِيرُ'], ms: 'Ini rumah saya yang besar' },
+      { ar: ['هٰذَا', 'أَبِي', 'الْكَرِيمُ'], ms: 'Ini bapa saya yang mulia' },
+      { ar: ['هٰذِهِ', 'أُمِّي', 'الْحَنُونَةُ'], ms: 'Ini ibu saya yang penyayang' },
+      { ar: ['هٰذَا', 'أَخِي', 'الْأَكْبَرُ'], ms: 'Ini abang saya' },
+      { ar: ['هٰذِهِ', 'أُخْتِي', 'الصَّغِيرَةُ'], ms: 'Ini adik perempuan saya' },
+      { ar: ['جَدِّي', 'يَجْلِسُ', 'عَلَى', 'الْكُرْسِيِّ'], ms: 'Datuk saya duduk di atas kerusi' },
+      { ar: ['جَدَّتِي', 'تَقْرَأُ', 'الْقُرْآنَ'], ms: 'Nenek saya membaca Al-Quran' },
+      { ar: ['غُرْفَةُ', 'النَّوْمِ', 'مُرَتَّبَةٌ'], ms: 'Bilik tidur itu kemas' },
+      { ar: ['الْوِسَادَةُ', 'عَلَى', 'السَّرِيرِ'], ms: 'Bantal itu di atas katil' },
+      { ar: ['أُمِّي', 'تَطْبُخُ', 'فِي', 'الْمَطْبَخِ'], ms: 'Ibu saya memasak di dapur' },
+      { ar: ['السَّاعَةُ', 'عَلَى', 'الْجِدَارِ'], ms: 'Jam itu di atas dinding' },
+      { ar: ['الْمِصْبَاحُ', 'مُنِيرٌ', 'فِي', 'الْغُرْفَةِ'], ms: 'Lampu itu bercahaya di dalam bilik' },
+      { ar: ['الْبَابُ', 'مَفْتُوحٌ', 'الْآنَ'], ms: 'Pintu itu terbuka sekarang' },
+      { ar: ['النَّافِذَةُ', 'نَظِيفَةٌ', 'وَجَمِيلَةٌ'], ms: 'Tingkap itu bersih dan cantik' },
+      { ar: ['أَبِي', 'يَقْرَأُ', 'الْجَرِيدَةَ'], ms: 'Bapa saya membaca surat khabar' },
+      { ar: ['هٰذِهِ', 'أُسْرَتِي', 'السَّعِيدَةُ'], ms: 'Ini keluarga saya yang bahagia' },
+      { ar: ['الصَّابُونُ', 'فِي', 'الْحَمَّامِ'], ms: 'Sabun itu di dalam bilik air' },
+      { ar: ['الطَّعَامُ', 'عَلَى', 'الْمَائِدَةِ'], ms: 'Makanan itu di atas meja makan' },
+      { ar: ['أَنَا', 'أُسَاعِدُ', 'أُمِّي', 'وَأَبِي'], ms: 'Saya menolong ibu dan bapa saya' },
+      { ar: ['أَنَا', 'أُحِبُّ', 'أُسْرَتِي', 'كَثِيرًا'], ms: 'Saya sangat sayang akan keluarga saya' }
+    ]
+  },
+  {
+    id: 4,
+    nameMs: 'Dunia 4: Pasar Buah & Makanan',
+    nameAr: 'سُوقُ الْفَوَاكِهِ',
+    desc: 'Terokai buah-buahan manis, makanan berkhasiat, dan nombor!',
+    storyAction: 'mengumpul bakul buah-buahan segar',
+    missions: [
+      { ar: ['هٰذِهِ', 'تُفَّاحَةٌ', 'حَمْرَاءُ'], ms: 'Ini sebiji epal merah' },
+      { ar: ['الْمَوْزُ', 'أَصْفَرُ', 'وَحُلْوٌ'], ms: 'Pisang itu kuning dan manis' },
+      { ar: ['الْبُرْتُقَالُ', 'لَذِيذٌ', 'وَمُفِيدٌ'], ms: 'Buah oren itu sedap dan berkhasiat' },
+      { ar: ['أَنَا', 'أُحِبُّ', 'عَصِيرَ', 'الْمَانْجُو'], ms: 'Saya suka jus mangga' },
+      { ar: ['الْعِنَبُ', 'فِي', 'السَّلَّةِ'], ms: 'Buah anggur itu di dalam bakul' },
+      { ar: ['هٰذَا', 'بِطِّيخٌ', 'كَبِيرٌ'], ms: 'Ini buah tembikai yang besar' },
+      { ar: ['الْخُبْزُ', 'سَاخِنٌ', 'وَلَذِيذٌ'], ms: 'Roti itu panas dan sedap' },
+      { ar: ['أَنَا', 'أَشْرَبُ', 'الْحَلِيبَ', 'الطَّازَجَ'], ms: 'Saya minum susu segar' },
+      { ar: ['الْمَاءُ', 'بَارِدٌ', 'وَنَظِيفٌ'], ms: 'Air itu sejuk dan bersih' },
+      { ar: ['أَنَا', 'آكُلُ', 'الْأَرُزَّ', 'وَالدَّجَاجَ'], ms: 'Saya makan nasi dan ayam' },
+      { ar: ['السَّمَكُ', 'طَازَجٌ', 'فِي', 'السُّوقِ'], ms: 'Ikan itu segar di pasar' },
+      { ar: ['هٰذِهِ', 'ثَلَاثُ', 'تُفَّاحَاتٍ'], ms: 'Ini tiga biji buah epal' },
+      { ar: ['عِنْدِي', 'خَمْسَةُ', 'أَقْلَامٍ'], ms: 'Saya ada lima batang pen' },
+      { ar: ['التَّمْرُ', 'حُلْوٌ', 'وَطَيِّبٌ'], ms: 'Buah kurma itu manis dan baik' },
+      { ar: ['الْبَبَايَا', 'لَوْنُهَا', 'بُرْتُقَالِيٌّ'], ms: 'Buah betik itu warnanya jingga' },
+      { ar: ['هٰذَا', 'طَعَامٌ', 'صِحِّيٌّ'], ms: 'Ini makanan yang sihat' },
+      { ar: ['الْعَسَلُ', 'حُلْوٌ', 'وَمُفِيدٌ'], ms: 'Madu itu manis dan berkhasiat' },
+      { ar: ['الْمِلْعَقَةُ', 'بِجَانِبِ', 'الصَّحْنِ'], ms: 'Sudu itu di sebelah pinggan' },
+      { ar: ['الْكُوبُ', 'مَمْلُوءٌ', 'بِالْمَاءِ'], ms: 'Cawan itu penuh dengan air' },
+      { ar: ['الْحَمْدُ', 'لِلّٰهِ', 'عَلَى', 'النِّعْمَةِ'], ms: 'Segala puji bagi Allah atas nikmat ini' }
+    ]
+  },
+  {
+    id: 5,
+    nameMs: 'Dunia 5: Zoo Pengembaraan',
+    nameAr: 'حَدِيقَةُ الْحَيَوَانَاتِ',
+    desc: 'Kenali haiwan-haiwan comel dan sifat mereka dalam Bahasa Arab!',
+    storyAction: 'menyelamatkan haiwan comel di taman',
+    missions: [
+      { ar: ['هٰذَا', 'قِطٌّ', 'لَطِيفٌ'], ms: 'Ini kucing yang comel' },
+      { ar: ['الْأَرْنَبُ', 'سَرِيعٌ', 'وَأَبْيَضُ'], ms: 'Arnab itu pantas dan putih' },
+      { ar: ['الْفِيلُ', 'حَيَوَانٌ', 'كَبِيرٌ'], ms: 'Gajah ialah haiwan yang besar' },
+      { ar: ['الْأَسَدُ', 'قَوِيٌّ', 'وَشُجَاعٌ'], ms: 'Singa itu kuat dan berani' },
+      { ar: ['الزَّرَافَةُ', 'عُنُقُهَا', 'طَوِيلٌ'], ms: 'Zirafah itu lehernya panjang' },
+      { ar: ['الْعُصْفُورُ', 'يَطِيرُ', 'فِي', 'السَّمَاءِ'], ms: 'Burung pipit terbang di langit' },
+      { ar: ['السَّمَكَةُ', 'تَسْبَحُ', 'فِي', 'الْمَاءِ'], ms: 'Ikan berenang di dalam air' },
+      { ar: ['الْحِصَانُ', 'يَجْرِي', 'بِسُرْعَةٍ'], ms: 'Kuda itu berlari dengan laju' },
+      { ar: ['الْبَطَّةُ', 'تَمْشِي', 'قُرْبَ', 'الْبُحَيْرَةِ'], ms: 'Itik berjalan dekat tasik' },
+      { ar: ['الدَّجَاجَةُ', 'فِي', 'الْمَزْرَعَةِ'], ms: 'Ayam betina itu di ladang' },
+      { ar: ['الْبَقَرَةُ', 'تُعْطِينَا', 'الْحَلِيبَ'], ms: 'Lembu memberi kita susu' },
+      { ar: ['الْخَرُوفُ', 'صُوفُهُ', 'نَاعِمٌ'], ms: 'Biri-biri itu bulunya lembut' },
+      { ar: ['الْقِرْدُ', 'فَوْقَ', 'الشَّجَرَةِ'], ms: 'Monyet itu di atas pokok' },
+      { ar: ['السُّلَحْفَاةُ', 'تَمْشِي', 'بِبُطْءٍ'], ms: 'Kura-kura berjalan dengan perlahan' },
+      { ar: ['النَّحْلَةُ', 'تَصْنَعُ', 'الْعَسَلَ'], ms: 'Lebah membuat madu' },
+      { ar: ['النَّمْلَةُ', 'صَغِيرَةٌ', 'وَنَشِيطَةٌ'], ms: 'Semut itu kecil dan rajin' },
+      { ar: ['الْجَمَلُ', 'سَفِينَةُ', 'الصَّحْرَاءِ'], ms: 'Unta ialah bahtera padang pasir' },
+      { ar: ['الدُّبُّ', 'يُحِبُّ', 'الْعَسَلَ'], ms: 'Beruang suka akan madu' },
+      { ar: ['الطَّاوُوسُ', 'رِيشُهُ', 'جَمِيلٌ'], ms: 'Burung merak itu bulunya cantik' },
+      { ar: ['نَحْنُ', 'نَرْحَمُ', 'الْحَيَوَانَاتِ'], ms: 'Kita menyayangi haiwan-haiwan' }
+    ]
+  }
+];
+
+/* ============================================================================
+   FASA 5: LOGIK PERMAINAN, PENYIMPANAN TEMPATAN, & PENGURUSAN UI
+   ============================================================================ */
+const STORAGE_KEY = 'arabic_adventure_save_v1';
+const LEADERBOARD_KEY = 'arabic_adventure_lb_v1';
+
+const Game = {
+  state: {
+    playerName: '',
+    score: 0,
+    completed: {}, // kunci: "worldId-missionIndex" -> true
+    currentWorldId: 1,
+    currentMissionIdx: 0,
+    selectedTokens: [], // [{ id, text }]
+    bankTokens: []      // [{ id, text, used }]
+  },
+
+  init() {
+    this.loadProgress();
+    // Lukis karakter maskot utama & latar dunia pertama
+    document.getElementById('home-mascot').innerHTML = ArtAssets.getAmiraSVG('happy');
+    document.getElementById('world-scene').innerHTML = ArtAssets.getWorldSceneSVG(this.state.currentWorldId);
+    this.updateTopHUD();
+    UI.renderWorldsGrid();
+    UI.renderLeaderboard();
+  },
+
+  loadProgress() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        this.state.playerName = parsed.playerName || '';
+        this.state.score = Number(parsed.score) || 0;
+        this.state.completed = parsed.completed || {};
+      }
+      if (this.state.playerName) {
+        document.getElementById('player-name-input').value = this.state.playerName;
+      }
+    } catch (e) {
+      console.warn('Simpanan tempatan tidak dapat dibaca:', e);
+    }
+  },
+
+  saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        playerName: this.state.playerName,
+        score: this.state.score,
+        completed: this.state.completed
+      }));
+      this.syncLeaderboardEntry();
+    } catch (e) {
+      console.warn('Gagal menyimpan kemajuan:', e);
+    }
+  },
+
+  getTotalStars() {
+    return Object.keys(this.state.completed).length;
+  },
+
+  getWorldStars(worldId) {
+    let count = 0;
+    for (let i = 0; i < 20; i++) {
+      if (this.state.completed[`${worldId}-${i}`]) count++;
+    }
+    return count;
+  },
+
+  updateTopHUD() {
+    document.getElementById('hud-player-name').textContent = this.state.playerName || 'Tetamu';
+    document.getElementById('hud-stars').textContent = this.getTotalStars();
+    document.getElementById('hud-score').textContent = this.state.score;
+  },
+
+  savePlayerName() {
+    const input = document.getElementById('player-name-input');
+    const feedback = document.getElementById('name-feedback');
+    const cleaned = (input.value || '').trim();
+
+    if (!cleaned) {
+      SoundEngine.playWrong();
+      feedback.style.color = 'var(--coral-dark)';
+      feedback.textContent = '⚠️ Sila tulis nama pengembara dahulu!';
+      input.focus();
+      return false;
+    }
+
+    this.state.playerName = cleaned;
+    this.saveProgress();
+    this.updateTopHUD();
+    SoundEngine.playPop();
+
+    feedback.style.color = 'var(--turquoise-dark)';
+    feedback.textContent = `✅ Selamat datang, Pengembara ${cleaned}!`;
+    document.getElementById('home-speech').textContent = `مَرْحَبًا يَا ${cleaned}! Jom kita mulakan misi!`;
+    return true;
+  },
+
+  ensurePlayerNamed() {
+    const inputVal = (document.getElementById('player-name-input').value || '').trim();
+    if (inputVal && inputVal !== this.state.playerName) {
+      this.savePlayerName();
+    }
+    if (!this.state.playerName) {
+      UI.showScreen('home');
+      const feedback = document.getElementById('name-feedback');
+      feedback.style.color = 'var(--coral-dark)';
+      feedback.textContent = '⚠️ Sila masukkan nama anda sebelum mula mengembara!';
+      document.getElementById('player-name-input').focus();
+      SoundEngine.playWrong();
+      return false;
+    }
+    return true;
+  },
+
+  startFromHome() {
+    if (!this.ensurePlayerNamed()) return;
+    SoundEngine.playPop();
+    // Cari misi pertama yang belum selesai
+    for (const w of WORLDS_DATA) {
+      for (let idx = 0; idx < w.missions.length; idx++) {
+        if (!this.state.completed[`${w.id}-${idx}`]) {
+          this.enterMission(w.id, idx);
+          return;
         }
       }
-      if (ctx && ctx.state === 'suspended') {
-        ctx.resume();
+    }
+    this.enterMission(1, 0);
+  },
+
+  enterWorld(worldId) {
+    if (!this.ensurePlayerNamed()) return;
+    SoundEngine.playPop();
+    // Cari misi pertama belum selesai dalam dunia tersebut
+    let firstIncomplete = 0;
+    for (let i = 0; i < 20; i++) {
+      if (!this.state.completed[`${worldId}-${i}`]) {
+        firstIncomplete = i;
+        break;
       }
     }
+    this.enterMission(worldId, firstIncomplete);
+  },
 
-    return {
-      toggle(on) {
-        enabled = on;
-      },
-      isEnabled() {
-        return enabled;
-      },
-      click() {
-        if (!enabled) return;
-        initCtx();
-        if (!ctx) return;
-        try {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(440, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.08);
-          gain.gain.setValueAtTime(0.12, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.08);
-        } catch (e) {}
-      },
-      wheelTick() {
-        if (!enabled) return;
-        initCtx();
-        if (!ctx) return;
-        try {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(600 + Math.random() * 200, ctx.currentTime);
-          gain.gain.setValueAtTime(0.08, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.04);
-        } catch (e) {}
-      },
-      correct() {
-        if (!enabled) return;
-        initCtx();
-        if (!ctx) return;
-        try {
-          const now = ctx.currentTime;
-          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 arpeggio
-          notes.forEach((freq, idx) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, now + idx * 0.07);
-            gain.gain.setValueAtTime(0.18, now + idx * 0.07);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.25);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start(now + idx * 0.07);
-            osc.stop(now + idx * 0.07 + 0.25);
-          });
-        } catch (e) {}
-      },
-      incorrect() {
-        if (!enabled) return;
-        initCtx();
-        if (!ctx) return;
-        try {
-          const now = ctx.currentTime;
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(329.63, now); // E4 down to C4 gentle descending tone
-          osc.frequency.exponentialRampToValueAtTime(261.63, now + 0.25);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(now);
-          osc.stop(now + 0.28);
-        } catch (e) {}
-      },
-      star() {
-        if (!enabled) return;
-        initCtx();
-        if (!ctx) return;
-        try {
-          const now = ctx.currentTime;
-          [880, 1174.66, 1760].forEach((freq, idx) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now + idx * 0.06);
-            gain.gain.setValueAtTime(0.15, now + idx * 0.06);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.22);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start(now + idx * 0.06);
-            osc.stop(now + idx * 0.06 + 0.22);
-          });
-        } catch (e) {}
-      }
-    };
-  })();
+  enterMission(worldId, missionIdx) {
+    this.state.currentWorldId = worldId;
+    this.state.currentMissionIdx = missionIdx;
 
-  const GameStorage = {
-    KEY: 'arab_wheel_kawaii_v1',
-    SCOREBOARD_KEY: 'arab_wheel_kawaii_scoreboard_v1',
-    getData() {
-      try {
-        const raw = localStorage.getItem(this.KEY);
-        if (raw) return JSON.parse(raw);
-      } catch (e) {}
-      return {
-        playerName: 'Pemain Cilik',
-        unlockedLevel: 1,
-        totalScore: 0,
-        totalStars: 0,
-        levelScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-        soundEnabled: true
-      };
-    },
-    saveData(data) {
-      try {
-        localStorage.setItem(this.KEY, JSON.stringify(data));
-      } catch (e) {}
-    },
-    getScoreboard() {
-      try {
-        const raw = localStorage.getItem(this.SCOREBOARD_KEY);
-        if (raw) return JSON.parse(raw);
-      } catch (e) {}
-      return [];
-    },
-    saveScoreboard(list) {
-      try {
-        localStorage.setItem(this.SCOREBOARD_KEY, JSON.stringify(list));
-      } catch (e) {}
-    },
-    syncRealtimeScore(sessionData) {
-      const list = this.getScoreboard();
-      const existingIdx = list.findIndex(item => item.sessionId === sessionData.sessionId);
-      
-      if (existingIdx !== -1) {
-        list[existingIdx] = { ...list[existingIdx], ...sessionData };
-      } else {
-        list.push(sessionData);
-      }
+    // Kemas kini latar belakang 3D mengikut dunia
+    document.getElementById('world-scene').innerHTML = ArtAssets.getWorldSceneSVG(worldId);
 
-      list.sort((a, b) => b.score - a.score);
-      const trimmed = list.slice(0, 30);
-      this.saveScoreboard(trimmed);
-      return trimmed;
-    },
-    clearScoreboard() {
-      try {
-        localStorage.removeItem(this.SCOREBOARD_KEY);
-      } catch (e) {}
-    },
-    reset() {
-      try {
-        localStorage.removeItem(this.KEY);
-        localStorage.removeItem(this.SCOREBOARD_KEY);
-      } catch (e) {}
-      return this.getData();
+    const world = WORLDS_DATA.find(w => w.id === worldId) || WORLDS_DATA[0];
+    const mission = world.missions[missionIdx];
+
+    // Kemas kini HUD Pentas
+    document.getElementById('stage-world-title').textContent = `${world.nameMs} (${world.nameAr})`;
+    document.getElementById('stage-mission-counter').textContent = `Misi ${missionIdx + 1} / ${world.missions.length}`;
+    document.getElementById('mission-story-text').textContent = `Bantu Amira ${world.storyAction} dengan membina ayat:`;
+    document.getElementById('mission-meaning-ms').textContent = `"${mission.ms}"`;
+
+    // Set semula karakter & objek pentas
+    const amiraEl = document.getElementById('stage-amira');
+    const propEl = document.getElementById('stage-prop');
+    amiraEl.classList.remove('advance');
+    propEl.classList.remove('unlocked');
+    amiraEl.innerHTML = ArtAssets.getAmiraSVG('happy');
+    propEl.innerHTML = ArtAssets.getPropSVG(worldId, false);
+
+    // Sediakan token perkataan secara rawak (tetapi tidak sama susunan asal jika >1)
+    this.state.selectedTokens = [];
+    const tokens = mission.ar.map((word, index) => ({
+      id: `tok-${index}-${Math.random().toString(36).substring(2, 6)}`,
+      text: word,
+      used: false
+    }));
+
+    // Kocok kad perkataan
+    for (let i = tokens.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tokens[i], tokens[j]] = [tokens[j], tokens[i]];
     }
-  };
-
-  /**
-   * 10 SEGMENTS WITH BALANCED REWARDS:
-   */
-  const WHEEL_SEGMENTS = [
-    { label: '100 Mata', type: 'POINTS', value: 100, color: '#FFD9E8', textColor: '#A82B61' },
-    { label: '200 Mata', type: 'POINTS', value: 200, color: '#DCD5FF', textColor: '#4F39A8' },
-    { label: '⭐ Bintang', type: 'EXTRA_STAR', value: 100, color: '#FFF0B8', textColor: '#8C5D00' },
-    { label: '100 Mata', type: 'POINTS', value: 100, color: '#CFF5E8', textColor: '#0F7050' },
-    { label: '300 Mata', type: 'POINTS', value: 300, color: '#D8EDFF', textColor: '#1B65A8' },
-    { label: '2X Ganda', type: 'DOUBLE_POINTS', value: 150, color: '#FFD9E8', textColor: '#A82B61' },
-    { label: '100 Mata', type: 'POINTS', value: 100, color: '#DCD5FF', textColor: '#4F39A8' },
-    { label: 'Pusingan Bonus', type: 'BONUS_ROUND', value: 250, color: '#FFF0B8', textColor: '#8C5D00' },
-    { label: '200 Mata', type: 'POINTS', value: 200, color: '#CFF5E8', textColor: '#0F7050' },
-    { label: 'Cabaran Hebat', type: 'CHALLENGE_ROUND', value: 350, color: '#D8EDFF', textColor: '#1B65A8' }
-  ];
-
-  /**
-   * 100 VOCABULARY ITEMS STRICTLY STRUCTURED INTO 5 SYLLABUS LEVELS
-   * (20 questions per level, complete with harakat)
-   */
-  const VOCABULARY_BANK = {
-    1: {
-      name: "Dunia Sekolah",
-      words: [
-        { ar: "حَقِيبَةٌ", ms: "Beg sekolah" },
-        { ar: "كِتَابٌ", ms: "Buku" },
-        { ar: "قَلَمٌ", ms: "Pen" },
-        { ar: "مِمْحَاةٌ", ms: "Pemadam" },
-        { ar: "مِسْطَرَةٌ", ms: "Pembaris" },
-        { ar: "كُرْسِيٌّ", ms: "Kerusi" },
-        { ar: "مَكْتَبٌ", ms: "Meja" },
-        { ar: "مَدْرَسَةٌ", ms: "Sekolah" },
-        { ar: "مُعَلِّمَةٌ", ms: "Guru perempuan" },
-        { ar: "مُعَلِّمٌ", ms: "Guru lelaki" },
-        { ar: "تِلْمِيذٌ", ms: "Murid lelaki" },
-        { ar: "تِلْمِيذَةٌ", ms: "Murid perempuan" },
-        { ar: "قَلَمُ رَصَاصٍ", ms: "Pensel" },
-        { ar: "وَرَقَةٌ", ms: "Kertas" },
-        { ar: "أَلْوَانٌ", ms: "Warna-warna" },
-        { ar: "بَابٌ", ms: "Pintu" },
-        { ar: "نَافِذَةٌ", ms: "Tingkap" },
-        { ar: "فَصْلٌ", ms: "Kelas" },
-        { ar: "حِسَابٌ", ms: "Pengiraan" },
-        { ar: "دَفْتَرٌ", ms: "Buku nota" }
-      ]
-    },
-    2: {
-      name: "Rumah & Keluarga",
-      words: [
-        { ar: "بَيْتٌ", ms: "Rumah" },
-        { ar: "أَبٌ", ms: "Ayah" },
-        { ar: "أُمٌّ", ms: "Ibu" },
-        { ar: "أَخٌ", ms: "Saudara lelaki" },
-        { ar: "أُخْتٌ", ms: "Saudara perempuan" },
-        { ar: "جَدٌّ", ms: "Datuk" },
-        { ar: "جَدَّةٌ", ms: "Nenek" },
-        { ar: "طِفْلٌ", ms: "Kanak-kanak" },
-        { ar: "غُرْفَةٌ", ms: "Bilik" },
-        { ar: "غُرْفَةُ الْجُلُوسِ", ms: "Ruang tamu" },
-        { ar: "مَطْبَخٌ", ms: "Dapur" },
-        { ar: "حَمَّامٌ", ms: "Bilik air" },
-        { ar: "سَرِيرٌ", ms: "Katil" },
-        { ar: "نَافِذَةٌ", ms: "Tingkap" },
-        { ar: "بَابٌ", ms: "Pintu" },
-        { ar: "كُرْسِيٌّ", ms: "Kerusi" },
-        { ar: "ثَلَّاجَةٌ", ms: "Peti sejuk" },
-        { ar: "مِكْنَسَةٌ", ms: "Penyapu" },
-        { ar: "حَدِيقَةٌ", ms: "Taman" },
-        { ar: "عَائِلَةٌ", ms: "Keluarga" }
-      ]
-    },
-    3: {
-      name: "Haiwan & Alam",
-      words: [
-        { ar: "قِطَّةٌ", ms: "Kucing" },
-        { ar: "كَلْبٌ", ms: "Anjing" },
-        { ar: "بَقَرَةٌ", ms: "Lembu" },
-        { ar: "مَاعِزٌ", ms: "Kambing" },
-        { ar: "حِصَانٌ", ms: "Kuda" },
-        { ar: "جَمَلٌ", ms: "Unta" },
-        { ar: "فِيلٌ", ms: "Gajah" },
-        { ar: "أَسَدٌ", ms: "Singa" },
-        { ar: "قِرْدٌ", ms: "Monyet" },
-        { ar: "أَرْنَبٌ", ms: "Arnab" },
-        { ar: "دَجَاجَةٌ", ms: "Ayam" },
-        { ar: "بَطَّةٌ", ms: "Itik" },
-        { ar: "عُصْفُورٌ", ms: "Burung" },
-        { ar: "سَمَكٌ", ms: "Ikan" },
-        { ar: "شَجَرَةٌ", ms: "Pokok" },
-        { ar: "زَهْرَةٌ", ms: "Bunga" },
-        { ar: "شَمْسٌ", ms: "Matahari" },
-        { ar: "قَمَرٌ", ms: "Bulan" },
-        { ar: "مَطَرٌ", ms: "Hujan" },
-        { ar: "بَحْرٌ", ms: "Laut" }
-      ]
-    },
-    4: {
-      name: "Makanan & Tubuh",
-      words: [
-        { ar: "خُبْزٌ", ms: "Roti" },
-        { ar: "أَرُزٌّ", ms: "Nasi" },
-        { ar: "حَلِيبٌ", ms: "Susu" },
-        { ar: "بَيْضٌ", ms: "Telur" },
-        { ar: "تُفَّاحٌ", ms: "Epal" },
-        { ar: "مَوْزٌ", ms: "Pisang" },
-        { ar: "بُرْتُقَالٌ", ms: "Oren" },
-        { ar: "عِنَبٌ", ms: "Anggur" },
-        { ar: "مَانْجُو", ms: "Mangga" },
-        { ar: "مَاءٌ", ms: "Air" },
-        { ar: "لَحْمٌ", ms: "Daging" },
-        { ar: "سَمَكٌ", ms: "Ikan" },
-        { ar: "عَيْنٌ", ms: "Mata" },
-        { ar: "أُذُنٌ", ms: "Telinga" },
-        { ar: "أَنْفٌ", ms: "Hidung" },
-        { ar: "فَمٌ", ms: "Mulut" },
-        { ar: "يَدٌ", ms: "Tangan" },
-        { ar: "رِجْلٌ", ms: "Kaki" },
-        { ar: "رَأْسٌ", ms: "Kepala" },
-        { ar: "قَلْبٌ", ms: "Jantung" }
-      ]
-    },
-    5: {
-      name: "Dunia Sekeliling",
-      words: [
-        { ar: "أَحْمَرُ", ms: "Merah" },
-        { ar: "أَزْرَقُ", ms: "Biru" },
-        { ar: "أَخْضَرُ", ms: "Hijau" },
-        { ar: "أَصْفَرُ", ms: "Kuning" },
-        { ar: "أَسْوَدُ", ms: "Hitam" },
-        { ar: "أَبْيَضُ", ms: "Putih" },
-        { ar: "وَاحِدٌ", ms: "Satu" },
-        { ar: "اِثْنَانِ", ms: "Dua" },
-        { ar: "ثَلَاثَةٌ", ms: "Tiga" },
-        { ar: "أَرْبَعَةٌ", ms: "Empat" },
-        { ar: "خَمْسَةٌ", ms: "Lima" },
-        { ar: "يَوْمٌ", ms: "Hari" },
-        { ar: "صَبَاحٌ", ms: "Pagi" },
-        { ar: "مَسَاءٌ", ms: "Petang" },
-        { ar: "لَيْلٌ", ms: "Malam" },
-        { ar: "يَجْرِي", ms: "Dia berlari" },
-        { ar: "يَقْرَأُ", ms: "Dia membaca" },
-        { ar: "يَكْتُبُ", ms: "Dia menulis" },
-        { ar: "يَأْكُلُ", ms: "Dia makan" },
-        { ar: "يَشْرَبُ", ms: "Dia minum" }
-      ]
+    // Jika kocokan kebetulan sama dengan jawapan asal, tukar dua elemen pertama
+    if (tokens.length > 1 && tokens.map(t => t.text).join(' ') === mission.ar.join(' ')) {
+      [tokens[0], tokens[1]] = [tokens[1], tokens[0]];
     }
-  };
 
-  let gameState = {
-    profile: GameStorage.getData(),
-    currentLevelId: 1,
-    currentQuestionIndex: 0,
-    levelQuestions: [],
-    currentReward: null,
-    levelCorrectCount: 0,
-    levelEarnedScore: 0,
-    levelEarnedStars: 0,
-    isSpinning: false,
-    hasAnsweredQuestion: false,
-    currentSessionId: null
-  };
+    this.state.bankTokens = tokens;
+    this.setFeedback('✨ Ketik kad perkataan dari kanan ke kiri untuk membina ayat!', 'var(--ink-muted)');
+    this.renderSentenceBuilder();
+    UI.showScreen('play');
+  },
 
-  const canvas = document.getElementById('wheelCanvas');
-  const ctx = canvas.getContext('2d');
-  let wheelAngle = 0;
+  renderSentenceBuilder() {
+    const world = WORLDS_DATA.find(w => w.id === this.state.currentWorldId);
+    const mission = world.missions[this.state.currentMissionIdx];
 
-  function showToast(msg) {
-    const t = document.getElementById('toastMessage');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => {
-      t.classList.remove('show');
-    }, 2200);
-  }
+    const answerContainer = document.getElementById('answer-slots');
+    const bankContainer = document.getElementById('word-bank');
+    answerContainer.classList.remove('correct-glow', 'wrong-shake');
 
-  function updateTopBar() {
-    document.getElementById('topPlayerNameDisplay').textContent = gameState.profile.playerName || 'Pemain Cilik';
-    document.getElementById('topScoreDisplay').textContent = gameState.profile.totalScore.toLocaleString();
-    document.getElementById('topStarsDisplay').textContent = gameState.profile.totalStars;
-    document.getElementById('btnToggleSound').textContent = gameState.profile.soundEnabled ? '🔊' : '🔇';
-  }
+    // Render ruang jawapan (RTL)
+    if (this.state.selectedTokens.length === 0) {
+      answerContainer.innerHTML = `<div class="empty-hint-rtl">Ketik kad perkataan Bahasa Arab di bawah untuk menyusun ayat di sini...</div>`;
+    } else {
+      answerContainer.innerHTML = '';
+      this.state.selectedTokens.forEach((tok, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'arabic-tile in-answer';
+        btn.textContent = tok.text;
+        btn.title = 'Ketik untuk keluarkan perkataan ini';
+        btn.onclick = () => this.removeWordFromAnswer(idx);
+        answerContainer.appendChild(btn);
+      });
+    }
 
-  function escapeHtml(str) {
-    if (!str) return '';
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-  }
+    // Render bank perkataan
+    bankContainer.innerHTML = '';
+    this.state.bankTokens.forEach(tok => {
+      if (tok.used) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'arabic-tile';
+      btn.textContent = tok.text;
+      btn.onclick = () => this.selectWordFromBank(tok.id);
+      bankContainer.appendChild(btn);
+    });
 
-  function renderScoreboard() {
-    const tbody = document.getElementById('scoreboardTableBody');
-    tbody.innerHTML = '';
-    const records = GameStorage.getScoreboard();
+    document.getElementById('word-count-indicator').textContent =
+      `${this.state.selectedTokens.length} / ${mission.ar.length} perkataan`;
+  },
 
-    if (!records || records.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="4" class="scoreboard-empty-msg">Belum ada rekod skor. Main sekarang dan markah akan dipaparkan terus secara automatik!</td></tr>`;
+  selectWordFromBank(tokenId) {
+    const tok = this.state.bankTokens.find(t => t.id === tokenId);
+    if (!tok || tok.used) return;
+    tok.used = true;
+    this.state.selectedTokens.push(tok);
+    SoundEngine.playPop();
+    SoundEngine.speakArabic(tok.text);
+    this.renderSentenceBuilder();
+  },
+
+  removeWordFromAnswer(selectedIndex) {
+    const removed = this.state.selectedTokens.splice(selectedIndex, 1)[0];
+    if (removed) {
+      const bankItem = this.state.bankTokens.find(t => t.id === removed.id);
+      if (bankItem) bankItem.used = false;
+    }
+    SoundEngine.playRemove();
+    this.renderSentenceBuilder();
+  },
+
+  clearSelectedWords() {
+    this.state.selectedTokens = [];
+    this.state.bankTokens.forEach(t => { t.used = false; });
+    SoundEngine.playRemove();
+    this.renderSentenceBuilder();
+  },
+
+  useHint() {
+    const world = WORLDS_DATA.find(w => w.id === this.state.currentWorldId);
+    const mission = world.missions[this.state.currentMissionIdx];
+
+    // Cari indeks pertama yang belum betul dalam jawapan semasa
+    let firstMismatch = 0;
+    while (
+      firstMismatch < this.state.selectedTokens.length &&
+      this.state.selectedTokens[firstMismatch].text === mission.ar[firstMismatch]
+    ) {
+      firstMismatch++;
+    }
+
+    // Pulangkan sebarang perkataan yang salah selepas indeks tersebut ke bank
+    while (this.state.selectedTokens.length > firstMismatch) {
+      const popped = this.state.selectedTokens.pop();
+      const bTok = this.state.bankTokens.find(t => t.id === popped.id);
+      if (bTok) bTok.used = false;
+    }
+
+    // Ambil perkataan sasaran seterusnya
+    if (firstMismatch < mission.ar.length) {
+      const targetWord = mission.ar[firstMismatch];
+      const availableTok = this.state.bankTokens.find(t => !t.used && t.text === targetWord);
+      if (availableTok) {
+        availableTok.used = true;
+        this.state.selectedTokens.push(availableTok);
+        SoundEngine.playPop();
+        SoundEngine.speakArabic(targetWord);
+        this.setFeedback(`💡 Petunjuk: Perkataan "${targetWord}" telah diletakkan!`, 'var(--lavender-dark)');
+        this.renderSentenceBuilder();
+      }
+    }
+  },
+
+  speakCurrentTarget() {
+    const world = WORLDS_DATA.find(w => w.id === this.state.currentWorldId);
+    const mission = world.missions[this.state.currentMissionIdx];
+    SoundEngine.speakArabic(mission.ar.join(' '));
+  },
+
+  checkAnswer() {
+    const world = WORLDS_DATA.find(w => w.id === this.state.currentWorldId);
+    const mission = world.missions[this.state.currentMissionIdx];
+    const answerContainer = document.getElementById('answer-slots');
+
+    if (this.state.selectedTokens.length < mission.ar.length) {
+      SoundEngine.playWrong();
+      answerContainer.classList.remove('wrong-shake');
+      void answerContainer.offsetWidth;
+      answerContainer.classList.add('wrong-shake');
+      this.setFeedback('⚠️ Sila pilih semua kad perkataan dahulu sebelum menyemak!', 'var(--coral-dark)');
       return;
     }
 
-    records.forEach((rec, idx) => {
-      const tr = document.createElement('tr');
-      if (idx === 0) tr.className = 'scoreboard-rank-1';
+    const userSentence = this.state.selectedTokens.map(t => t.text).join(' ');
+    const targetSentence = mission.ar.join(' ');
 
-      let medal = `${idx + 1}`;
-      if (idx === 0) medal = '🥇 1';
-      else if (idx === 1) medal = '🥈 2';
-      else if (idx === 2) medal = '🥉 3';
+    if (userSentence === targetSentence) {
+      // JAWAPAN BETUL
+      SoundEngine.playSuccess();
+      SoundEngine.speakArabic(targetSentence);
+      answerContainer.classList.add('correct-glow');
+      this.setFeedback('🌟 مُمْتَازٌ! Susunan ayat Bahasa Arab anda tepat sekali!', 'var(--success-dark)');
 
-      const statusTag = rec.isCompleted 
-        ? `<span style="font-size:0.75rem; color:#2CA581; background:#E5FAF2; padding:2px 8px; border-radius:10px; font-weight:700;">✓ Selesai</span>` 
-        : `<span style="font-size:0.75rem; color:#D44E8C; background:#FFF0F6; padding:2px 8px; border-radius:10px; font-weight:700;">⏳ Soalan ${rec.currentQ || 1}/20</span>`;
+      // Animasi Amira bergerak & objek misi bercahaya
+      const amiraEl = document.getElementById('stage-amira');
+      const propEl = document.getElementById('stage-prop');
+      amiraEl.innerHTML = ArtAssets.getAmiraSVG('excited');
+      amiraEl.classList.add('advance');
+      propEl.innerHTML = ArtAssets.getPropSVG(this.state.currentWorldId, true);
+      propEl.classList.add('unlocked');
 
-      tr.innerHTML = `
-        <td>${medal}</td>
-        <td>
-          <div style="font-weight:700;">${escapeHtml(rec.name)}</div>
-          <div>${statusTag}</div>
-        </td>
-        <td>${escapeHtml(rec.level)}</td>
-        <td style="text-align: right; color:#D44E8C; font-weight:700;">${rec.score} ⭐</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
+      // Tambah bintang & markah
+      const missionKey = `${this.state.currentWorldId}-${this.state.currentMissionIdx}`;
+      if (!this.state.completed[missionKey]) {
+        this.state.completed[missionKey] = true;
+        this.state.score += 100;
+      } else {
+        this.state.score += 20; // Bonus ulang kaji
+      }
+      this.saveProgress();
+      this.updateTopHUD();
 
-  function updateLiveScoreboardEntry(isFinished = false) {
-    const activePlayerName = gameState.profile.playerName || 'Pemain Cilik';
-    const totalQ = gameState.levelQuestions.length || 20;
-    const answeredCount = gameState.currentQuestionIndex + (gameState.hasAnsweredQuestion ? 1 : 0);
-    const accuracy = answeredCount > 0 ? Math.round((gameState.levelCorrectCount / answeredCount) * 100) + '%' : '0%';
+      // Papar modal kejayaan selepas animasi pendek
+      setTimeout(() => {
+        document.getElementById('modal-story-Win').textContent =
+          `Amira berjaya ${world.storyAction}! (+100 Mata)`;
+        document.getElementById('modal-arabic-sentence').textContent = targetSentence;
+        document.getElementById('modal-malay-sentence').textContent = `"${mission.ms}"`;
+        document.getElementById('modal-success').classList.add('show');
+      }, 650);
+    } else {
+      // JAWAPAN KURANG TEPAT
+      SoundEngine.playWrong();
+      answerContainer.classList.remove('wrong-shake');
+      void answerContainer.offsetWidth;
+      answerContainer.classList.add('wrong-shake');
+      this.setFeedback('❌ Belum tepat. Cuba semak semula susunan perkataan dari kanan ke kiri!', 'var(--coral-dark)');
+    }
+  },
 
-    GameStorage.syncRealtimeScore({
-      sessionId: gameState.currentSessionId,
-      name: activePlayerName,
-      level: `Tahap ${gameState.currentLevelId}`,
-      score: gameState.levelEarnedScore,
-      stars: gameState.levelEarnedStars,
-      currentQ: Math.min(answeredCount, totalQ),
-      accuracy: accuracy,
-      isCompleted: isFinished,
-      timestamp: Date.now()
-    });
-  }
+  closeSuccessAndContinue() {
+    document.getElementById('modal-success').classList.remove('show');
+    this.nextMission();
+  },
 
-  function renderLevelCards() {
-    const container = document.getElementById('levelsContainer');
-    container.innerHTML = '';
+  prevMission() {
+    SoundEngine.playPop();
+    if (this.state.currentMissionIdx > 0) {
+      this.enterMission(this.state.currentWorldId, this.state.currentMissionIdx - 1);
+    } else if (this.state.currentWorldId > 1) {
+      this.enterMission(this.state.currentWorldId - 1, 19);
+    }
+  },
 
-    for (let id = 1; id <= 5; id++) {
-      const isUnlocked = id <= gameState.profile.unlockedLevel;
-      const lvlData = VOCABULARY_BANK[id];
-      const bestScore = gameState.profile.levelScores[id] || 0;
+  nextMission() {
+    SoundEngine.playPop();
+    if (this.state.currentMissionIdx < 19) {
+      this.enterMission(this.state.currentWorldId, this.state.currentMissionIdx + 1);
+    } else if (this.state.currentWorldId < WORLDS_DATA.length) {
+      this.enterMission(this.state.currentWorldId + 1, 0);
+    } else {
+      UI.showScreen('leaderboard');
+    }
+  },
 
-      const item = document.createElement('div');
-      item.className = `level-item ${isUnlocked ? 'unlocked' : 'locked'}`;
+  setFeedback(msg, color) {
+    const fb = document.getElementById('gameplay-feedback');
+    fb.style.color = color || 'var(--ink)';
+    fb.textContent = msg;
+  },
 
-      item.innerHTML = `
-        <div class="level-item-info">
-          <div class="level-num-badge">${id}</div>
-          <div>
-            <div class="level-name">Tahap ${id} — ${lvlData.name}</div>
-            <div class="level-sub">20 Soalan Mufradat ${bestScore > 0 ? `• Rekod: ${bestScore} mata` : ''}</div>
-          </div>
-        </div>
-        <div class="level-badge-status ${isUnlocked ? 'open' : 'lock'}">
-          ${isUnlocked ? 'Terbuka' : 'Terkunci 🔒'}
-        </div>
-      `;
-
-      if (isUnlocked) {
-        item.addEventListener('click', () => {
-          KawaiiAudio.click();
-          startLevel(id);
+  syncLeaderboardEntry() {
+    if (!this.state.playerName) return;
+    try {
+      const raw = localStorage.getItem(LEADERBOARD_KEY);
+      let list = raw ? JSON.parse(raw) : this.getDefaultLeaderboard();
+      const stars = this.getTotalStars();
+      const existingIdx = list.findIndex(
+        item => item.name.toLowerCase() === this.state.playerName.toLowerCase()
+      );
+      if (existingIdx >= 0) {
+        list[existingIdx].score = Math.max(list[existingIdx].score, this.state.score);
+        list[existingIdx].stars = Math.max(list[existingIdx].stars, stars);
+      } else {
+        list.push({
+          name: this.state.playerName,
+          stars: stars,
+          score: this.state.score
         });
       }
-
-      container.appendChild(item);
+      list.sort((a, b) => b.score - a.score || b.stars - a.stars);
+      list = list.slice(0, 10);
+      localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(list));
+    } catch (e) {
+      console.warn('Ralat kemas kini papan markah:', e);
     }
+  },
+
+  getDefaultLeaderboard() {
+    return [
+      { name: 'Amira Cilik', stars: 45, score: 4500 },
+      { name: 'Adam Harith', stars: 32, score: 3200 },
+      { name: 'Nur Zara', stars: 25, score: 2500 },
+      { name: 'Iman Firdaus', stars: 18, score: 1800 }
+    ];
+  },
+
+  resetProgressPrompt() {
+    SoundEngine.playPop();
+    document.getElementById('modal-reset').classList.add('show');
+  },
+
+  confirmResetProgress() {
+    document.getElementById('modal-reset').classList.remove('show');
+    this.state.score = 0;
+    this.state.completed = {};
+    this.saveProgress();
+    this.updateTopHUD();
+    UI.renderWorldsGrid();
+    UI.renderLeaderboard();
+    SoundEngine.playRemove();
   }
+};
 
-  function showScreen(screenId) {
-    const screens = ['screenMainMenu', 'screenWheel', 'screenQuestion', 'screenResults'];
-    screens.forEach(id => {
-      const el = document.getElementById(id);
-      if (id === screenId) {
-        el.classList.remove('hidden');
-      } else {
-        el.classList.add('hidden');
-      }
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+/* ============================================================================
+   FASA 6: KAWALAN SKRIN & RENDER KOMPONEN
+   ============================================================================ */
+const UI = {
+  showScreen(screenName) {
+    SoundEngine.playPop();
+    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+    const target = document.getElementById(`screen-${screenName}`);
+    if (target) target.classList.add('active');
 
-  function buildQuestionsForLevel(levelId) {
-    const bank = VOCABULARY_BANK[levelId].words;
-    const shuffled = [...bank].sort(() => Math.random() - 0.5);
-
-    return shuffled.map((item, index) => {
-      const isArabicToMalay = index % 2 === 0;
-      const otherWords = bank.filter(w => w.ar !== item.ar);
-      const distractors = [...otherWords].sort(() => Math.random() - 0.5).slice(0, 3);
-
-      let options = [];
-      if (isArabicToMalay) {
-        options = [item.ms, ...distractors.map(d => d.ms)];
-      } else {
-        options = [item.ar, ...distractors.map(d => d.ar)];
-      }
-
-      options.sort(() => Math.random() - 0.5);
-
-      return {
-        direction: isArabicToMalay ? 'ARABIC_TO_MALAY' : 'MALAY_TO_ARABIC',
-        targetArabic: item.ar,
-        targetMalay: item.ms,
-        correctArabic: item.ar,
-        correctMalay: item.ms,
-        options: options
-      };
-    });
-  }
-
-  function drawWheel(angle) {
-    const numSegments = WHEEL_SEGMENTS.length;
-    const arcSize = (2 * Math.PI) / numSegments;
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = centerX - 6;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < numSegments; i++) {
-      const segAngle = angle + i * arcSize;
-      const seg = WHEEL_SEGMENTS[i];
-
-      ctx.beginPath();
-      ctx.fillStyle = seg.color;
-      ctx.moveTo(centerX, centerY);
-      ctx.arc(centerX, centerY, radius, segAngle, segAngle + arcSize);
-      ctx.lineTo(centerX, centerY);
-      ctx.fill();
-
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = '#FFFFFF';
-      ctx.stroke();
-
-      ctx.save();
-      ctx.translate(centerX, centerY);
-      ctx.rotate(segAngle + arcSize / 2);
-      ctx.textAlign = 'right';
-      ctx.fillStyle = seg.textColor;
-      ctx.font = 'bold 12.5px Poppins, sans-serif';
-      ctx.fillText(seg.label, radius - 16, 5);
-      ctx.restore();
+    if (screenName === 'worlds') {
+      this.renderWorldsGrid();
+    } else if (screenName === 'leaderboard') {
+      this.renderLeaderboard();
     }
+  },
 
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, 32, 0, 2 * Math.PI);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fill();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#DCD5FF';
-    ctx.stroke();
+  openWorldsFromHome() {
+    if (!Game.ensurePlayerNamed()) return;
+    this.showScreen('worlds');
+  },
 
-    ctx.fillStyle = '#D44E8C';
-    ctx.font = 'bold 18px Poppins';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('⭐', centerX, centerY);
-  }
+  renderWorldsGrid() {
+    const grid = document.getElementById('worlds-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
 
-  function startLevel(levelId) {
-    gameState.currentLevelId = levelId;
-    gameState.currentQuestionIndex = 0;
-    gameState.levelQuestions = buildQuestionsForLevel(levelId);
-    gameState.levelCorrectCount = 0;
-    gameState.levelEarnedScore = 0;
-    gameState.levelEarnedStars = 0;
-    gameState.hasAnsweredQuestion = false;
-    gameState.currentSessionId = 'sess_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
-
-    updateLiveScoreboardEntry(false);
-    prepareWheelStage();
-  }
-
-  function prepareWheelStage() {
-    const qNum = gameState.currentQuestionIndex + 1;
-    document.getElementById('wheelLevelTitle').textContent = `Tahap ${gameState.currentLevelId} — ${VOCABULARY_BANK[gameState.currentLevelId].name}`;
-    document.getElementById('wheelProgressLabel').textContent = `Soalan ${qNum} / 20`;
-    document.getElementById('rewardDisplayBanner').textContent = '🎯 Tekan PUSING RODA untuk mula!';
-    document.getElementById('btnSpinWheel').disabled = false;
-    document.getElementById('btnSpinWheel').style.opacity = '1';
-
-    showScreen('screenWheel');
-    drawWheel(wheelAngle);
-  }
-
-  function spinWheel() {
-    if (gameState.isSpinning) return;
-    gameState.isSpinning = true;
-
-    KawaiiAudio.click();
-
-    const spinBtn = document.getElementById('btnSpinWheel');
-    spinBtn.disabled = true;
-    spinBtn.style.opacity = '0.6';
-
-    const numSegments = WHEEL_SEGMENTS.length;
-    const arcSize = (2 * Math.PI) / numSegments;
-    const targetSegmentIndex = Math.floor(Math.random() * numSegments);
-
-    const pointerAngle = (3 * Math.PI) / 2; // Pointer is at the top (270 degrees)
-    const segmentCenterOffset = (targetSegmentIndex + 0.5) * arcSize;
-    let targetEndAngle = pointerAngle - segmentCenterOffset;
-
-    const fullSpins = 4 + Math.floor(Math.random() * 3);
-    const startAngle = wheelAngle % (2 * Math.PI);
-    const totalRotationNeeded = (fullSpins * 2 * Math.PI) + (targetEndAngle - startAngle);
-    const finalAngle = wheelAngle + totalRotationNeeded;
-
-    const duration = 3200;
-    const startTime = performance.now();
-    let lastTickSegment = -1;
-
-    function easeOutQuart(t) {
-      return 1 - (--t) * t * t * t;
-    }
-
-    function animateWheel(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeOutQuart(progress);
-
-      wheelAngle = startAngle + totalRotationNeeded * easedProgress;
-      drawWheel(wheelAngle);
-
-      const normalizedAngle = (wheelAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
-      const currentAtPointer = Math.floor(((pointerAngle - normalizedAngle + 2 * Math.PI) % (2 * Math.PI)) / arcSize);
-      if (currentAtPointer !== lastTickSegment) {
-        KawaiiAudio.wheelTick();
-        lastTickSegment = currentAtPointer;
-      }
-
-      if (progress < 1) {
-        requestAnimationFrame(animateWheel);
-      } else {
-        wheelAngle = finalAngle;
-        drawWheel(wheelAngle);
-        gameState.isSpinning = false;
-
-        const normalizedFinal = (wheelAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
-        const actualSegmentIndex = Math.floor(((pointerAngle - normalizedFinal + 2 * Math.PI) % (2 * Math.PI)) / arcSize) % numSegments;
-        const selectedReward = WHEEL_SEGMENTS[actualSegmentIndex];
-        gameState.currentReward = selectedReward;
-
-        const banner = document.getElementById('rewardDisplayBanner');
-        banner.textContent = `🎉 Anda Dapat: ${selectedReward.label}!`;
-        KawaiiAudio.star();
-
-        setTimeout(() => {
-          openQuestionStage();
-        }, 1200);
-      }
-    }
-
-    requestAnimationFrame(animateWheel);
-  }
-
-  function openQuestionStage() {
-    gameState.hasAnsweredQuestion = false;
-    const qData = gameState.levelQuestions[gameState.currentQuestionIndex];
-    const qNum = gameState.currentQuestionIndex + 1;
-
-    document.getElementById('quizLevelBadge').textContent = `Tahap ${gameState.currentLevelId} • Soalan ${qNum} / 20`;
-    document.getElementById('quizProgressBar').style.width = `${(qNum / 20) * 100}%`;
-    document.getElementById('quizRewardActiveTag').textContent = `🎁 Ganjaran: ${gameState.currentReward.label}`;
-
-    const instruction = document.getElementById('quizInstructionText');
-    const targetBox = document.getElementById('targetWordContainer');
-
-    if (qData.direction === 'ARABIC_TO_MALAY') {
-      instruction.textContent = 'Pilih maksud perkataan Arab yang betul:';
-      targetBox.innerHTML = `<span class="arabic-term" lang="ar" dir="rtl">${escapeHtml(qData.targetArabic)}</span>`;
-    } else {
-      instruction.textContent = 'Pilih perkataan Arab yang sepadan:';
-      targetBox.innerHTML = `<span class="malay-term">${escapeHtml(qData.targetMalay)}</span>`;
-    }
-
-    const optionsGrid = document.getElementById('optionsGrid');
-    optionsGrid.innerHTML = '';
-
-    qData.options.forEach((optText) => {
-      const btn = document.createElement('button');
-      btn.className = `option-btn ${qData.direction === 'MALAY_TO_ARABIC' ? 'arabic-choice' : ''}`;
-      if (qData.direction === 'MALAY_TO_ARABIC') {
-        btn.setAttribute('lang', 'ar');
-        btn.setAttribute('dir', 'rtl');
-      }
-      btn.textContent = optText;
-
-      btn.addEventListener('click', () => {
-        handleAnswerSubmission(btn, optText, qData);
-      });
-
-      optionsGrid.appendChild(btn);
-    });
-
-    const banner = document.getElementById('qFeedbackBanner');
-    banner.className = 'feedback-banner';
-    banner.style.display = 'none';
-    banner.innerHTML = '';
-
-    document.getElementById('btnNextQuestion').classList.add('hidden');
-
-    showScreen('screenQuestion');
-  }
-
-  function handleAnswerSubmission(selectedBtn, selectedAnswer, qData) {
-    if (gameState.hasAnsweredQuestion) return;
-    gameState.hasAnsweredQuestion = true;
-
-    const allButtons = document.querySelectorAll('.option-btn');
-    allButtons.forEach(btn => btn.disabled = true);
-
-    const isArabicToMalay = qData.direction === 'ARABIC_TO_MALAY';
-    const isCorrect = isArabicToMalay
-      ? selectedAnswer.trim() === qData.correctMalay.trim()
-      : selectedAnswer.trim() === qData.correctArabic.trim();
-
-    const reward = gameState.currentReward;
-    let pointsAwarded = 0;
-    let starsAwarded = 0;
-
-    if (isCorrect) {
-      if (reward.type === 'POINTS') {
-        pointsAwarded = reward.value;
-      } else if (reward.type === 'DOUBLE_POINTS') {
-        pointsAwarded = reward.value * 2;
-      } else if (reward.type === 'EXTRA_STAR') {
-        pointsAwarded = reward.value;
-        starsAwarded = 1;
-      } else if (reward.type === 'BONUS_ROUND') {
-        pointsAwarded = 250;
-      } else if (reward.type === 'CHALLENGE_ROUND') {
-        pointsAwarded = 350;
-      }
-
-      gameState.levelCorrectCount++;
-      gameState.levelEarnedScore += pointsAwarded;
-      gameState.levelEarnedStars += starsAwarded;
-
-      gameState.profile.totalScore += pointsAwarded;
-      gameState.profile.totalStars += starsAwarded;
-      GameStorage.saveData(gameState.profile);
-      updateTopBar();
-
-      selectedBtn.classList.add('state-correct');
-      KawaiiAudio.correct();
-      if (starsAwarded > 0) KawaiiAudio.star();
-      triggerConfettiBurst(false);
-    } else {
-      selectedBtn.classList.add('state-incorrect');
-      KawaiiAudio.incorrect();
-
-      allButtons.forEach(btn => {
-        if (btn.textContent.trim() === (isArabicToMalay ? qData.correctMalay : qData.correctArabic).trim()) {
-          btn.classList.add('state-correct');
-        }
-      });
-    }
-
-    updateLiveScoreboardEntry(false);
-
-    const feedbackBanner = document.getElementById('qFeedbackBanner');
-    if (isCorrect) {
-      feedbackBanner.className = 'feedback-banner correct';
-      feedbackBanner.innerHTML = `
-        <div style="font-size:1.05rem;">🎉 TAHNIAH! JAWAPAN TEPAT!</div>
-        <div style="font-size:0.86rem; font-weight:600; margin-top:2px;">
-          +${pointsAwarded} Mata ${starsAwarded > 0 ? '+1 ⭐ Bintang!' : ''}
+    WORLDS_DATA.forEach(w => {
+      const stars = Game.getWorldStars(w.id);
+      const pct = Math.round((stars / 20) * 100);
+      const card = document.createElement('div');
+      card.className = 'world-node-card';
+      card.innerHTML = `
+        <div>
+          <div class="world-preview-art">
+            ${ArtAssets.getWorldSceneSVG(w.id)}
+            <span class="world-badge-num">Dunia ${w.id}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+            <h3 style="font-size:1.18rem; color:var(--teal-deep);">${w.nameMs}</h3>
+            <span style="font-family:var(--font-arabic); font-size:1.25rem; color:var(--turquoise-dark); font-weight:700;" dir="rtl">${w.nameAr}</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--ink-muted); font-weight:600; margin:6px 0 10px;">
+            ${w.desc}
+          </p>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:700; margin-bottom:6px; color:var(--teal-deep);">
+            <span>Kemajuan Misi</span>
+            <span>⭐ ${stars} / 20 (${pct}%)</span>
+          </div>
+          <div class="world-progress-bar">
+            <div class="world-progress-fill" style="width:${pct}%;"></div>
+          </div>
+          <button class="btn-3d btn-turquoise btn-sm" style="width:100%; margin-top:12px;" onclick="Game.enterWorld(${w.id})">
+            🚀 Masuk Dunia ${w.id}
+          </button>
         </div>
       `;
-    } else {
-      feedbackBanner.className = 'feedback-banner incorrect';
-      feedbackBanner.innerHTML = `
-        <div style="font-size:1.05rem;">💪 CUBA LAGI!</div>
-        <div style="font-size:0.86rem; font-weight:600; margin-top:2px;">
-          Jawapan betul: <strong>${escapeHtml(qData.correctArabic)} = ${escapeHtml(qData.correctMalay)}</strong>
-        </div>
-      `;
-    }
+      grid.appendChild(card);
+    });
+  },
 
-    document.getElementById('btnNextQuestion').classList.remove('hidden');
+  renderLeaderboard() {
+    const tbody = document.getElementById('leaderboard-rows');
+    if (!tbody) return;
+    let list = Game.getDefaultLeaderboard();
+    try {
+      const raw = localStorage.getItem(LEADERBOARD_KEY);
+      if (raw) list = JSON.parse(raw);
+    } catch (e) {}
+
+    const medals = ['🥇 1', '🥈 2', '🥉 3'];
+    tbody.innerHTML = list.map((row, idx) => `
+      <tr>
+        <td>${medals[idx] || `#${idx + 1}`}</td>
+        <td>${row.name}</td>
+        <td>⭐ ${row.stars} / 100</td>
+        <td>${row.score} Mata</td>
+      </tr>
+    `).join('');
   }
+};
 
-  function advanceToNextQuestion() {
-    KawaiiAudio.click();
-    gameState.currentQuestionIndex++;
-
-    if (gameState.currentQuestionIndex < gameState.levelQuestions.length) {
-      prepareWheelStage();
-    } else {
-      finishLevel();
-    }
-  }
-
-  function finishLevel() {
-    const totalQ = gameState.levelQuestions.length;
-    const correct = gameState.levelCorrectCount;
-    const percent = Math.round((correct / totalQ) * 100);
-
-    if (percent >= 50) {
-      gameState.levelEarnedStars += 1;
-      gameState.profile.totalStars += 1;
-    }
-
-    if (gameState.currentLevelId === gameState.profile.unlockedLevel && gameState.profile.unlockedLevel < 5) {
-      gameState.profile.unlockedLevel++;
-    }
-
-    if ((gameState.profile.levelScores[gameState.currentLevelId] || 0) < gameState.levelEarnedScore) {
-      gameState.profile.levelScores[gameState.currentLevelId] = gameState.levelEarnedScore;
-    }
-
-    updateLiveScoreboardEntry(true);
-
-    GameStorage.saveData(gameState.profile);
-    updateTopBar();
-    renderLevelCards();
-
-    const activePlayerName = gameState.profile.playerName || 'Pemain Cilik';
-    document.getElementById('resultsTitle').textContent = `TAHNIAH, ${activePlayerName.toUpperCase()}!`;
-    document.getElementById('resCorrectCount').textContent = `${correct} / ${totalQ}`;
-    document.getElementById('resEarnedScore').textContent = `+${gameState.levelEarnedScore}`;
-    document.getElementById('resStarsCount').textContent = `⭐ ${gameState.levelEarnedStars}`;
-    document.getElementById('resAccuracyPercent').textContent = `${percent}%`;
-
-    const subTitle = document.getElementById('resultsSubtitle');
-    const nextBtn = document.getElementById('btnNextLevelOrReplay');
-    const celebrationEmoji = document.getElementById('resultCelebrationEmoji');
-
-    if (gameState.currentLevelId === 5) {
-      celebrationEmoji.textContent = '👑';
-      subTitle.textContent = 'Hebat sekali! Anda telah menamatkan kesemua 5 Tahap Bahasa Arab!';
-      nextBtn.textContent = 'MAIN SEMULA TAHAP INI 🔄';
-    } else if (percent >= 50) {
-      celebrationEmoji.textContent = '🌟';
-      subTitle.textContent = `Hebat! Tahap ${gameState.currentLevelId + 1} kini telah dibuka untuk anda!`;
-      nextBtn.textContent = `TERUS KE TAHAP ${gameState.currentLevelId + 1} ➔`;
-    } else {
-      celebrationEmoji.textContent = '🎈';
-      subTitle.textContent = 'Teruskan berusaha! Cuba lagi untuk buka tahap seterusnya!';
-      nextBtn.textContent = 'CUBA SEMULA TAHAP INI 🔄';
-    }
-
-    triggerConfettiBurst(true);
-    KawaiiAudio.star();
-    showScreen('screenResults');
-  }
-
-  function triggerConfettiBurst(isBig) {
-    const confettiC = document.getElementById('confettiCanvas');
-    const cCtx = confettiC.getContext('2d');
-    confettiC.width = window.innerWidth;
-    confettiC.height = window.innerHeight;
-
-    const colors = ['#FF6EA7', '#D44E8C', '#7864D7', '#2CA581', '#FFB800', '#3A8FD6'];
-    const particleCount = isBig ? 120 : 45;
-    const particles = [];
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: confettiC.width / 2 + (Math.random() - 0.5) * 80,
-        y: confettiC.height / 2 + (Math.random() - 0.5) * 40,
-        vx: (Math.random() - 0.5) * (isBig ? 18 : 10),
-        vy: (Math.random() - 0.8) * (isBig ? 20 : 12),
-        size: Math.random() * 7 + 4,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        rotation: Math.random() * 360,
-        vr: (Math.random() - 0.5) * 8,
-        alpha: 1
-      });
-    }
-
-    let frame = 0;
-    function renderConfetti() {
-      cCtx.clearRect(0, 0, confettiC.width, confettiC.height);
-      let active = false;
-
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.38; // gravity
-        p.rotation += p.vr;
-        p.alpha -= 0.015;
-
-        if (p.alpha > 0) {
-          active = true;
-          cCtx.save();
-          cCtx.translate(p.x, p.y);
-          cCtx.rotate((p.rotation * Math.PI) / 180);
-          cCtx.globalAlpha = Math.max(0, p.alpha);
-          cCtx.fillStyle = p.color;
-          cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-          cCtx.restore();
-        }
-      });
-
-      frame++;
-      if (active && frame < 90) {
-        requestAnimationFrame(renderConfetti);
-      } else {
-        cCtx.clearRect(0, 0, confettiC.width, confettiC.height);
-      }
-    }
-
-    requestAnimationFrame(renderConfetti);
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    updateTopBar();
-    renderLevelCards();
-
-    const inputName = document.getElementById('inputPlayerName');
-    inputName.value = gameState.profile.playerName || 'Pemain Cilik';
-
-    document.getElementById('btnSavePlayerName').addEventListener('click', () => {
-      const val = inputName.value.trim();
-      if (val) {
-        gameState.profile.playerName = val;
-        GameStorage.saveData(gameState.profile);
-        updateTopBar();
-        showToast('Nama pemain disimpan!');
-        KawaiiAudio.click();
-      }
-    });
-
-    document.getElementById('btnToggleSound').addEventListener('click', () => {
-      gameState.profile.soundEnabled = !gameState.profile.soundEnabled;
-      KawaiiAudio.toggle(gameState.profile.soundEnabled);
-      GameStorage.saveData(gameState.profile);
-      updateTopBar();
-      KawaiiAudio.click();
-    });
-
-    document.getElementById('btnStartGame').addEventListener('click', () => {
-      KawaiiAudio.click();
-      startLevel(gameState.profile.unlockedLevel);
-    });
-
-    document.getElementById('btnSpinWheel').addEventListener('click', () => {
-      spinWheel();
-    });
-
-    document.getElementById('btnNextQuestion').addEventListener('click', () => {
-      advanceToNextQuestion();
-    });
-
-    document.getElementById('btnNextLevelOrReplay').addEventListener('click', () => {
-      KawaiiAudio.click();
-      if (gameState.currentLevelId < 5 && gameState.profile.unlockedLevel > gameState.currentLevelId) {
-        startLevel(gameState.currentLevelId + 1);
-      } else {
-        startLevel(gameState.currentLevelId);
-      }
-    });
-
-    document.getElementById('btnBackToHomeFromResults').addEventListener('click', () => {
-      KawaiiAudio.click();
-      showScreen('screenMainMenu');
-    });
-
-    // Scoreboard Modal
-    document.getElementById('btnOpenScoreboard').addEventListener('click', () => {
-      KawaiiAudio.click();
-      renderScoreboard();
-      document.getElementById('modalScoreboard').classList.add('open');
-    });
-
-    document.getElementById('btnCloseScoreboardModal').addEventListener('click', () => {
-      KawaiiAudio.click();
-      document.getElementById('modalScoreboard').classList.remove('open');
-    });
-
-    document.getElementById('btnClearScoreboard').addEventListener('click', () => {
-      GameStorage.clearScoreboard();
-      renderScoreboard();
-      showToast('Papan skor dikosongkan');
-      KawaiiAudio.click();
-    });
-
-    // How to Play Modal
-    document.getElementById('btnOpenHowToPlay').addEventListener('click', () => {
-      KawaiiAudio.click();
-      document.getElementById('modalHowToPlay').classList.add('open');
-    });
-
-    document.getElementById('btnCloseHowToPlay').addEventListener('click', () => {
-      KawaiiAudio.click();
-      document.getElementById('modalHowToPlay').classList.remove('open');
-    });
-
-    // Reset Progress
-    document.getElementById('btnResetProgress').addEventListener('click', () => {
-      KawaiiAudio.click();
-      gameState.profile = GameStorage.reset();
-      updateTopBar();
-      renderLevelCards();
-      inputName.value = gameState.profile.playerName;
-      showToast('Kemajuan telah diset semula!');
-    });
-
-    // Close modals on clicking backdrop
-    document.querySelectorAll('.kawaii-modal-backdrop').forEach(backdrop => {
-      backdrop.addEventListener('click', (e) => {
-        if (e.target === backdrop) {
-          backdrop.classList.remove('open');
-        }
-      });
-    });
-
-    // Initial draw of canvas wheel
-    drawWheel(0);
-  });
-  </script>
+// Mulakan aplikasi apabila halaman selesai dimuatkan
+window.onload = function () {
+  Game.init();
+};
+</script>
 </body>
 </html>
+```
